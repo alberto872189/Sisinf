@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<!-- Index.html -->
+<h1>Desacine</h1>
+<!-- Menu -->
+<nav>
+  <ul>
+  	<li><a href="index.html">Home</a></li>
+    <li><a href="#" class="tab-link" data-tab="seccion1">INICIO DE SESION</a></li>
+    <li><a href="#" class="tab-link" data-tab="seccion2">Seccion 2</a></li>
+    <li><a href="#" class="tab-link" data-tab="seccion3">Seccion 3</a></li>
+  </ul>
+</nav>
+
+<!-- Secciones -->
+<main>
+  <div class="tabs">
+    <div id="seccion1" class="tab-content">
+      <h2>Inicio de sesion</h2>
+      <input type="text" placeholder="Nombre de usuario"> 
+      <br>
+      <br>
+      <input type="text" type="password" placeholder="Contrasenya"> 
+    </div>
+
+    <div id="seccion2" class="tab-content">
+      <h2>Seccion 2</h2>
+      <p>Contenido de la seccion 2</p>
+    </div>
+
+    <div id="seccion3" class="tab-content">
+      <h2>Seccion 3</h2>
+      <p>Contenido de la seccion 3</p>
+    </div>
+  </div>
+</main>
+
+<!-- JavaScript -->
+<script>
+  const tabs = document.querySelectorAll('.tab-link');
+  const tabContents = document.querySelectorAll('.tab-content');
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', (e) => {
+      e.preventDefault();
+      const tabId = tab.getAttribute('data-tab');
+      tabContents.forEach((content) => {
+        content.classList.remove('active');
+      });
+      document.getElementById(tabId).classList.add('active');
+    });
+  });
+</script>
+
+<!-- CSS -->
+<style>
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .tab-content {
+    display: none;
+  }
+
+  .tab-content.active {
+    display: block;
+  }
+</style>
