@@ -7,20 +7,28 @@
 <body>
 		<form name ="reserva" action=entrada.html >
 			 <label for="nEntradas">Número de entradas:</label><br>
-			 <input type="number" name="nEntradas" value="1"><br>
+			 <input type="number" name="nEntradas" value="1"><br><br>
 			 <label for="dia">día:</label><br>
-			 <input type="date" name="dia"><br>
+			 <input type="date" name="dia"><br><br>
 			 Hora
 			 <select name="Hora">
 			 	<option value="16:00">16:00</option>
 			 	<option value="18:00">18:00</option>
 			 	<option value="20:00">20:00</option>
 			 </select>
-			 <br>
+			 <br><br>
 			Productos del bar <br>
 			<input type="checkbox" name="Palomitas" > Palomitas<br>
 			<input type="checkbox" name="Palomitas" > Refresco<br>	 
-			 
+			 <br>
+			Sala
+		 	<select name="Sala">
+			 	<option value="1">1</option>
+			 	<option value="2">2</option>
+			 	<option value="3">3</option>
+			 </select>
+		 	<br>
+		 	<br>
 			 Asientos
 			 <table id="asientos">
 			<tr>
@@ -90,3 +98,32 @@
 		</form>
 </body>
 </html>
+
+<!-- CSS -->
+<style>
+  
+  
+  ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  }
+
+  li {
+    margin-right: 20px;
+  }
+  
+  html{
+  	display: flex; 
+  	text-align: center; 
+	justify-content: center; 
+  }
+  
+  main{
+  	display: flex; 
+  	text-align: center; 
+	justify-content: center; 
+  }
+</style>
