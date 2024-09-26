@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Pelicula</title>
+</head>
+<body>
+	<h1>TITULO PELICULA</h1>
+	<div style="float:left">
+		<table id="infoPeliculas">
+			<tr>
+				<!-- imagen de la película-->
+				<td><img width="300" height="300" src="imagenes/template.jpg"/></td>
+			</tr>
+			<tr>
+				<!-- video local -->
+				<td><video width="500" height="500" src="videos/template.mp4" poster="imagenes/template.jpg" controls></video></td>
+			</tr>
+			<tr>
+				<td>
+					<!-- esto se saca de yt dandole a compartir->insertar si queremos sacar un trailer de yt -->
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/KTw6pDYLKLQ?si=zDhoDRsED2I2aKGr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				</td>
+			</tr>
+			<tr>
+				<td>Resumen de la pelicula</td>
+			</tr>
+			<tr>
+				<td><a href="https://www.imdb.com">Más información</a></td>
+			</tr>
+			<tr>
+				<td><a href="reserva/index.html">Rerservar entrada</a></td>
+			</tr>
+		</table>
+	</div>
+	<div style="float:left">
+		<table id="horarios">
+			<tr>
+				<td id="td-horarios">DIA</td>
+				<td id="td-horarios">HORA</td>
+			</tr>
+			<tr>
+				<td id="td-horarios">5/5/2069</td>
+				<td id="td-horarios">12:30</td>
+			</tr>
+		</table>
+	</div>
+	
+</body>
+
+<script>
+</script>
+
+<style>
+#infoPeliculas {
+	width: 400px;
+	padding-right: 200px;
+}
+
+#horarios {
+	border: 2px solid;
+	border-collapse: collapse;
+	
+#td-horarios {
+	border: 1px solid;
+</style>
+
+</html>
