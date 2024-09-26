@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Anyadir Pelicula</title>
 </head>
 <body>
 <h2>AÑADIR PELICULA</h2>
@@ -18,10 +18,15 @@
 	<input type="text" placeholder="Hora">
 	<br>
 	<br>
-	<input type="text" placeholder="Dia">
+	<input type="date" name="Dia">
 	<br>
 	<br>
-	<input type="text" placeholder="Sala">
+	Sala:
+	<select name="Sala">
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+	</select>
 	<br>
 	<br>
 	<button onclick="anyadirSesion()">Añadir sesion</button>
