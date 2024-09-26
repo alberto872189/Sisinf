@@ -8,13 +8,13 @@
   	<li><a href="index.html">HOME</a></li>
     <li><a href="#" class="tab-link" data-tab="seccion1">INICIO DE SESION</a></li>
     <li><a href="#" class="tab-link" data-tab="seccion2">REGISTRARSE</a></li>
-    <li><a href="#" class="tab-link" data-tab="seccion3">CARTELERA</a></li>
   </ul>
 </nav>
 
+
 <!-- Secciones -->
 <main>
-  <div class="tabs">
+  <div id="tabs" class="tabs">
     <div id="seccion1" class="tab-content">
       <h2>Inicio de sesion</h2>
       <input id="usernameInput" type="text" placeholder="Nombre de usuario"> 
@@ -27,63 +27,56 @@
       <div id="inicioSesionIncorrecto"></div>
       <br>
       <a href="#" class="tab-link" data-tab="seccion2">Registrarse</a>
-
-      
     </div>
 
     <div id="seccion2" class="tab-content">
-      <h2>Registrarse</h2>
-      <input id="usernameInputReg" type="text" placeholder="Nombre de usuario"> 
+   	  <h2>Registrarse</h2>
+   	  <input id="usernameInputReg" type="text" placeholder="Nombre de usuario"> 
+   	  <br>
+   	  <br>
+   	  <input id="email" type="text" placeholder="Email">
+   	  <br>
       <br>
-      <br>
-      <input id="email" type="text" placeholder="Email">
-      <br>
-      <br>
-      <input id="passwordInputReg1" type="password" placeholder="Contrasenya">
-      <br>
-      <br>
-      <input id="passwordInputReg2" type="password" placeholder="Confirmar contrasenya">
-      <br>
-      <br>
-      <button onclick="registrarse()">Registrarse</button>
-      <div id="registroIncorrecto"></div>
-      <br>
-      <a href="#" class="tab-link" data-tab="seccion1">Iniciar sesion</a>
-    </div>
-
-    <div id="seccion3" class="tab-content">
-      <h2>CARTELERA</h2>
-    	<table id="cartelera">
-    		<tr>
-    			<td id="td-cartelera">
-    				<img width="300" height="300" src="peliculas/imagenes/template.jpg"/>
-    				<br>
-    				<a href="peliculas/templatePelicula.html">Pelicula</a>
-    			</td>
-    			<td id="td-cartelera">
-    				<img width="300" height="300" src="peliculas/imagenes/template.jpg"/>
-    				<br>
-    				<a href="peliculas/templatePelicula.html">Pelicula</a>
-    			</td>
-    		</tr>
-    		<tr>
-    			<td id="td-cartelera">
-    				<img width="300" height="300" src="peliculas/imagenes/template.jpg"/>
-    				<br>
-    				<a href="peliculas/templatePelicula.html">Pelicula</a>
-    			</td>
-    			<td id="td-cartelera">
-    				<img width="300" height="300" src="peliculas/imagenes/template.jpg"/>
-    				<br>
-    				<a href="peliculas/templatePelicula.html">Pelicula</a>
-    			</td>
-    		</tr>
-    	</table>
+ 	  <input id="passwordInputReg1" type="password" placeholder="Contrasenya">
+   	  <br>
+   	  <br>
+   	  <input id="passwordInputReg2" type="password" placeholder="Confirmar contrasenya">
+   	  <br>
+	  <br>
+	  <button onclick="registrarse()">Registrarse</button>
+	  <div id="registroIncorrecto"></div>
+   	  <br>
+	  <a href="#" class="tab-link" data-tab="seccion1">Iniciar sesion</a>
     </div>
   </div>
-  <div>
-    	
-    </div>
+ <h2>CARTELERA</h2>
+ <br>
+ <table id="cartelera">
+    <tr>
+    	<td id="td-cartelera">
+    		<img width="300" height="300" src="peliculas/imagenes/template.jpg"/>
+    		<br>
+    		<a href="peliculas/templatePelicula.html">Pelicula</a>
+    	</td>
+    		<td id="td-cartelera">
+    		<img width="300" height="300" src="peliculas/imagenes/template.jpg"/>
+    			<br>
+    		<a href="peliculas/templatePelicula.html">Pelicula</a>
+    	</td>
+    	</tr>
+    <tr>
+    		<td id="td-cartelera">
+    		<img width="300" height="300" src="peliculas/imagenes/template.jpg"/>
+    		<br>
+    			<a href="peliculas/templatePelicula.html">Pelicula</a>
+    	</td>
+    	<td id="td-cartelera">
+    		<img width="300" height="300" src="peliculas/imagenes/template.jpg"/>
+    		<br>
+    		<a href="peliculas/templatePelicula.html">Pelicula</a>
+    	</td>
+    </tr>
+  </table>
 </main>
 
 <!-- JavaScript -->
@@ -162,12 +155,15 @@
   }
   
   main{
-  	display: flex; 
   	text-align: center; 
 	justify-content: center; 
   }
   
- 
+ #tabs {
+ 	display: flex; 
+ 	text-align: center; 
+	justify-content: center; 
+ }
   #td-cartelera {
   	padding-bottom: 60px;
   	padding-right: 10px;
