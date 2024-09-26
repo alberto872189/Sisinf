@@ -5,9 +5,9 @@
 <!-- Menu -->
 <nav>
   <ul>
-  	<li><a href="index.html">CARTELERA</a></li>
-    <li><a href="#" class="tab-link" data-tab="seccion1">INICIO DE SESION</a></li>
-    <li><a href="#" class="tab-link" data-tab="seccion2">REGISTRARSE</a></li>
+  	<li><a href="indexUser.html">CARTELERA</a></li>
+    <li><a href="index.html">CERRAR SESION</a></li>
+    <li><a href="#" class="tab-link" data-tab="seccion2">EDITAR TUS DATOS</a></li>
   </ul>
 </nav>
 
@@ -16,21 +16,10 @@
 <main>
   <div id="tabs" class="tabs">
     <div id="seccion1" class="tab-content">
-      <h2>Inicio de sesion</h2>
-      <input id="usernameInput" type="text" placeholder="Nombre de usuario"> 
-      <br>
-      <br>
-      <input id="passwordInput" type="password" placeholder="Contrasenya">
-      <br>
-      <br>
-      <button onclick="iniciarSesion()">Iniciar Sesion</button>
-      <div id="inicioSesionIncorrecto"></div>
-      <br>
-      <a href="#" class="tab-link" data-tab="seccion2">Registrarse</a>
     </div>
 
     <div id="seccion2" class="tab-content">
-   	  <h2>Registrarse</h2>
+   	  <h2>Editar tus datos</h2>
    	  <input id="usernameInputReg" type="text" placeholder="Nombre de usuario"> 
    	  <br>
    	  <br>
@@ -43,10 +32,7 @@
    	  <input id="passwordInputReg2" type="password" placeholder="Confirmar contrasenya">
    	  <br>
 	  <br>
-	  <button onclick="registrarse()">Registrarse</button>
-	  <div id="registroIncorrecto"></div>
-   	  <br>
-	  <a href="#" class="tab-link" data-tab="seccion1">Iniciar sesion</a>
+	  <button onclick="editar()">Guardar cambios</button>
     </div>
   </div>
  <h2>CARTELERA</h2>
@@ -94,29 +80,9 @@
       document.getElementById(tabId).classList.add('active');
     });
   });
+ 
   
-  function iniciarSesion() {
-	  var username = document.getElementById("usernameInput").value;
-	  var passwd = document.getElementById("passwordInput").value;
-	  if (username == "admin" && passwd == "admin") {
-		  window.location.href= "admin/indexAdmin.html"; //dirigir a index admin
-	  } else if (username == "user" && passwd == "user") {
-		  window.location.href= "indexUser.html"; //dirigir a index
-		  //añadir funciones de usuario registrado
-	  } else {
-		  document.getElementById("inicioSesionIncorrecto").innerHTML = "Nombre de usuario o contrasenya incorrectos."
-	  }
-  }
-  
-  function registrarse() {
-	 var passwd1 = document.getElementById("passwordInputReg1").value;
-	 var passwd2 = document.getElementById("passwordInputReg2").value;
-	 if (passwd1 != passwd2) {
-		 document.getElementById("registroIncorrecto").innerHTML = "La contrasenya de confirmacion no coincide con la primera.";
-	 } else {
-		 window.location.href= "indexUser.html"; //dirigir a index
-		 //iniciar sesion y añadir funciones de usuario registrado
-	 }
+  function editar() {
   }
 </script>
 
