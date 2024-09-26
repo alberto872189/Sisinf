@@ -15,13 +15,6 @@
 	<button id="cancel" onclick="window.location.href='../indexAdmin.html'">Cancelar</button>
 	<br>
 	<a href="../indexAdmin.html">VOLVER</a>
-<script>
-	document.getElementById('delete-selected').addEventListener('click', function() {
-  	const checkboxes = document.querySelectorAll('input[name="product[]"]:checked');
-  	checkboxes.forEach(function(checkbox) {
-    checkbox.parentNode.remove();	});
-	});
-</script>
 
 <style>
 html {
