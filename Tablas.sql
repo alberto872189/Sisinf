@@ -14,7 +14,7 @@ CREATE TABLE Sala (
 
 -- Tabla Sesion
 CREATE TABLE Sesion (
-    Sesion_Hora DATETIME, 
+    Sesion_Hora TIMESTAMP, 
     Tit_Pel VARCHAR(255),
     N_Sala INT,
     Precio DECIMAL(10, 2),
@@ -51,18 +51,20 @@ CREATE TABLE Entrada (
     ID INT PRIMARY KEY,
     Correo VARCHAR(255),
     Tit_Pel VARCHAR(255),
-    Sesion_Hora DATETIME,
+    Sesion_Hora TIMESTAMP,
+	N_Sala INT,
     FOREIGN KEY (Correo) REFERENCES Cliente(Correo),
-    FOREIGN KEY (Tit_Pel, Sesion_Hora) REFERENCES Sesion(Tit_Pel, Sesion_Hora)
+    FOREIGN KEY (Tit_Pel, Sesion_Hora, N_Sala) REFERENCES Sesion(Tit_Pel, Sesion_Hora, N_Sala)
 );
 
 -- Tabla Ent_But
 CREATE TABLE Ent_But (
     ID_Ent INT,
     N_But INT,
-    PRIMARY KEY (ID_Ent, N_But),
+	Sala_N INT,
+    PRIMARY KEY (ID_Ent, N_But, Sala_N),
     FOREIGN KEY (ID_Ent) REFERENCES Entrada(ID),
-    FOREIGN KEY (N_But) REFERENCES Butaca(N_Butaca)
+    FOREIGN KEY (N_But, Sala_N) REFERENCES Butaca(N_Butaca, Sala_N)
 );
 
 -- Tabla Producto
