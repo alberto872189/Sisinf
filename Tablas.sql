@@ -1,0 +1,81 @@
+-- Tabla Pelicula
+CREATE TABLE Pelicula (
+    Titulo VARCHAR(255) PRIMARY KEY,
+    Resumen TEXT,
+    Imagen VARCHAR(255),
+    Link_IMDB VARCHAR(255),
+    Trailer VARCHAR(255)
+);
+
+-- Tabla Sala
+CREATE TABLE Sala (
+    N_Sala INT PRIMARY KEY
+);
+
+-- Tabla Sesion
+CREATE TABLE Sesion (
+    Sesion_Hora DATETIME, 
+    Tit_Pel VARCHAR(255),
+    N_Sala INT,
+    Precio DECIMAL(10, 2),
+    Hora TIME,
+    PRIMARY KEY (Sesion_Hora, Tit_Pel, N_Sala),
+    FOREIGN KEY (Tit_Pel) REFERENCES Pelicula(Titulo),
+    FOREIGN KEY (N_Sala) REFERENCES Sala(N_Sala)
+);
+
+-- Tabla Butaca
+CREATE TABLE Butaca (
+    N_Butaca INT,
+    Sala_N INT,
+    PRIMARY KEY (N_Butaca, Sala_N),
+    FOREIGN KEY (Sala_N) REFERENCES Sala(N_Sala)
+);
+
+-- Tabla Cliente
+CREATE TABLE Cliente (
+    Correo VARCHAR(255) PRIMARY KEY,
+    Contrasenia VARCHAR(255),
+    Nombre VARCHAR(255)
+);
+
+-- Tabla Administrador
+CREATE TABLE Administrador (
+    Correo VARCHAR(255) PRIMARY KEY,
+    Contrasenia VARCHAR(255),
+    Nombre VARCHAR(255)
+);
+
+-- Tabla Entrada
+CREATE TABLE Entrada (
+    ID INT PRIMARY KEY,
+    Correo VARCHAR(255),
+    Tit_Pel VARCHAR(255),
+    Sesion_Hora DATETIME,
+    FOREIGN KEY (Correo) REFERENCES Cliente(Correo),
+    FOREIGN KEY (Tit_Pel, Sesion_Hora) REFERENCES Sesion(Tit_Pel, Sesion_Hora)
+);
+
+-- Tabla Ent_But
+CREATE TABLE Ent_But (
+    ID_Ent INT,
+    N_But INT,
+    PRIMARY KEY (ID_Ent, N_But),
+    FOREIGN KEY (ID_Ent) REFERENCES Entrada(ID),
+    FOREIGN KEY (N_But) REFERENCES Butaca(N_Butaca)
+);
+
+-- Tabla Producto
+CREATE TABLE Producto (
+    Nombre VARCHAR(255) PRIMARY KEY,
+    Precio DECIMAL(10, 2)
+);
+
+-- Tabla Prod_Ent
+CREATE TABLE Prod_Ent (
+    ID_Entrada INT,
+    Nombre_Prod VARCHAR(255),
+    PRIMARY KEY (ID_Entrada, Nombre_Prod),
+    FOREIGN KEY (ID_Entrada) REFERENCES Entrada(ID),
+    FOREIGN KEY (Nombre_Prod) REFERENCES Producto(Nombre)
+);
