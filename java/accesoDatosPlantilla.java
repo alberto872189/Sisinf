@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 public class accesoDatosPlantilla {
 	public static void main() {
 		
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisnf_grupo_C05";
+		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		String name = "user";
 		String pwd = "user";
 		
