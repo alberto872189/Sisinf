@@ -2,9 +2,9 @@
 CREATE TABLE Pelicula (
     Titulo VARCHAR(255) PRIMARY KEY,
     Resumen TEXT,
-    Imagen VARCHAR(255),
+    Imagen BYTEA,
     Link_IMDB VARCHAR(255),
-    Trailer VARCHAR(255)
+    Trailer BYTEA
 );
 
 -- Tabla Sala
@@ -18,8 +18,7 @@ CREATE TABLE Sesion (
     Tit_Pel VARCHAR(255),
     N_Sala INT,
     Precio DECIMAL(10, 2),
-    Hora TIME,
-    PRIMARY KEY (Sesion_Hora, Tit_Pel, N_Sala),
+    PRIMARY KEY (Sesion_Hora, N_Sala),
     FOREIGN KEY (Tit_Pel) REFERENCES Pelicula(Titulo),
     FOREIGN KEY (N_Sala) REFERENCES Sala(N_Sala)
 );
@@ -50,11 +49,10 @@ CREATE TABLE Administrador (
 CREATE TABLE Entrada (
     ID INT PRIMARY KEY,
     Correo VARCHAR(255),
-    Tit_Pel VARCHAR(255),
     Sesion_Hora TIMESTAMP,
 	N_Sala INT,
     FOREIGN KEY (Correo) REFERENCES Cliente(Correo),
-    FOREIGN KEY (Tit_Pel, Sesion_Hora, N_Sala) REFERENCES Sesion(Tit_Pel, Sesion_Hora, N_Sala)
+    FOREIGN KEY (Sesion_Hora, N_Sala) REFERENCES Sesion(Sesion_Hora, N_Sala)
 );
 
 -- Tabla Ent_But

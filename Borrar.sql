@@ -1,0 +1,10 @@
+DROP TABLE Prod_Ent;
+DROP TABLE Producto;
+DROP TABLE Ent_But;
+DROP TABLE Entrada;
+DROP TABLE Administrador;
+DROP TABLE Cliente;
+DROP TABLE Butaca;
+DROP TABLE Sesion;
+DROP TABLE Sala;
+DROP TABLE Pelicula;
