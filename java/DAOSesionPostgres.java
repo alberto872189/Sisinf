@@ -51,14 +51,12 @@ public class DAOSesionPostgres implements DAOSesion {
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
             String sql = "UPDATE Sesion SET Tit_Pel = 'value1', Precio = 'value2' WHERE Sesion_Hora='value3' and N_Sala='value4'";
-//------------------------------------------------------------Terminar
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setString(1, t.Resumen);
-            preparedStatement.setBytes(2, t.Imagen);
-            preparedStatement.setString(3, t.Link_IMDB);
-            preparedStatement.setBytes(4, t.Trailer);
-            preparedStatement.setString(5, t.Titulo);
+            preparedStatement.setString(1, t.Tit_Pel);
+            preparedStatement.setDouble(2, t.Precio);
+            preparedStatement.setTimestamp(3, t.Sesion_Hora);
+            preparedStatement.setInt(3, t.N_Sala);
             
 
             int rowsUpdated = preparedStatement.executeUpdate();
@@ -84,10 +82,11 @@ public class DAOSesionPostgres implements DAOSesion {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "DELETE FROM Pelicula WHERE Titulo='value1'";
+            String sql = "DELETE FROM Sesion WHERE Sesion_Hora='value1' and N_Sala='value2'";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setString(1, k);
+            preparedStatement.setTimestamp(1, k.x);
+            preparedStatement.setInt(2, k.y.intValue());
             
 
             int rowsDeleted = preparedStatement.executeUpdate();
@@ -106,7 +105,7 @@ public class DAOSesionPostgres implements DAOSesion {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		String name = "user";
 		String pwd = "user";
-		Pelicula res = new Pelicula();
+		Sesion res = new Sesion();
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -115,25 +114,25 @@ public class DAOSesionPostgres implements DAOSesion {
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
 	
-			String sql = "select * from Peliculas where Titulo="+k;
+			String sql = "select * from Sesion where Sesion_Hora='value1' and N_Sala='value2'";
 			
-			Statement statement = connection.createStatement();
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setTimestamp(1, k.x);
+            preparedStatement.setInt(2, k.y.intValue());
 			
-			ResultSet resultSet = statement.executeQuery(sql);
+			ResultSet resultSet = preparedStatement.executeQuery(sql);
 
 			while (resultSet.next())
 			{
-				res.Titulo = resultSet.getString("Titulo");
-				res.Resumen = resultSet.getString("Resumen");
-				res.Imagen = resultSet.getBytes("Imagen");
-				res.Link_IMDB = resultSet.getString("Link_IMDB");
-				res.Trailer = resultSet.getBytes("Trailer");
+				res.Sesion_Hora = resultSet.getTimestamp("Sesion_Hora");
+				res.Tit_Pel = resultSet.getString("Tit_Pel");
+				res.N_Sala = resultSet.getInt("N_Sala");
+				res.Precio = resultSet.getDouble("Precio");
 				
 			}
 			connection.close();
 			resultSet.close();
-			statement.close();
-			connection.close();
+			preparedStatement.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
