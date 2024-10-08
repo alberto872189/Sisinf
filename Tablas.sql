@@ -76,8 +76,8 @@ CREATE TABLE Producto (
 CREATE TABLE Prod_Ent (
     ID_Ent INT,
     Nombre_Prod VARCHAR(255),
-    PRIMARY KEY (ID_Entrada, Nombre_Prod),
-    FOREIGN KEY (ID_Entrada) REFERENCES Entrada(ID),
+    PRIMARY KEY (ID_Ent, Nombre_Prod),
+    FOREIGN KEY (ID_Ent) REFERENCES Entrada(ID),
     FOREIGN KEY (Nombre_Prod) REFERENCES Producto(Nombre)
 );
 
