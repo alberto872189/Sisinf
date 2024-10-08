@@ -1,3 +1,4 @@
+DROP TABLE Comentario;
 DROP TABLE Prod_Ent;
 DROP TABLE Producto;
 DROP TABLE Ent_But;
