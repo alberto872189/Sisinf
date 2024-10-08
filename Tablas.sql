@@ -47,7 +47,7 @@ CREATE TABLE Administrador (
 
 -- Tabla Entrada
 CREATE TABLE Entrada (
-    ID INT PRIMARY KEY,
+    ID SERIAL PRIMARY KEY,
     Correo VARCHAR(255),
     Sesion_Hora TIMESTAMP,
 	N_Sala INT,
@@ -79,4 +79,15 @@ CREATE TABLE Prod_Ent (
     PRIMARY KEY (ID_Entrada, Nombre_Prod),
     FOREIGN KEY (ID_Entrada) REFERENCES Entrada(ID),
     FOREIGN KEY (Nombre_Prod) REFERENCES Producto(Nombre)
+);
+
+CREATE TABLE Comentario (
+	Texto VARCHAR(500),
+	Pelicula VARCHAR(255),
+	ID SERIAL,
+	Usuario VARCHAR(255),
+	Fecha TIMESTAMP,
+	PRIMARY KEY (ID),
+	FOREIGN KEY (Pelicula) REFERENCES Pelicula(Titulo),
+	FOREIGN KEY (Usuario) REFERENCES Cliente(Correo)
 );
