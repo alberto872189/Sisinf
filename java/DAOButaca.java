@@ -1,2 +1,2 @@
-public interface DAOButaca extends DAO<Butaca, Pair<Int, Int>>{
+public interface DAOButaca extends DAO<Butaca, Pair<Integer, Integer>>{
 }

@@ -74,7 +74,7 @@ CREATE TABLE Producto (
 
 -- Tabla Prod_Ent
 CREATE TABLE Prod_Ent (
-    ID_Entrada INT,
+    ID_Ent INT,
     Nombre_Prod VARCHAR(255),
     PRIMARY KEY (ID_Entrada, Nombre_Prod),
     FOREIGN KEY (ID_Entrada) REFERENCES Entrada(ID),

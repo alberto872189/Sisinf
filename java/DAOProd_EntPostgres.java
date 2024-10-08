@@ -4,12 +4,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
 
-public class DAOComentarioPostgres implements DAOComentario {
+public class DAOProd_EntPostgres implements DAOProd_Ent {
 
 	@Override
-	public void crear(Comentario t) {
+	public void crear(Prod_Ent t) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		String name = "user";
 		String pwd = "user";
@@ -20,14 +19,12 @@ public class DAOComentarioPostgres implements DAOComentario {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "INSERT INTO Comentario(Texto, Pelicula, Usuario, Fecha) VALUES (value1, value2, value3, value4)";
+            String sql = "INSERT INTO Prod_Ent(ID_Ent, N_But) VALUES (value1, value2)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setString(1, t.Texto);
-			preparedStatement.setString(2, t.Pelicula);
-			preparedStatement.setString(3, t.Usuario);
-            preparedStatement.setTimestamp(4, t.Fecha);
-			
+            preparedStatement.setInt(1, t.ID_Ent);
+            preparedStatement.setString(2, t.Nombre_Prod);
+            
             int rowsInserted = preparedStatement.executeUpdate();
             System.out.println(rowsInserted + " row(s) inserted.");
 		} catch (SQLException e) {
@@ -38,39 +35,12 @@ public class DAOComentarioPostgres implements DAOComentario {
 	}
 
 	@Override
-	public void modificar(Comentario t) {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		String name = "user";
-		String pwd = "user";
-		
-		try {
-			Class.forName("org.postgresql.Driver");
-		
-			Connection connection;
-		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "UPDATE Comentario SET Texto = 'value1', Pelicula = 'value2', Usuario = 'value3', Fecha = 'value4' WHERE ID='value5'";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-            preparedStatement.setString(1, t.Texto);
-			preparedStatement.setString(2, t.Pelicula);
-			preparedStatement.setString(3, t.Usuario);
-            preparedStatement.setTimestamp(4, t.Fecha);
-			preparedStatement.setInt(5, t.ID);
-            
-            int rowsUpdated = preparedStatement.executeUpdate();
-            System.out.println(rowsUpdated + " row(s) updated.");
-            connection.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}   
-		
+	public void modificar(Prod_Ent t) {
+        System.out.println("No es posible modificar la tabla Prod_Ent");
 	}
 
 	@Override
-	public void borrar(Integer k) {
+	public void borrar(Pair<Integer, String> k) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		String name = "user";
 		String pwd = "user";
@@ -81,10 +51,11 @@ public class DAOComentarioPostgres implements DAOComentario {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "DELETE FROM Comentario WHERE ID='value1'";
+            String sql = "DELETE FROM Prod_Ent WHERE ID_Ent='value1' AND Nombre_Prod = 'value2'";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setInt(1, k);
+            preparedStatement.setInt(1, k.x);
+			preparedStatement.setString(2, k.y);
 
             int rowsDeleted = preparedStatement.executeUpdate();
             System.out.println(rowsDeleted + " row(s) deleted.");
@@ -98,11 +69,11 @@ public class DAOComentarioPostgres implements DAOComentario {
 	}
 
 	@Override
-	public Comentario obtener(Integer k) {
+	public Prod_Ent obtener(Pair<Integer, String> k) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		String name = "user";
 		String pwd = "user";
-		Comentario res = new Comentario();
+		Prod_Ent res = new Prod_Ent();
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -111,19 +82,19 @@ public class DAOComentarioPostgres implements DAOComentario {
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
 	
-			String sql = "select * from Comentario where ID='value1'";
+			String sql = "select * from Prod_Ent where ID_Ent='value1' AND Nombre_Prod = 'value2'";
 			
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setInt(1, k);
+			preparedStatement.setInt(1, k.x);
+			preparedStatement.setString(2, k.y);
 			
 			ResultSet resultSet = preparedStatement.executeQuery(sql);
 
 			while (resultSet.next())
 			{
-				res.Fecha = resultSet.getTimestamp("Fecha");
-				res.Usuario = resultSet.getString("Usuario");
-				res.Pelicula = resultSet.getString("Pelicula");
-				res.Texto = resultSet.getString("Texto");
+				res.Nombre_Prod = resultSet.getString("Nombre_Prod");
+				res.ID_Ent = resultSet.getInt("ID_Ent");
+				
 			}
 			connection.close();
 			resultSet.close();

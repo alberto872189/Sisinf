@@ -70,7 +70,7 @@ public class DAOEntradaPostgres implements DAOEntrada {
 	}
 
 	@Override
-	public void borrar(Int k) {
+	public void borrar(Integer k) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		String name = "user";
 		String pwd = "user";
@@ -98,11 +98,11 @@ public class DAOEntradaPostgres implements DAOEntrada {
 	}
 
 	@Override
-	public Entrada obtener(Int k) {
+	public Entrada obtener(Integer k) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		String name = "user";
 		String pwd = "user";
-		Sesion res = new Entrada();
+		Entrada res = new Entrada();
 		
 		try {
 			Class.forName("org.postgresql.Driver");

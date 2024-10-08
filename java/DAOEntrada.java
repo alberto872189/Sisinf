@@ -1,2 +1,2 @@
-public interface DAOEntrada extends DAO<Entrada, Int>{
+public interface DAOEntrada extends DAO<Entrada, Integer>{
 }
