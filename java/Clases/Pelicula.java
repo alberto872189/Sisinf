@@ -1,4 +1,3 @@
-
 public class Pelicula {
 		public String Titulo;
 		public String Resumen;
