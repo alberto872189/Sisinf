@@ -4,7 +4,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
 
 public class DAOEnt_ButPostgres implements DAOEnt_But {
 
@@ -23,7 +22,7 @@ public class DAOEnt_ButPostgres implements DAOEnt_But {
             String sql = "INSERT INTO Ent_But(ID_Ent, N_But, Sala_N) VALUES (value1, value2, value3)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setInt(1, t.Ent_But);
+            preparedStatement.setInt(1, t.ID_Ent);
             preparedStatement.setInt(2, t.N_But);
             preparedStatement.setInt(3, t.Sala_N);
             
@@ -76,7 +75,7 @@ public class DAOEnt_ButPostgres implements DAOEnt_But {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		String name = "user";
 		String pwd = "user";
-		Sesion res = new Ent_But();
+		Ent_But res = new Ent_But();
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -96,10 +95,9 @@ public class DAOEnt_ButPostgres implements DAOEnt_But {
 
 			while (resultSet.next())
 			{
-				res.Sesion_Hora = resultSet.getTimestamp("Sesion_Hora");
-				res.Correo = resultSet.getString("Correo");
-				res.N_Sala = resultSet.getInt("N_Sala");
-				res.ID = resultSet.getInt("ID");
+				res.N_But = resultSet.getInt("N_But");
+				res.Sala_N = resultSet.getInt("Sala_N");
+				res.ID_Ent = resultSet.getInt("ID_Ent");
 				
 			}
 			connection.close();

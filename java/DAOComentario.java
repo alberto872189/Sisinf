@@ -1,2 +1,2 @@
-public interface DAOComentario extends DAO<Entrada, Int>{
+public interface DAOComentario extends DAO<Comentario, Integer>{
 }

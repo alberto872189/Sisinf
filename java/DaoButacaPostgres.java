@@ -43,7 +43,7 @@ public class DAOButacaPostgres implements DAOButaca {
 	}
 
 	@Override
-	public void borrar(Pair<Int, Int> k) {
+	public void borrar(Pair<Integer, Integer> k) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		String name = "user";
 		String pwd = "user";
@@ -73,11 +73,11 @@ public class DAOButacaPostgres implements DAOButaca {
 	}
 
 	@Override
-	public Butaca obtener(Pair<Int, Int> k) {
+	public Butaca obtener(Pair<Integer, Integer> k) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		String name = "user";
 		String pwd = "user";
-		Sesion res = new Butaca();
+		Butaca res = new Butaca();
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -96,8 +96,8 @@ public class DAOButacaPostgres implements DAOButaca {
 
 			while (resultSet.next())
 			{
-				res.Sesion_Hora = resultSet.getInt("N_Butaca");
-				res.Tit_Pel = resultSet.getInt("Sala_N");
+				res.N_Butaca = resultSet.getInt("N_Butaca");
+				res.Sala_N = resultSet.getInt("Sala_N");
 			}
 			connection.close();
 			resultSet.close();
