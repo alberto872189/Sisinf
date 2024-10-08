@@ -68,7 +68,8 @@ CREATE TABLE Ent_But (
 -- Tabla Producto
 CREATE TABLE Producto (
     Nombre VARCHAR(255) PRIMARY KEY,
-    Precio DECIMAL(10, 2)
+    Precio DECIMAL(10, 2),
+	Disponible Bool
 );
 
 -- Tabla Prod_Ent
