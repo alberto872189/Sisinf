@@ -5,10 +5,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class DAOPeliculaPostgres implements DAOPelicula {
+public class DAOAdministradorPostgres implements DAOAdministrador {
 
 	@Override
-	public void crear(Pelicula t) {
+	public void crear(Administrador t) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		String name = "user";
 		String pwd = "user";
@@ -19,14 +19,12 @@ public class DAOPeliculaPostgres implements DAOPelicula {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "INSERT INTO Pelicula(Titulo, Resumen, Imagen, Link_IMDB, Trailer) VALUES (value1, value2, value3, value4, value 5)";
+            String sql = "INSERT INTO Administrador(Correo, Contrasenia, Nombre) VALUES (value1, value2, value3)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setString(1, t.Titulo);
-            preparedStatement.setString(2, t.Resumen);
-            preparedStatement.setBytes(3, t.Imagen);
-            preparedStatement.setString(4, t.Link_IMDB);
-            preparedStatement.setBytes(5, t.Trailer);
+            preparedStatement.setString(1, t.Correo);
+            preparedStatement.setString(2, t.Contrasenia);
+            preparedStatement.setString(3, t.Nombre);
             
 
             int rowsInserted = preparedStatement.executeUpdate();
@@ -39,7 +37,7 @@ public class DAOPeliculaPostgres implements DAOPelicula {
 	}
 
 	@Override
-	public void modificar(Pelicula t) {
+	public void modificar(Administrador t) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		String name = "user";
 		String pwd = "user";
@@ -50,14 +48,12 @@ public class DAOPeliculaPostgres implements DAOPelicula {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "UPDATE Pelicula SET Resumen = 'value1', Imagen = 'value2', Link_IMDB='value3', Trailer='value4' WHERE Titulo='value5'";
+            String sql = "UPDATE Administrador SET Contrasenia = 'value1', Nombre = 'value2' WHERE Correo='value3'";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setString(1, t.Resumen);
-            preparedStatement.setBytes(2, t.Imagen);
-            preparedStatement.setString(3, t.Link_IMDB);
-            preparedStatement.setBytes(4, t.Trailer);
-            preparedStatement.setString(5, t.Titulo);
+            preparedStatement.setString(1, t.Contrasenia);
+            preparedStatement.setString(2, t.Nombre);
+            preparedStatement.setString(3, t.Correo);
             
 
             int rowsUpdated = preparedStatement.executeUpdate();
@@ -83,7 +79,7 @@ public class DAOPeliculaPostgres implements DAOPelicula {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "DELETE FROM Pelicula WHERE Titulo='value1'";
+            String sql = "DELETE FROM Administrador WHERE Correo='value1'";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             preparedStatement.setString(1, k);
@@ -101,11 +97,11 @@ public class DAOPeliculaPostgres implements DAOPelicula {
 	}
 
 	@Override
-	public Pelicula obtener(String k) {
+	public Administrador obtener(String k) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		String name = "user";
 		String pwd = "user";
-		Pelicula res = new Pelicula();
+		Administrador res = new Administrador();
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -114,7 +110,7 @@ public class DAOPeliculaPostgres implements DAOPelicula {
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
 	
-			String sql = "select * from Pelicula where Titulo="+k;
+			String sql = "select * from Administrador where Correo="+k;
 			
 			Statement statement = connection.createStatement();
 			
@@ -122,14 +118,11 @@ public class DAOPeliculaPostgres implements DAOPelicula {
 
 			while (resultSet.next())
 			{
-				res.Titulo = resultSet.getString("Titulo");
-				res.Resumen = resultSet.getString("Resumen");
-				res.Imagen = resultSet.getBytes("Imagen");
-				res.Link_IMDB = resultSet.getString("Link_IMDB");
-				res.Trailer = resultSet.getBytes("Trailer");
+				res.Correo = resultSet.getString("Correo");
+				res.Contrasenia = resultSet.getString("Contrasenia");
+				res.Nombre = resultSet.getString("Nombre");
 				
 			}
-			connection.close();
 			resultSet.close();
 			statement.close();
 			connection.close();
