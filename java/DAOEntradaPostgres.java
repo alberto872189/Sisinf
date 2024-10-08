@@ -6,10 +6,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 
-public class DAOSesionPostgres implements DAOEntrada {
+public class DAOEntradaPostgres implements DAOEntrada {
 
 	@Override
-	public void crear(Sesion t) {
+	public void crear(Entrada t) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		String name = "user";
 		String pwd = "user";
@@ -20,13 +20,12 @@ public class DAOSesionPostgres implements DAOEntrada {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "INSERT INTO Sesion(Sesion_Hora, Tit_Pel, N_Sala, Precio) VALUES (value1, value2, value3, value4)";
+            String sql = "INSERT INTO Entrada(Correo, Sesion_Hora, N_Sala) VALUES (value1, value2, value3)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setTimestamp(1, t.Sesion_Hora);
-            preparedStatement.setString(2, t.Tit_Pel);
+            preparedStatement.setString(1, t.Correo);
+            preparedStatement.setTimestamp(2, t.Sesion_Hora);
             preparedStatement.setInt(3, t.N_Sala);
-            preparedStatement.setDouble(4, t.Precio);
             
 
             int rowsInserted = preparedStatement.executeUpdate();
@@ -39,7 +38,7 @@ public class DAOSesionPostgres implements DAOEntrada {
 	}
 
 	@Override
-	public void modificar(Sesion t) {
+	public void modificar(Entrada t) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		String name = "user";
 		String pwd = "user";
@@ -50,13 +49,13 @@ public class DAOSesionPostgres implements DAOEntrada {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "UPDATE Sesion SET Tit_Pel = 'value1', Precio = 'value2' WHERE Sesion_Hora='value3' and N_Sala='value4'";
+            String sql = "UPDATE Entrada SET Correo = 'value1', Sesion_Hora = 'value2', N_Sala = 'value3' WHERE ID='value4'";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setString(1, t.Tit_Pel);
-            preparedStatement.setDouble(2, t.Precio);
-            preparedStatement.setTimestamp(3, t.Sesion_Hora);
+            preparedStatement.setString(1, t.Correo);
+            preparedStatement.setTimestamp(2, t.Sesion_Hora);
             preparedStatement.setInt(3, t.N_Sala);
+            preparedStatement.setInt(4, t.ID);
             
 
             int rowsUpdated = preparedStatement.executeUpdate();
@@ -71,7 +70,7 @@ public class DAOSesionPostgres implements DAOEntrada {
 	}
 
 	@Override
-	public void borrar(Pair<Timestamp, Long> k) {
+	public void borrar(Int k) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		String name = "user";
 		String pwd = "user";
@@ -82,12 +81,10 @@ public class DAOSesionPostgres implements DAOEntrada {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "DELETE FROM Sesion WHERE Sesion_Hora='value1' and N_Sala='value2'";
+            String sql = "DELETE FROM Entrada WHERE ID='value1'";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setTimestamp(1, k.x);
-            preparedStatement.setInt(2, k.y.intValue());
-            
+            preparedStatement.setInt(1, k);
 
             int rowsDeleted = preparedStatement.executeUpdate();
             System.out.println(rowsDeleted + " row(s) deleted.");
@@ -101,11 +98,11 @@ public class DAOSesionPostgres implements DAOEntrada {
 	}
 
 	@Override
-	public Sesion obtener(Pair<Timestamp, Long> k) {
+	public Entrada obtener(Int k) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		String name = "user";
 		String pwd = "user";
-		Sesion res = new Sesion();
+		Sesion res = new Entrada();
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -114,20 +111,19 @@ public class DAOSesionPostgres implements DAOEntrada {
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
 	
-			String sql = "select * from Sesion where Sesion_Hora='value1' and N_Sala='value2'";
+			String sql = "select * from Entrada where Sesion_Hora='value1' and N_Sala='value2'";
 			
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setTimestamp(1, k.x);
-            preparedStatement.setInt(2, k.y.intValue());
+			preparedStatement.setInt(1, k);
 			
 			ResultSet resultSet = preparedStatement.executeQuery(sql);
 
 			while (resultSet.next())
 			{
 				res.Sesion_Hora = resultSet.getTimestamp("Sesion_Hora");
-				res.Tit_Pel = resultSet.getString("Tit_Pel");
+				res.Correo = resultSet.getString("Correo");
 				res.N_Sala = resultSet.getInt("N_Sala");
-				res.Precio = resultSet.getDouble("Precio");
+				res.ID = resultSet.getInt("ID");
 				
 			}
 			connection.close();

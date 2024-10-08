@@ -5,10 +5,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class DAOSesionPostgres implements DAOButaca {
+public class DAOButacaPostgres implements DAOButaca {
 
 	@Override
-	public void crear(Sesion t) {
+	public void crear(Butaca t) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		String name = "user";
 		String pwd = "user";
@@ -19,11 +19,11 @@ public class DAOSesionPostgres implements DAOButaca {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "INSERT INTO Sesion(N_Butaca, Sala_N) VALUES (value1, value2)";
+            String sql = "INSERT INTO Butaca(N_Butaca, Sala_N) VALUES (value1, value2)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setTimestamp(1, t.N_Butaca);
-            preparedStatement.setString(2, t.Sala_N);
+            preparedStatement.setInt(1, t.N_Butaca);
+            preparedStatement.setInt(2, t.Sala_N);
             
 
             int rowsInserted = preparedStatement.executeUpdate();
@@ -36,7 +36,7 @@ public class DAOSesionPostgres implements DAOButaca {
 	}
 
 	@Override
-	public void modificar(Sesion t) {
+	public void modificar(Butaca t) {
 		
         System.out.println("No es posible modificar una Butaca");
         
@@ -57,7 +57,7 @@ public class DAOSesionPostgres implements DAOButaca {
             String sql = "DELETE FROM Butaca WHERE N_Butaca='value1' and Sala_N='value2'";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setTimestamp(1, k.x);
+            preparedStatement.setInt(1, k.x);
             preparedStatement.setInt(2, k.y);
             
 
@@ -73,11 +73,11 @@ public class DAOSesionPostgres implements DAOButaca {
 	}
 
 	@Override
-	public Sesion obtener(Pair<Int, Int> k) {
+	public Butaca obtener(Pair<Int, Int> k) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		String name = "user";
 		String pwd = "user";
-		Sesion res = new Sesion();
+		Sesion res = new Butaca();
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -86,18 +86,18 @@ public class DAOSesionPostgres implements DAOButaca {
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
 	
-			String sql = "select * from Sesion where N_Butaca='value1' and Sala_N='value2'";
+			String sql = "select * from Butaca where N_Butaca='value1' and Sala_N='value2'";
 			
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setTimestamp(1, k.x);
+			preparedStatement.setInt(1, k.x);
             preparedStatement.setInt(2, k.y);
 			
 			ResultSet resultSet = preparedStatement.executeQuery(sql);
 
 			while (resultSet.next())
 			{
-				res.Sesion_Hora = resultSet.getTimestamp("N_Butaca");
-				res.Tit_Pel = resultSet.getString("Sala_N");
+				res.Sesion_Hora = resultSet.getInt("N_Butaca");
+				res.Tit_Pel = resultSet.getInt("Sala_N");
 			}
 			connection.close();
 			resultSet.close();
