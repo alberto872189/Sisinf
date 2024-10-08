@@ -6,10 +6,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 
-public class DAOEntradaPostgres implements DAOEntrada {
+public class DAOComentarioPostgres implements DAOComentario {
 
 	@Override
-	public void crear(Entrada t) {
+	public void crear(Comentario t) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		String name = "user";
 		String pwd = "user";
@@ -20,14 +20,14 @@ public class DAOEntradaPostgres implements DAOEntrada {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "INSERT INTO Entrada(Correo, Sesion_Hora, N_Sala) VALUES (value1, value2, value3)";
+            String sql = "INSERT INTO Comentario(Texto, Pelicula, Usuario, Fecha) VALUES (value1, value2, value3, value4)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setString(1, t.Correo);
-            preparedStatement.setTimestamp(2, t.Sesion_Hora);
-            preparedStatement.setInt(3, t.N_Sala);
-            
-
+            preparedStatement.setString(1, t.Texto);
+			preparedStatement.setString(2, t.Pelicula);
+			preparedStatement.setString(3, t.Usuario);
+            preparedStatement.setTimestamp(4, t.Fecha);
+			
             int rowsInserted = preparedStatement.executeUpdate();
             System.out.println(rowsInserted + " row(s) inserted.");
 		} catch (SQLException e) {
@@ -38,7 +38,7 @@ public class DAOEntradaPostgres implements DAOEntrada {
 	}
 
 	@Override
-	public void modificar(Entrada t) {
+	public void modificar(Comentario t) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		String name = "user";
 		String pwd = "user";
@@ -49,15 +49,15 @@ public class DAOEntradaPostgres implements DAOEntrada {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "UPDATE Entrada SET Correo = 'value1', Sesion_Hora = 'value2', N_Sala = 'value3' WHERE ID='value4'";
+            String sql = "UPDATE Comentario SET Texto = 'value1', Pelicula = 'value2', Usuario = 'value3', Fecha = 'value4' WHERE ID='value5'";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setString(1, t.Correo);
-            preparedStatement.setTimestamp(2, t.Sesion_Hora);
-            preparedStatement.setInt(3, t.N_Sala);
-            preparedStatement.setInt(4, t.ID);
+            preparedStatement.setString(1, t.Texto);
+			preparedStatement.setString(2, t.Pelicula);
+			preparedStatement.setString(3, t.Usuario);
+            preparedStatement.setTimestamp(4, t.Fecha);
+			preparedStatement.setInt(5, t.ID);
             
-
             int rowsUpdated = preparedStatement.executeUpdate();
             System.out.println(rowsUpdated + " row(s) updated.");
             connection.close();
@@ -81,7 +81,7 @@ public class DAOEntradaPostgres implements DAOEntrada {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "DELETE FROM Entrada WHERE ID='value1'";
+            String sql = "DELETE FROM Comentario WHERE ID='value1'";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             preparedStatement.setInt(1, k);
@@ -98,11 +98,11 @@ public class DAOEntradaPostgres implements DAOEntrada {
 	}
 
 	@Override
-	public Entrada obtener(Int k) {
+	public Comentario obtener(Int k) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		String name = "user";
 		String pwd = "user";
-		Sesion res = new Entrada();
+		Sesion res = new Comentario();
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -111,7 +111,7 @@ public class DAOEntradaPostgres implements DAOEntrada {
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
 	
-			String sql = "select * from Entrada where ID = 'vaule1'";
+			String sql = "select * from Comentario where ID='value1'";
 			
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, k);
@@ -120,11 +120,10 @@ public class DAOEntradaPostgres implements DAOEntrada {
 
 			while (resultSet.next())
 			{
-				res.Sesion_Hora = resultSet.getTimestamp("Sesion_Hora");
-				res.Correo = resultSet.getString("Correo");
-				res.N_Sala = resultSet.getInt("N_Sala");
-				res.ID = resultSet.getInt("ID");
-				
+				res.Fecha = resultSet.getTimestamp("Fecha");
+				res.Usuario = resultSet.getString("Usuario");
+				res.Pelicula = resultSet.getString("Pelicula");
+				res.Texto = resultSet.getString("Texto");
 			}
 			connection.close();
 			resultSet.close();
