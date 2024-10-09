@@ -9,13 +9,15 @@ import java.sql.Statement;
 import dao.interfaces.DAOProducto;
 import vo.Producto;
 
-public class DAOProductoPostgres implements DAOProducto {
-
+public class DAOProductoPostgres extends DAOProducto {
+	
+	public DAOProductoPostgres(String name_, String pwd_) {
+		super(name_, pwd_);
+	}
+	
 	@Override
 	public void crear(Producto t) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		String name = "user";
-		String pwd = "user";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -43,8 +45,6 @@ public class DAOProductoPostgres implements DAOProducto {
 	@Override
 	public void modificar(Producto t) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		String name = "user";
-		String pwd = "user";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -74,8 +74,6 @@ public class DAOProductoPostgres implements DAOProducto {
 	@Override
 	public void borrar(String k) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		String name = "user";
-		String pwd = "user";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -103,8 +101,6 @@ public class DAOProductoPostgres implements DAOProducto {
 	@Override
 	public Producto obtener(String k) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		String name = "user";
-		String pwd = "user";
 		Producto res = new Producto();
 		
 		try {

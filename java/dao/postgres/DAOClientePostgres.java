@@ -9,13 +9,15 @@ import java.sql.Statement;
 import dao.interfaces.DAOCliente;
 import vo.Cliente;
 
-public class DAOClientePostgres implements DAOCliente {
+public class DAOClientePostgres extends DAOCliente {
+	
+	public DAOClientePostgres(String name_, String pwd_) {
+		super(name_, pwd_);
+	}
 
 	@Override
 	public void crear(Cliente t) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		String name = "user";
-		String pwd = "user";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -43,8 +45,6 @@ public class DAOClientePostgres implements DAOCliente {
 	@Override
 	public void modificar(Cliente t) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		String name = "user";
-		String pwd = "user";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -74,8 +74,6 @@ public class DAOClientePostgres implements DAOCliente {
 	@Override
 	public void borrar(String k) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		String name = "user";
-		String pwd = "user";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -103,8 +101,6 @@ public class DAOClientePostgres implements DAOCliente {
 	@Override
 	public Cliente obtener(String k) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		String name = "user";
-		String pwd = "user";
 		Cliente res = new Cliente();
 		
 		try {

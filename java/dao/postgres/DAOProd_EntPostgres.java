@@ -10,13 +10,15 @@ import dao.interfaces.DAOProd_Ent;
 import utils.Pair;
 import vo.Prod_Ent;
 
-public class DAOProd_EntPostgres implements DAOProd_Ent {
+public class DAOProd_EntPostgres extends DAOProd_Ent {
 
+	public DAOProd_EntPostgres(String name_, String pwd_) {
+		super(name_, pwd_);
+	}
+	
 	@Override
 	public void crear(Prod_Ent t) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		String name = "user";
-		String pwd = "user";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -47,8 +49,6 @@ public class DAOProd_EntPostgres implements DAOProd_Ent {
 	@Override
 	public void borrar(Pair<Integer, String> k) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		String name = "user";
-		String pwd = "user";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -76,8 +76,6 @@ public class DAOProd_EntPostgres implements DAOProd_Ent {
 	@Override
 	public Prod_Ent obtener(Pair<Integer, String> k) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		String name = "user";
-		String pwd = "user";
 		Prod_Ent res = new Prod_Ent();
 		
 		try {

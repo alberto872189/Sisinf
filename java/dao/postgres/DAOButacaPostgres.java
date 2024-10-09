@@ -10,13 +10,15 @@ import dao.interfaces.DAOButaca;
 import utils.Pair;
 import vo.Butaca;
 
-public class DAOButacaPostgres implements DAOButaca {
+public class DAOButacaPostgres extends DAOButaca {
+
+	public DAOButacaPostgres(String name_, String pwd_) {
+		super(name_, pwd_);
+	}
 
 	@Override
 	public void crear(Butaca t) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		String name = "user";
-		String pwd = "user";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -50,8 +52,6 @@ public class DAOButacaPostgres implements DAOButaca {
 	@Override
 	public void borrar(Pair<Integer, Integer> k) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		String name = "user";
-		String pwd = "user";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -80,8 +80,6 @@ public class DAOButacaPostgres implements DAOButaca {
 	@Override
 	public Butaca obtener(Pair<Integer, Integer> k) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		String name = "user";
-		String pwd = "user";
 		Butaca res = new Butaca();
 		
 		try {

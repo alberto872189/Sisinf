@@ -10,13 +10,15 @@ import dao.interfaces.DAOEnt_But;
 import utils.Triplet;
 import vo.Ent_But;
 
-public class DAOEnt_ButPostgres implements DAOEnt_But {
+public class DAOEnt_ButPostgres extends DAOEnt_But {
 
+	public DAOEnt_ButPostgres(String name_, String pwd_) {
+		super(name_, pwd_);
+	}
+	
 	@Override
 	public void crear(Ent_But t) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		String name = "user";
-		String pwd = "user";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -48,8 +50,6 @@ public class DAOEnt_ButPostgres implements DAOEnt_But {
 	@Override
 	public void borrar(Triplet<Integer, Integer, Integer> k) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		String name = "user";
-		String pwd = "user";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -78,8 +78,6 @@ public class DAOEnt_ButPostgres implements DAOEnt_But {
 	@Override
 	public Ent_But obtener(Triplet<Integer, Integer, Integer> k) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		String name = "user";
-		String pwd = "user";
 		Ent_But res = new Ent_But();
 		
 		try {

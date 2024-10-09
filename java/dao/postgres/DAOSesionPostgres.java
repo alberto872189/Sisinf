@@ -11,13 +11,15 @@ import dao.interfaces.DAOSesion;
 import utils.Pair;
 import vo.Sesion;
 
-public class DAOSesionPostgres implements DAOSesion {
-
+public class DAOSesionPostgres extends DAOSesion {
+	
+	public DAOSesionPostgres(String name_, String pwd_) {
+		super(name_, pwd_);
+	}
+	
 	@Override
 	public void crear(Sesion t) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		String name = "user";
-		String pwd = "user";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -46,8 +48,6 @@ public class DAOSesionPostgres implements DAOSesion {
 	@Override
 	public void modificar(Sesion t) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		String name = "user";
-		String pwd = "user";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -78,8 +78,6 @@ public class DAOSesionPostgres implements DAOSesion {
 	@Override
 	public void borrar(Pair<Timestamp, Long> k) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		String name = "user";
-		String pwd = "user";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -108,8 +106,6 @@ public class DAOSesionPostgres implements DAOSesion {
 	@Override
 	public Sesion obtener(Pair<Timestamp, Long> k) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		String name = "user";
-		String pwd = "user";
 		Sesion res = new Sesion();
 		
 		try {

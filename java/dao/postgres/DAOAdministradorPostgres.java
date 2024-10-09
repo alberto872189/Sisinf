@@ -9,13 +9,15 @@ import java.sql.Statement;
 import dao.interfaces.DAOAdministrador;
 import vo.Administrador;
 
-public class DAOAdministradorPostgres implements DAOAdministrador {
-
+public class DAOAdministradorPostgres extends DAOAdministrador {
+	
+	public DAOAdministradorPostgres(String name_, String pwd_) {
+		super(name_, pwd_);
+	}
+	
 	@Override
 	public void crear(Administrador t) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		String name = "user";
-		String pwd = "user";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -43,8 +45,6 @@ public class DAOAdministradorPostgres implements DAOAdministrador {
 	@Override
 	public void modificar(Administrador t) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		String name = "user";
-		String pwd = "user";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -74,8 +74,6 @@ public class DAOAdministradorPostgres implements DAOAdministrador {
 	@Override
 	public void borrar(String k) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		String name = "user";
-		String pwd = "user";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -103,8 +101,6 @@ public class DAOAdministradorPostgres implements DAOAdministrador {
 	@Override
 	public Administrador obtener(String k) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		String name = "user";
-		String pwd = "user";
 		Administrador res = new Administrador();
 		
 		try {

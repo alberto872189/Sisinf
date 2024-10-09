@@ -10,13 +10,14 @@ import java.sql.Timestamp;
 import dao.interfaces.DAOComentario;
 import vo.Comentario;
 
-public class DAOComentarioPostgres implements DAOComentario {
-
+public class DAOComentarioPostgres extends DAOComentario {
+	
+	public DAOComentarioPostgres(String name_, String pwd_) {
+		super(name_, pwd_);
+	}
 	@Override
 	public void crear(Comentario t) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		String name = "user";
-		String pwd = "user";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -44,8 +45,6 @@ public class DAOComentarioPostgres implements DAOComentario {
 	@Override
 	public void modificar(Comentario t) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		String name = "user";
-		String pwd = "user";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -76,8 +75,6 @@ public class DAOComentarioPostgres implements DAOComentario {
 	@Override
 	public void borrar(Integer k) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		String name = "user";
-		String pwd = "user";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -104,8 +101,6 @@ public class DAOComentarioPostgres implements DAOComentario {
 	@Override
 	public Comentario obtener(Integer k) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		String name = "user";
-		String pwd = "user";
 		Comentario res = new Comentario();
 		
 		try {

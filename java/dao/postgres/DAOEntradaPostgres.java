@@ -10,13 +10,15 @@ import java.sql.Timestamp;
 import dao.interfaces.DAOEntrada;
 import vo.Entrada;
 
-public class DAOEntradaPostgres implements DAOEntrada {
+public class DAOEntradaPostgres extends DAOEntrada {
 
+	public DAOEntradaPostgres(String name_, String pwd_) {
+		super(name_, pwd_);
+	}
+	
 	@Override
 	public void crear(Entrada t) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		String name = "user";
-		String pwd = "user";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -44,8 +46,6 @@ public class DAOEntradaPostgres implements DAOEntrada {
 	@Override
 	public void modificar(Entrada t) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		String name = "user";
-		String pwd = "user";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -76,8 +76,6 @@ public class DAOEntradaPostgres implements DAOEntrada {
 	@Override
 	public void borrar(Integer k) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		String name = "user";
-		String pwd = "user";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -104,8 +102,6 @@ public class DAOEntradaPostgres implements DAOEntrada {
 	@Override
 	public Entrada obtener(Integer k) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		String name = "user";
-		String pwd = "user";
 		Entrada res = new Entrada();
 		
 		try {

@@ -9,13 +9,15 @@ import java.sql.Statement;
 import dao.interfaces.DAOPelicula;
 import vo.Pelicula;
 
-public class DAOPeliculaPostgres implements DAOPelicula {
-
+public class DAOPeliculaPostgres extends DAOPelicula {
+	
+	public DAOPeliculaPostgres(String name_, String pwd_) {
+		super(name_, pwd_);
+	}
+	
 	@Override
 	public void crear(Pelicula t) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		String name = "user";
-		String pwd = "user";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -45,8 +47,6 @@ public class DAOPeliculaPostgres implements DAOPelicula {
 	@Override
 	public void modificar(Pelicula t) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		String name = "user";
-		String pwd = "user";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -78,8 +78,6 @@ public class DAOPeliculaPostgres implements DAOPelicula {
 	@Override
 	public void borrar(String k) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		String name = "user";
-		String pwd = "user";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -107,8 +105,6 @@ public class DAOPeliculaPostgres implements DAOPelicula {
 	@Override
 	public Pelicula obtener(String k) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		String name = "user";
-		String pwd = "user";
 		Pelicula res = new Pelicula();
 		
 		try {
