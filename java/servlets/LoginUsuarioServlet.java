@@ -20,12 +20,7 @@ public class LoginUsuarioServlet extends HttpServlet {
 		String passwd = request.getParameter("passwd");
 		if ((login == null) || (login.trim().equals(""))) errors.put("Login", "Campo obligatorio");
 		if ((passwd == null) || (passwd.trim().equals(""))) errors.put("Clave", "Campo obligatorio"); 
-		if(!errors.isEmpty()) {
-			RequestDispatcher dispatcher=request.getRequestDispatcher("login.jsp");
-			request.setAttribute("errors", errors);
-			dispatcher.forward(request, response);
-		}
-		else {
+		if(errors.isEmpty()) {
 			DAOClientePostgres dao = new DAOClientePostgres("usuario", "user");
 			Cliente client = dao.obtener(login);
 			if (client.Correo != null) {
