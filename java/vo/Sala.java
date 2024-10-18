@@ -1,4 +1,4 @@
 package vo;
 public class Sala {
-		public Long n;
+		public Integer n;
 }

@@ -25,12 +25,12 @@ public class DAOProductoPostgres extends DAOProducto {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "INSERT INTO Producto(Nombre, Precio, Disponible) VALUES (value1, value2, value3)";
+            String sql = "INSERT INTO Producto(Nombre, Precio, Disponible) VALUES ('" + t.Nombre + "'," + t.Precio + "," + t.Disponible + ")";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setString(1, t.Nombre);
+            /*preparedStatement.setString(1, t.Nombre);
             preparedStatement.setDouble(2, t.Precio);
-            preparedStatement.setBoolean(3, t.Disponible);
+            preparedStatement.setBoolean(3, t.Disponible);*/
             
 
             int rowsInserted = preparedStatement.executeUpdate();
@@ -52,12 +52,12 @@ public class DAOProductoPostgres extends DAOProducto {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "UPDATE Producto SET Precio = 'value1', Disponible = 'value2' WHERE Nombre='value3'";
+            String sql = "UPDATE Producto SET Precio = " + t.Precio + ", Disponible = " + t.Disponible + " WHERE Nombre='" + t.Nombre + "'";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setDouble(1, t.Precio);
+            /*preparedStatement.setDouble(1, t.Precio);
             preparedStatement.setBoolean(2, t.Disponible);
-            preparedStatement.setString(3, t.Nombre);
+            preparedStatement.setString(3, t.Nombre);*/
             
 
             int rowsUpdated = preparedStatement.executeUpdate();
@@ -81,10 +81,10 @@ public class DAOProductoPostgres extends DAOProducto {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "DELETE FROM Producto WHERE Nombre='value1'";
+            String sql = "DELETE FROM Producto WHERE Nombre='" + k + "'";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setString(1, k);
+            //preparedStatement.setString(1, k);
             
 
             int rowsDeleted = preparedStatement.executeUpdate();
@@ -110,7 +110,7 @@ public class DAOProductoPostgres extends DAOProducto {
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
 	
-			String sql = "select * from Producto where Nombre="+k;
+			String sql = "select * from Producto where Nombre=" + k;
 			
 			Statement statement = connection.createStatement();
 			

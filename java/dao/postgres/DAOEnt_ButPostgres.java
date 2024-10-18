@@ -26,12 +26,12 @@ public class DAOEnt_ButPostgres extends DAOEnt_But {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "INSERT INTO Ent_But(ID_Ent, N_But, Sala_N) VALUES (value1, value2, value3)";
+            String sql = "INSERT INTO Ent_But(ID_Ent, N_But, Sala_N) VALUES (" + t.ID_Ent + "," + t.N_But + "," + t.Sala_N + ")";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setInt(1, t.ID_Ent);
+            /*preparedStatement.setInt(1, t.ID_Ent);
             preparedStatement.setInt(2, t.N_But);
-            preparedStatement.setInt(3, t.Sala_N);
+            preparedStatement.setInt(3, t.Sala_N);*/
             
             int rowsInserted = preparedStatement.executeUpdate();
             System.out.println(rowsInserted + " row(s) inserted.");
@@ -57,12 +57,12 @@ public class DAOEnt_ButPostgres extends DAOEnt_But {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "DELETE FROM Ent_But WHERE ID_Ent='value1' AND N_But = 'value2' AND Sala_N = 'value3'";
+            String sql = "DELETE FROM Ent_But WHERE ID_Ent=" + k.x + " AND N_But = " + k.y + " AND Sala_N = " + k.z;
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setInt(1, k.x);
+            /*preparedStatement.setInt(1, k.x);
 			preparedStatement.setInt(2, k.y);
-			preparedStatement.setInt(3, k.z);
+			preparedStatement.setInt(3, k.z);*/
 
             int rowsDeleted = preparedStatement.executeUpdate();
             System.out.println(rowsDeleted + " row(s) deleted.");
@@ -87,12 +87,13 @@ public class DAOEnt_ButPostgres extends DAOEnt_But {
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
 	
-			String sql = "select * from Ent_But where ID_Ent='value1' AND N_But = 'value2' AND Sala_N = 'value3'";
+			String sql = "select * from Ent_But where ID_Ent=" + k.x + " AND N_But = " + k.y + " AND Sala_N = " + k.z;
 			
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setInt(1, k.x);
+			
+			/*preparedStatement.setInt(1, k.x);
 			preparedStatement.setInt(2, k.y);
-			preparedStatement.setInt(3, k.z);
+			preparedStatement.setInt(3, k.z);*/
 			
 			ResultSet resultSet = preparedStatement.executeQuery(sql);
 

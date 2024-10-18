@@ -1,6 +1,6 @@
 package vo;
 public class Ent_But {
-		public int N_But;
-		public int ID_Ent;
-		public int Sala_N;
+		public Integer N_But;
+		public Integer ID_Ent;
+		public Integer Sala_N;
 }

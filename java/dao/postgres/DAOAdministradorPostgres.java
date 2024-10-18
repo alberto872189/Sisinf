@@ -25,8 +25,7 @@ public class DAOAdministradorPostgres extends DAOAdministrador {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "INSERT INTO Administrador(Correo, Contrasenia, Nombre) VALUES ('" + t.Correo + "','" + t.Contrasenia + "','" + t.Nombre + "')";//value1, value2, value3)";
-            System.out.printf("%s \n", sql);
+            String sql = "INSERT INTO Administrador(Correo, Contrasenia, Nombre) VALUES ('" + t.Correo + "','" + t.Contrasenia + "','" + t.Nombre + "')";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             /*preparedStatement.setString(1, t.Correo);

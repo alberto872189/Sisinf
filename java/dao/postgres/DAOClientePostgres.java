@@ -25,12 +25,12 @@ public class DAOClientePostgres extends DAOCliente {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "INSERT INTO Cliente(Correo, Contrasenia, Nombre) VALUES (value1, value2, value3)";
+            String sql = "INSERT INTO Cliente(Correo, Contrasenia, Nombre) VALUES ('" + t.Correo + "','" + t.Contrasenia + "','" + t.Nombre + "')";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setString(1, t.Correo);
+            /*preparedStatement.setString(1, t.Correo);
             preparedStatement.setString(2, t.Contrasenia);
-            preparedStatement.setString(3, t.Nombre);
+            preparedStatement.setString(3, t.Nombre);*/
             
 
             int rowsInserted = preparedStatement.executeUpdate();
@@ -52,12 +52,12 @@ public class DAOClientePostgres extends DAOCliente {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "UPDATE Cliente SET Contrasenia = 'value1', Nombre = 'value2' WHERE Correo='value3'";
+            String sql = "UPDATE Cliente SET Contrasenia = '" + t.Contrasenia + "', Nombre = '" + t.Nombre + "' WHERE Correo='" + t.Correo + "'";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setString(1, t.Contrasenia);
+            /*preparedStatement.setString(1, t.Contrasenia);
             preparedStatement.setString(2, t.Nombre);
-            preparedStatement.setString(3, t.Correo);
+            preparedStatement.setString(3, t.Correo);*/
             
 
             int rowsUpdated = preparedStatement.executeUpdate();
@@ -81,11 +81,10 @@ public class DAOClientePostgres extends DAOCliente {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "DELETE FROM Cliente WHERE Correo='value1'";
+            String sql = "DELETE FROM Cliente WHERE Correo='" + k + "'";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setString(1, k);
-            
+            //preparedStatement.setString(1, k);
 
             int rowsDeleted = preparedStatement.executeUpdate();
             System.out.println(rowsDeleted + " row(s) deleted.");
@@ -110,7 +109,7 @@ public class DAOClientePostgres extends DAOCliente {
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
 	
-			String sql = "select * from Cliente where Correo="+k;
+			String sql = "select * from Cliente where Correo=" + k;
 			
 			Statement statement = connection.createStatement();
 			

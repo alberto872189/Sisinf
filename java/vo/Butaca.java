@@ -1,5 +1,5 @@
 package vo;
 public class Butaca {
-		public int N_Butaca;
-		public int Sala_N;
+		public Integer N_Butaca;
+		public Integer Sala_N;
 }
