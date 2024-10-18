@@ -25,12 +25,13 @@ public class DAOAdministradorPostgres extends DAOAdministrador {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "INSERT INTO Administrador(Correo, Contrasenia, Nombre) VALUES (value1, value2, value3)";
+            String sql = "INSERT INTO Administrador(Correo, Contrasenia, Nombre) VALUES ('" + t.Correo + "','" + t.Contrasenia + "','" + t.Nombre + "')";//value1, value2, value3)";
+            System.out.printf("%s \n", sql);
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setString(1, t.Correo);
+            /*preparedStatement.setString(1, t.Correo);
             preparedStatement.setString(2, t.Contrasenia);
-            preparedStatement.setString(3, t.Nombre);
+            preparedStatement.setString(3, t.Nombre);*/
             
 
             int rowsInserted = preparedStatement.executeUpdate();
@@ -52,12 +53,12 @@ public class DAOAdministradorPostgres extends DAOAdministrador {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "UPDATE Administrador SET Contrasenia = 'value1', Nombre = 'value2' WHERE Correo='value3'";
+            String sql = "UPDATE Administrador SET Contrasenia = '" + t.Contrasenia + "', Nombre = '" + t.Nombre + "' WHERE Correo='" + t.Correo + "'";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setString(1, t.Contrasenia);
+            /*preparedStatement.setString(1, t.Contrasenia);
             preparedStatement.setString(2, t.Nombre);
-            preparedStatement.setString(3, t.Correo);
+            preparedStatement.setString(3, t.Correo);*/
             
 
             int rowsUpdated = preparedStatement.executeUpdate();
@@ -81,10 +82,10 @@ public class DAOAdministradorPostgres extends DAOAdministrador {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "DELETE FROM Administrador WHERE Correo='value1'";
+            String sql = "DELETE FROM Administrador WHERE Correo='" + k + "'";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setString(1, k);
+            //preparedStatement.setString(1, k);
             
 
             int rowsDeleted = preparedStatement.executeUpdate();
@@ -110,7 +111,7 @@ public class DAOAdministradorPostgres extends DAOAdministrador {
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
 	
-			String sql = "select * from Administrador where Correo="+k;
+			String sql = "select * from Administrador where Correo='" + k + "'";
 			
 			Statement statement = connection.createStatement();
 			
