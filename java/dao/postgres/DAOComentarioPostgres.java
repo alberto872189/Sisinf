@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 import dao.interfaces.DAOComentario;
 import vo.Comentario;
@@ -123,6 +125,45 @@ public class DAOComentarioPostgres extends DAOComentario {
 				res.Usuario = resultSet.getString("Usuario");
 				res.Pelicula = resultSet.getString("Pelicula");
 				res.Texto = resultSet.getString("Texto");
+			}
+			connection.close();
+			resultSet.close();
+			preparedStatement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+	
+	public List<Comentario> obtenerPel(String k) {
+		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
+		
+		List<Comentario> res = new ArrayList<Comentario>();
+		
+		try {
+			Class.forName("org.postgresql.Driver");
+		
+			Connection connection;
+		
+			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+	
+			String sql = "select * from Comentario where Pelicula=" + k;
+			
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			//preparedStatement.setInt(1, k);
+			
+			ResultSet resultSet = preparedStatement.executeQuery(sql);
+
+			while (resultSet.next())
+			{
+				Comentario comment = new Comentario();
+				comment.Fecha = resultSet.getTimestamp("Fecha");
+				comment.Usuario = resultSet.getString("Usuario");
+				comment.Pelicula = resultSet.getString("Pelicula");
+				comment.Texto = resultSet.getString("Texto");
+				res.add(comment);
 			}
 			connection.close();
 			resultSet.close();

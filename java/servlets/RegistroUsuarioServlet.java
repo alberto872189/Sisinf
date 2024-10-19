@@ -15,31 +15,38 @@ import vo.Cliente;
 import vo.Administrador;
 
 
-public class LoginUsuarioServlet extends HttpServlet {
+public class RegistroUsuarioServlet extends HttpServlet {
 	public void doPost (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Map<String, String> errors = new HashMap <String, String>();
 		String login = request.getParameter("login");
 		String passwd = request.getParameter("passwd");
+		String passwd2 = request.getParameter("passwd2");
+		String nombre = request.getParameter("nombre");
 		if ((login == null) || (login.trim().equals(""))) errors.put("Login", "Campo obligatorio");
-		if ((passwd == null) || (passwd.trim().equals(""))) errors.put("Clave", "Campo obligatorio"); 
+		if ((passwd == null) || (passwd.trim().equals(""))) errors.put("Clave", "Campo obligatorio");
+		if ((passwd2 == null) || (passwd2.trim().equals(""))) errors.put("Clave2", "Campo obligatorio");
+		if ((nombre == null) || (nombre.trim().equals(""))) errors.put("Nombre", "Campo obligatorio");
+		
+		if (!passwd.equals(passwd2)) errors.put("Claves", "Las contraseñas no coinciden");
 		if(errors.isEmpty()) {
 			DAOClientePostgres dao = new DAOClientePostgres("usuario", "user");
 			Cliente client = dao.obtener(login);
 			if (client.Correo != null) {
-				if (!client.Contrasenia.equals(passwd)) {
-					errors.put("Clave", "Contraseña incorrecta");
-				}
+				errors.put("Login", "El usuario ya existe");
 			}
 			else {
 				DAOAdministradorPostgres daoAdmin = new DAOAdministradorPostgres("usuario", "user");
 				Administrador admin = daoAdmin.obtener(login);
 				if (admin.Correo != null) {
-					if (!admin.Contrasenia.equals(passwd)) {
-						errors.put("Clave", "Contraseña incorrecta");
-					}
+					errors.put("Login", "El usuario ya existe");
 				}
 				else {
-					errors.put("Login", "Usuario no encontrado");
+					dao = new DAOClientePostgres("usuario", "user");
+					client = new Cliente();
+					client.Correo = login;
+					client.Contrasenia = passwd;
+					client.Nombre = nombre;
+					dao.crear(client);
 				}
 			}
 		}
