@@ -25,14 +25,14 @@ public class DAOPeliculaPostgres extends DAOPelicula {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "INSERT INTO Pelicula(Titulo, Resumen, Imagen, Link_IMDB, Trailer) VALUES (value1, value2, value3, value4, value 5)";
+            String sql = "INSERT INTO Pelicula(Titulo, Resumen, Imagen, Link_IMDB, Trailer) VALUES ('" + t.Titulo + "','" + t.Resumen + "','" + t.Imagen + "','" + t.Link_IMDB + "','" + t.Trailer + "')";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setString(1, t.Titulo);
+            /*preparedStatement.setString(1, t.Titulo);
             preparedStatement.setString(2, t.Resumen);
-            preparedStatement.setBytes(3, t.Imagen);
+            preparedStatement.setString(3, t.Imagen);
             preparedStatement.setString(4, t.Link_IMDB);
-            preparedStatement.setBytes(5, t.Trailer);
+            preparedStatement.setString(5, t.Trailer);*/
             
 
             int rowsInserted = preparedStatement.executeUpdate();
@@ -54,14 +54,14 @@ public class DAOPeliculaPostgres extends DAOPelicula {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "UPDATE Pelicula SET Resumen = 'value1', Imagen = 'value2', Link_IMDB='value3', Trailer='value4' WHERE Titulo='value5'";
+            String sql = "UPDATE Pelicula SET Resumen = '" + t.Resumen + "', Imagen = '" + t.Imagen + "', Link_IMDB='" + t.Link_IMDB + "', Trailer='" + t.Trailer + "' WHERE Titulo='" + t.Titulo + "'";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setString(1, t.Resumen);
-            preparedStatement.setBytes(2, t.Imagen);
+            /*preparedStatement.setString(1, t.Resumen);
+            preparedStatement.setString(2, t.Imagen);
             preparedStatement.setString(3, t.Link_IMDB);
-            preparedStatement.setBytes(4, t.Trailer);
-            preparedStatement.setString(5, t.Titulo);
+            preparedStatement.setString(4, t.Trailer);
+            preparedStatement.setString(5, t.Titulo);*/
             
 
             int rowsUpdated = preparedStatement.executeUpdate();
@@ -85,10 +85,10 @@ public class DAOPeliculaPostgres extends DAOPelicula {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "DELETE FROM Pelicula WHERE Titulo='value1'";
+            String sql = "DELETE FROM Pelicula WHERE Titulo='" + k + "'";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setString(1, k);
+            //preparedStatement.setString(1, k);
             
 
             int rowsDeleted = preparedStatement.executeUpdate();
@@ -124,9 +124,9 @@ public class DAOPeliculaPostgres extends DAOPelicula {
 			{
 				res.Titulo = resultSet.getString("Titulo");
 				res.Resumen = resultSet.getString("Resumen");
-				res.Imagen = resultSet.getBytes("Imagen");
+				res.Imagen = resultSet.getString("Imagen");
 				res.Link_IMDB = resultSet.getString("Link_IMDB");
-				res.Trailer = resultSet.getBytes("Trailer");
+				res.Trailer = resultSet.getString("Trailer");
 				
 			}
 			connection.close();

@@ -27,13 +27,13 @@ public class DAOSesionPostgres extends DAOSesion {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "INSERT INTO Sesion(Sesion_Hora, Tit_Pel, N_Sala, Precio) VALUES (value1, value2, value3, value4)";
+            String sql = "INSERT INTO Sesion(Sesion_Hora, Tit_Pel, N_Sala, Precio) VALUES ('" + t.Sesion_Hora + "','" + t.Tit_Pel + "'," + t.N_Sala + "," + t.Precio + ")";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setTimestamp(1, t.Sesion_Hora);
+            /*preparedStatement.setTimestamp(1, t.Sesion_Hora);
             preparedStatement.setString(2, t.Tit_Pel);
             preparedStatement.setInt(3, t.N_Sala);
-            preparedStatement.setDouble(4, t.Precio);
+            preparedStatement.setDouble(4, t.Precio);*/
             
 
             int rowsInserted = preparedStatement.executeUpdate();
@@ -55,13 +55,13 @@ public class DAOSesionPostgres extends DAOSesion {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "UPDATE Sesion SET Tit_Pel = 'value1', Precio = 'value2' WHERE Sesion_Hora='value3' and N_Sala='value4'";
+            String sql = "UPDATE Sesion SET Tit_Pel = '" + t.Tit_Pel + "', Precio = " + t.Precio + " WHERE Sesion_Hora='" + t.Sesion_Hora + "' and N_Sala=" + t.N_Sala;
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setString(1, t.Tit_Pel);
+            /*preparedStatement.setString(1, t.Tit_Pel);
             preparedStatement.setDouble(2, t.Precio);
             preparedStatement.setTimestamp(3, t.Sesion_Hora);
-            preparedStatement.setInt(3, t.N_Sala);
+            preparedStatement.setInt(4, t.N_Sala);*/
             
 
             int rowsUpdated = preparedStatement.executeUpdate();
@@ -76,7 +76,7 @@ public class DAOSesionPostgres extends DAOSesion {
 	}
 
 	@Override
-	public void borrar(Pair<Timestamp, Long> k) {
+	public void borrar(Pair<Timestamp, Integer> k) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		
 		try {
@@ -85,11 +85,11 @@ public class DAOSesionPostgres extends DAOSesion {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "DELETE FROM Sesion WHERE Sesion_Hora='value1' and N_Sala='value2'";
+            String sql = "DELETE FROM Sesion WHERE Sesion_Hora='" + k.x + "' and N_Sala=" + k.y;
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setTimestamp(1, k.x);
-            preparedStatement.setInt(2, k.y.intValue());
+            /*preparedStatement.setTimestamp(1, k.x);
+            preparedStatement.setInt(2, k.y.intValue());*/
             
 
             int rowsDeleted = preparedStatement.executeUpdate();
@@ -104,7 +104,7 @@ public class DAOSesionPostgres extends DAOSesion {
 	}
 
 	@Override
-	public Sesion obtener(Pair<Timestamp, Long> k) {
+	public Sesion obtener(Pair<Timestamp, Integer> k) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		Sesion res = new Sesion();
 		
@@ -115,11 +115,12 @@ public class DAOSesionPostgres extends DAOSesion {
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
 	
-			String sql = "select * from Sesion where Sesion_Hora='value1' and N_Sala='value2'";
+			String sql = "select * from Sesion where Sesion_Hora='" + k.x + "' and N_Sala=" + k.y;
 			
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setTimestamp(1, k.x);
-            preparedStatement.setInt(2, k.y.intValue());
+			
+			/*preparedStatement.setTimestamp(1, k.x);
+            preparedStatement.setInt(2, k.y.intValue());*/
 			
 			ResultSet resultSet = preparedStatement.executeQuery(sql);
 

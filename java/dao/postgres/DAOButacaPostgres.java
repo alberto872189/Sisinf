@@ -26,11 +26,11 @@ public class DAOButacaPostgres extends DAOButaca {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "INSERT INTO Butaca(N_Butaca, Sala_N) VALUES (value1, value2)";
+            String sql = "INSERT INTO Butaca(N_Butaca, Sala_N) VALUES (" + t.N_Butaca + "," + t.Sala_N + ")";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setInt(1, t.N_Butaca);
-            preparedStatement.setInt(2, t.Sala_N);
+            /*preparedStatement.setInt(1, t.N_Butaca);
+            preparedStatement.setInt(2, t.Sala_N);*/
             
 
             int rowsInserted = preparedStatement.executeUpdate();
@@ -59,11 +59,11 @@ public class DAOButacaPostgres extends DAOButaca {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "DELETE FROM Butaca WHERE N_Butaca='value1' and Sala_N='value2'";
+            String sql = "DELETE FROM Butaca WHERE N_Butaca=" + k.x.toString() + " and Sala_N=" + k.y.toString();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setInt(1, k.x);
-            preparedStatement.setInt(2, k.y);
+            /*preparedStatement.setInt(1, k.x);
+            preparedStatement.setInt(2, k.y);*/
             
 
             int rowsDeleted = preparedStatement.executeUpdate();
@@ -89,13 +89,14 @@ public class DAOButacaPostgres extends DAOButaca {
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
 	
-			String sql = "select * from Butaca where N_Butaca='value1' and Sala_N='value2'";
+			String sql = "select * from Butaca where N_Butaca=" + k.x.toString() + " and Sala_N=" + k.y.toString();
 			
-			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setInt(1, k.x);
-            preparedStatement.setInt(2, k.y);
+			Statement statement = connection.createStatement();
 			
-			ResultSet resultSet = preparedStatement.executeQuery(sql);
+			ResultSet resultSet = statement.executeQuery(sql);
+			
+			/*preparedStatement.setInt(1, k.x);
+            preparedStatement.setInt(2, k.y);*/
 
 			while (resultSet.next())
 			{
@@ -104,7 +105,7 @@ public class DAOButacaPostgres extends DAOButaca {
 			}
 			connection.close();
 			resultSet.close();
-			preparedStatement.close();
+			statement.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {

@@ -26,11 +26,11 @@ public class DAOProd_EntPostgres extends DAOProd_Ent {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "INSERT INTO Prod_Ent(ID_Ent, N_But) VALUES (value1, value2)";
+            String sql = "INSERT INTO Prod_Ent(ID_Ent, N_But) VALUES (" + t.ID_Ent + ",'" +  t.Nombre_Prod + "')";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setInt(1, t.ID_Ent);
-            preparedStatement.setString(2, t.Nombre_Prod);
+            /*preparedStatement.setInt(1, t.ID_Ent);
+            preparedStatement.setString(2, t.Nombre_Prod);*/
             
             int rowsInserted = preparedStatement.executeUpdate();
             System.out.println(rowsInserted + " row(s) inserted.");
@@ -56,11 +56,11 @@ public class DAOProd_EntPostgres extends DAOProd_Ent {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "DELETE FROM Prod_Ent WHERE ID_Ent='value1' AND Nombre_Prod = 'value2'";
+            String sql = "DELETE FROM Prod_Ent WHERE ID_Ent=" + k.x + " AND Nombre_Prod = '" + k.y + "'";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setInt(1, k.x);
-			preparedStatement.setString(2, k.y);
+            /*preparedStatement.setInt(1, k.x);
+			preparedStatement.setString(2, k.y);*/
 
             int rowsDeleted = preparedStatement.executeUpdate();
             System.out.println(rowsDeleted + " row(s) deleted.");
@@ -85,11 +85,12 @@ public class DAOProd_EntPostgres extends DAOProd_Ent {
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
 	
-			String sql = "select * from Prod_Ent where ID_Ent='value1' AND Nombre_Prod = 'value2'";
+			String sql = "select * from Prod_Ent where ID_Ent=" + k.x + " AND Nombre_Prod = '" + k.y + "'";
 			
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setInt(1, k.x);
-			preparedStatement.setString(2, k.y);
+
+			/*preparedStatement.setInt(1, k.x);
+			preparedStatement.setString(2, k.y);*/
 			
 			ResultSet resultSet = preparedStatement.executeQuery(sql);
 

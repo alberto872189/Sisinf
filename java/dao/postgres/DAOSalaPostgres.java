@@ -25,10 +25,10 @@ public class DAOSalaPostgres extends DAOSala {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "INSERT INTO Sala(N_Sala) VALUES (value1)";
+            String sql = "INSERT INTO Sala(N_Sala) VALUES (" + t.n + ")";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setInt(1, t.n.intValue());
+//            preparedStatement.setInt(1, t.n.intValue());
             
 
             int rowsInserted = preparedStatement.executeUpdate();
@@ -42,37 +42,13 @@ public class DAOSalaPostgres extends DAOSala {
 
 	@Override
 	public void modificar(Sala t) {
-		/*String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		
-		try {
-			Class.forName("org.postgresql.Driver");
-		
-			Connection connection;
-		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "UPDATE Pelicula SET Resumen = 'value1', Imagen = 'value2', Link_IMDB='value3', Trailer='value4' WHERE Titulo='value5'";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-            preparedStatement.setString(1, t.Resumen);
-            preparedStatement.setBytes(2, t.Imagen);
-            preparedStatement.setString(3, t.Link_IMDB);
-            preparedStatement.setBytes(4, t.Trailer);
-            preparedStatement.setString(5, t.Titulo);
-            
-
-            int rowsUpdated = preparedStatement.executeUpdate();
-            System.out.println(rowsUpdated + " row(s) updated.");
-            connection.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}   */
+        System.out.println("No es posible modificar una Sala");
 		
 	}
 
 	@Override
-	public void borrar(Long k) {
+	public void borrar(Integer k) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		
 		try {
@@ -81,10 +57,10 @@ public class DAOSalaPostgres extends DAOSala {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "DELETE FROM Salaa WHERE N_Sala='value1'";
+            String sql = "DELETE FROM Sala WHERE N_Sala=" + k.toString();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setInt(1, k.intValue());
+            //preparedStatement.setInt(1, k.intValue());
             
 
             int rowsDeleted = preparedStatement.executeUpdate();
@@ -99,7 +75,7 @@ public class DAOSalaPostgres extends DAOSala {
 	}
 
 	@Override
-	public Sala obtener(Long k) {
+	public Sala obtener(Integer k) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		Sala res = new Sala();
 		
@@ -118,7 +94,7 @@ public class DAOSalaPostgres extends DAOSala {
 
 			while (resultSet.next())
 			{
-				res.n = resultSet.getLong("N_Sala");
+				res.n = resultSet.getInt("N_Sala");
 				
 			}
 			connection.close();

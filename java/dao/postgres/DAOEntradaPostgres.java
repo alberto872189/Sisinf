@@ -26,12 +26,12 @@ public class DAOEntradaPostgres extends DAOEntrada {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "INSERT INTO Entrada(Correo, Sesion_Hora, N_Sala) VALUES (value1, value2, value3)";
+            String sql = "INSERT INTO Entrada(Correo, Sesion_Hora, N_Sala) VALUES ('" + t.Correo + "','" + t.Sesion_Hora + "'," +  t.N_Sala + ")";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setString(1, t.Correo);
+            /*preparedStatement.setString(1, t.Correo);
             preparedStatement.setTimestamp(2, t.Sesion_Hora);
-            preparedStatement.setInt(3, t.N_Sala);
+            preparedStatement.setInt(3, t.N_Sala);*/
             
 
             int rowsInserted = preparedStatement.executeUpdate();
@@ -53,13 +53,13 @@ public class DAOEntradaPostgres extends DAOEntrada {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "UPDATE Entrada SET Correo = 'value1', Sesion_Hora = 'value2', N_Sala = 'value3' WHERE ID='value4'";
+            String sql = "UPDATE Entrada SET Correo = '" + t.Correo + "', Sesion_Hora = '" + t.Sesion_Hora + "', N_Sala = " + t.N_Sala + " WHERE ID=" + t.ID;
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setString(1, t.Correo);
+            /*preparedStatement.setString(1, t.Correo);
             preparedStatement.setTimestamp(2, t.Sesion_Hora);
             preparedStatement.setInt(3, t.N_Sala);
-            preparedStatement.setInt(4, t.ID);
+            preparedStatement.setInt(4, t.ID);*/
             
 
             int rowsUpdated = preparedStatement.executeUpdate();
@@ -83,10 +83,10 @@ public class DAOEntradaPostgres extends DAOEntrada {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "DELETE FROM Entrada WHERE ID='value1'";
+            String sql = "DELETE FROM Entrada WHERE ID=" + k;
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setInt(1, k);
+            //preparedStatement.setInt(1, k);
 
             int rowsDeleted = preparedStatement.executeUpdate();
             System.out.println(rowsDeleted + " row(s) deleted.");
@@ -111,10 +111,10 @@ public class DAOEntradaPostgres extends DAOEntrada {
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
 	
-			String sql = "select * from Entrada where ID = 'vaule1'";
+			String sql = "select * from Entrada where ID = " + k;
 			
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setInt(1, k);
+			//preparedStatement.setInt(1, k);
 			
 			ResultSet resultSet = preparedStatement.executeQuery(sql);
 

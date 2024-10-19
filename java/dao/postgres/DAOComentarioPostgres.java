@@ -25,13 +25,13 @@ public class DAOComentarioPostgres extends DAOComentario {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "INSERT INTO Comentario(Texto, Pelicula, Usuario, Fecha) VALUES (value1, value2, value3, value4)";
+            String sql = "INSERT INTO Comentario(Texto, Pelicula, Usuario, Fecha) VALUES ('" + t.Texto + "','" + t.Pelicula + "','" + t.Usuario + "','" + t.Fecha + "')";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setString(1, t.Texto);
+            /*preparedStatement.setString(1, t.Texto);
 			preparedStatement.setString(2, t.Pelicula);
 			preparedStatement.setString(3, t.Usuario);
-            preparedStatement.setTimestamp(4, t.Fecha);
+            preparedStatement.setTimestamp(4, t.Fecha);*/
 			
             int rowsInserted = preparedStatement.executeUpdate();
             System.out.println(rowsInserted + " row(s) inserted.");
@@ -52,14 +52,14 @@ public class DAOComentarioPostgres extends DAOComentario {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "UPDATE Comentario SET Texto = 'value1', Pelicula = 'value2', Usuario = 'value3', Fecha = 'value4' WHERE ID='value5'";
+            String sql = "UPDATE Comentario SET Texto = '" + t.Texto + "', Pelicula = '" + t.Pelicula + "', Usuario = '" + t.Usuario + "', Fecha = '" + t.Fecha + "' WHERE ID=" + t.ID;
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setString(1, t.Texto);
+            /*preparedStatement.setString(1, t.Texto);
 			preparedStatement.setString(2, t.Pelicula);
 			preparedStatement.setString(3, t.Usuario);
             preparedStatement.setTimestamp(4, t.Fecha);
-			preparedStatement.setInt(5, t.ID);
+			preparedStatement.setInt(5, t.ID);*/
             
             int rowsUpdated = preparedStatement.executeUpdate();
             System.out.println(rowsUpdated + " row(s) updated.");
@@ -82,10 +82,10 @@ public class DAOComentarioPostgres extends DAOComentario {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "DELETE FROM Comentario WHERE ID='value1'";
+            String sql = "DELETE FROM Comentario WHERE ID=" + k;
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setInt(1, k);
+            //preparedStatement.setInt(1, k);
 
             int rowsDeleted = preparedStatement.executeUpdate();
             System.out.println(rowsDeleted + " row(s) deleted.");
@@ -110,10 +110,10 @@ public class DAOComentarioPostgres extends DAOComentario {
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
 	
-			String sql = "select * from Comentario where ID='value1'";
+			String sql = "select * from Comentario where ID=" + k;
 			
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setInt(1, k);
+			//preparedStatement.setInt(1, k);
 			
 			ResultSet resultSet = preparedStatement.executeQuery(sql);
 
