@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
 
 import dao.interfaces.DAOComentario;
 import vo.Comentario;
@@ -138,7 +136,7 @@ public class DAOComentarioPostgres extends DAOComentario {
 		}
 		return res;
 	}
-	
+
 	public List<Comentario> obtenerPel(String k) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		
@@ -151,12 +149,11 @@ public class DAOComentarioPostgres extends DAOComentario {
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
 	
-			String sql = "select * from Comentario where Pelicula=" + k;
+			String sql = "select * from Comentario where Pelicula='" + k + "'";
 			
-			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			//preparedStatement.setInt(1, k);
+			Statement statement = connection.createStatement();
 			
-			ResultSet resultSet = preparedStatement.executeQuery(sql);
+			ResultSet resultSet = statement.executeQuery(sql);
 
 			while (resultSet.next())
 			{
@@ -169,7 +166,7 @@ public class DAOComentarioPostgres extends DAOComentario {
 			}
 			connection.close();
 			resultSet.close();
-			preparedStatement.close();
+			statement.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
