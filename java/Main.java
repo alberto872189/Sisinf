@@ -1,6 +1,7 @@
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import dao.interfaces.*;
 import dao.postgres.*;
@@ -9,6 +10,9 @@ import utils.*;
 
 class Main {
 	public static void main(String args[]) {
+		int id = 47;//incrementar en 3 cada vez que se prueba
+		int id2 = 29;//incrementar en 2 cada vez que se prueba
+		
 		System.out.println("ADMINISTRADORES");
 		DAOAdministradorPostgres test1 = new DAOAdministradorPostgres("admin", "admin");
 		Administrador admint1 = new Administrador();
@@ -37,6 +41,8 @@ class Main {
 		admint3 = test1.obtener("correoadmin@gmail.com");
 		System.out.printf("admin borrado: %s, %s, %s \n", admint3.Nombre, admint3.Contrasenia, admint3.Correo);
 		
+		
+		
 		System.out.println();
 		System.out.println("SALAS");
 		DAOSalaPostgres test3 = new DAOSalaPostgres("admin", "admin");
@@ -60,6 +66,8 @@ class Main {
 		test3.crear(salat1); //Para pruebas posteriores
 		salat1.n = 2;
 		test3.crear(salat1);
+		
+		
 		
 		System.out.println();
 		System.out.println("BUTACAS");
@@ -85,7 +93,10 @@ class Main {
 		System.out.printf("butaca borrada: %s, %s \n", butacat3.N_Butaca, butacat3.Sala_N);
 		test2.crear(butacat1); //Para pruebas posteriores
 		butacat1.N_Butaca = 2;
+		butacat1.Sala_N = 2;
 		test2.crear(butacat1);
+		
+		
 		
 		System.out.println();
 		System.out.println("PELICULAS");
@@ -123,6 +134,8 @@ class Main {
 		pelit1.Titulo = "titulo2";
 		test4.crear(pelit1); //Para pruebas posteriores
 		
+		
+		
 		System.out.println();
 		System.out.println("CLIENTES");
 		DAOClientePostgres test5 = new DAOClientePostgres("admin", "admin");
@@ -155,9 +168,10 @@ class Main {
 		clientet1.Correo = "correocliente2@gmail.com";
 		test5.crear(clientet1); //Para pruebas posteriores
 		
+		
+		
 		System.out.println();
 		System.out.println("COMENTARIOS");
-		int id = 39;//incrementar cada vez que se prueba
 		DAOComentarioPostgres test6 = new DAOComentarioPostgres("admin", "admin");
 		Comentario coment1 = new Comentario();
 		coment1.Texto = "texto";
@@ -199,6 +213,18 @@ class Main {
 		Comentario coment3 = new Comentario();
 		coment3 = test6.obtener(id);
 		System.out.printf("comentario borrado: %s, %s, %s, %s \n", coment3.Texto, coment3.Pelicula, coment3.Usuario, coment3.Fecha);
+		test6.crear(coment1);
+		coment1.Texto = "texto3";
+		test6.crear(coment1);
+		coment1.Texto = "texto4";
+		System.out.println("Lista comentarios titulo2:");
+		List<Comentario> res = test6.obtenerPel(coment1.Pelicula);
+		for (Comentario c : res) {
+			System.out.printf("%s, %s, %s, %s \n", c.Texto, c.Pelicula, c.Usuario, c.Fecha);
+		}
+		test6.borrar(id+1);
+		test6.borrar(id+2);
+		
 		
 		System.out.println();
 		System.out.println("PRODUCTOS");
@@ -231,6 +257,8 @@ class Main {
 		test7.crear(prodt1); //Para pruebas posteriores
 		prodt1.Nombre = "producto2";
 		test7.crear(prodt1);
+		
+		
 		
 		System.out.println();
 		System.out.println("SESIONES");
@@ -279,9 +307,9 @@ class Main {
 		test8.crear(sesiont1);
 		
 		
+		
 		System.out.println();
 		System.out.println("ENTRADAS");
-		int id2 = 17;//incrementar en 2 cada vez que se prueba
 		DAOEntradaPostgres test9 = new DAOEntradaPostgres("admin", "admin");
 		Entrada entradat1 = new Entrada();
 		entradat1.Correo = "correocliente@gmail.com";
@@ -323,6 +351,58 @@ class Main {
 		test9.crear(entradat1); //Para pruebas posteriores
 		
 		
+		
+		System.out.println();
+		System.out.println("ENT_BUT");
+		DAOEnt_ButPostgres test10 = new DAOEnt_ButPostgres("admin", "admin");
+		Ent_But entbutt1 = new Ent_But();
+		entbutt1.ID_Ent = id2+1;
+		entbutt1.N_But = 1;
+		entbutt1.Sala_N = 1;
+		System.out.printf("ent_but 1: %s, %s, %s \n", entbutt1.ID_Ent, entbutt1.N_But, entbutt1.Sala_N);
+		System.out.println("crear");
+		test10.crear(entbutt1);
+		System.out.println("creado");
+		Ent_But entbutt2 = new Ent_But();
+		System.out.println("obtener");
+		Triplet<Integer, Integer, Integer> claveEntbut = new Triplet<Integer, Integer, Integer>(id2+1, 1, 1);
+		entbutt2 = test10.obtener(claveEntbut);
+		System.out.println("obtenido");
+		System.out.printf("ent_but final: %s, %s, %s \n", entbutt2.ID_Ent, entbutt2.N_But, entbutt2.Sala_N);
+		System.out.println("borrar");
+		test10.borrar(claveEntbut);
+		System.out.println("borrado");
+		Ent_But entbutt3 = new Ent_But();
+		entbutt3 = test10.obtener(claveEntbut);
+		System.out.printf("ent_but borrado: %s, %s, %s \n", entbutt3.ID_Ent, entbutt3.N_But, entbutt3.Sala_N);
+		
+		
+		
+		System.out.println();
+		System.out.println("PROD_ENT");
+		DAOProd_EntPostgres test11 = new DAOProd_EntPostgres("admin", "admin");
+		Prod_Ent prodentt1 = new Prod_Ent();
+		prodentt1.ID_Ent = id2+1;
+		prodentt1.Nombre_Prod = "producto";
+		System.out.printf("ent_prod 1: %s, %s \n", prodentt1.ID_Ent, prodentt1.Nombre_Prod);
+		System.out.println("crear");
+		test11.crear(prodentt1);
+		System.out.println("creado");
+		Prod_Ent prodentt2 = new Prod_Ent();
+		System.out.println("obtener");
+		Pair<Integer, String> claveProdEnt = new Pair<Integer, String>(id2+1, "producto");
+		prodentt2 = test11.obtener(claveProdEnt);
+		System.out.println("obtenido");
+		System.out.printf("ent_prod final: %s, %s \n", prodentt2.ID_Ent, prodentt2.Nombre_Prod);
+		System.out.println("borrar");
+		test11.borrar(claveProdEnt);
+		System.out.println("borrado");
+		Prod_Ent prodentt3 = new Prod_Ent();
+		prodentt3 = test11.obtener(claveProdEnt);
+		System.out.printf("ent_prod borrado: %s, %s \n", prodentt3.ID_Ent, prodentt3.Nombre_Prod);
+		
+		
+		
 		//Borrado de elementos para pruebas
 		System.out.println();
 		test9.borrar(id2+1);
@@ -332,7 +412,7 @@ class Main {
 		test4.borrar("titulo");
 		test4.borrar("titulo2");
 		test2.borrar(claveBut);
-		Pair<Integer, Integer> claveBut2 = new Pair<Integer, Integer>(2, 1);
+		Pair<Integer, Integer> claveBut2 = new Pair<Integer, Integer>(2, 2);
 		test2.borrar(claveBut2);
 		test3.borrar(1);
 		test3.borrar(2);

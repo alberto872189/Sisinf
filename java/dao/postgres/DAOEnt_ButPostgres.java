@@ -89,13 +89,9 @@ public class DAOEnt_ButPostgres extends DAOEnt_But {
 	
 			String sql = "select * from Ent_But where ID_Ent=" + k.x + " AND N_But = " + k.y + " AND Sala_N = " + k.z;
 			
-			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			Statement statement = connection.createStatement();
 			
-			/*preparedStatement.setInt(1, k.x);
-			preparedStatement.setInt(2, k.y);
-			preparedStatement.setInt(3, k.z);*/
-			
-			ResultSet resultSet = preparedStatement.executeQuery(sql);
+			ResultSet resultSet = statement.executeQuery(sql);
 
 			while (resultSet.next())
 			{
@@ -106,7 +102,7 @@ public class DAOEnt_ButPostgres extends DAOEnt_But {
 			}
 			connection.close();
 			resultSet.close();
-			preparedStatement.close();
+			statement.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {

@@ -26,7 +26,7 @@ public class DAOProd_EntPostgres extends DAOProd_Ent {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "INSERT INTO Prod_Ent(ID_Ent, N_But) VALUES (" + t.ID_Ent + ",'" +  t.Nombre_Prod + "')";
+            String sql = "INSERT INTO Prod_Ent(ID_Ent, Nombre_Prod) VALUES (" + t.ID_Ent + ",'" +  t.Nombre_Prod + "')";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             /*preparedStatement.setInt(1, t.ID_Ent);
@@ -87,12 +87,9 @@ public class DAOProd_EntPostgres extends DAOProd_Ent {
 	
 			String sql = "select * from Prod_Ent where ID_Ent=" + k.x + " AND Nombre_Prod = '" + k.y + "'";
 			
-			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-			/*preparedStatement.setInt(1, k.x);
-			preparedStatement.setString(2, k.y);*/
+			Statement statement = connection.createStatement();
 			
-			ResultSet resultSet = preparedStatement.executeQuery(sql);
+			ResultSet resultSet = statement.executeQuery(sql);
 
 			while (resultSet.next())
 			{
@@ -102,7 +99,7 @@ public class DAOProd_EntPostgres extends DAOProd_Ent {
 			}
 			connection.close();
 			resultSet.close();
-			preparedStatement.close();
+			statement.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
