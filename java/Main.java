@@ -157,7 +157,7 @@ class Main {
 		
 		System.out.println();
 		System.out.println("COMENTARIOS");
-		int id = 21;//incrementar cada vez que se prueba
+		int id = 39;//incrementar cada vez que se prueba
 		DAOComentarioPostgres test6 = new DAOComentarioPostgres("admin", "admin");
 		Comentario coment1 = new Comentario();
 		coment1.Texto = "texto";
@@ -198,7 +198,7 @@ class Main {
 		System.out.println("borrado");
 		Comentario coment3 = new Comentario();
 		coment3 = test6.obtener(id);
-		System.out.printf("comentario borrada: %s, %s, %s, %s \n", coment3.Texto, coment3.Pelicula, coment3.Usuario, coment3.Fecha);
+		System.out.printf("comentario borrado: %s, %s, %s, %s \n", coment3.Texto, coment3.Pelicula, coment3.Usuario, coment3.Fecha);
 		
 		System.out.println();
 		System.out.println("PRODUCTOS");
@@ -257,12 +257,6 @@ class Main {
 		System.out.printf("%s \n", sesiont2.Sesion_Hora);
 		sesiont2.Precio = 5.0;
 		sesiont2.Tit_Pel = "titulo2";
-		try {
-			sesiont2.Sesion_Hora = formatter.parse("2024-10-15 15:30:35");
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		System.out.println("modificar");
 		test8.modificar(sesiont2);
 		System.out.println("modificado");
@@ -273,61 +267,73 @@ class Main {
 		System.out.println("borrado");
 		Sesion sesiont3 = new Sesion();
 		sesiont3 = test8.obtener(claveSesion);
-		System.out.printf("sesion borrada: %s, %s, %s, %s \n", sesiont1.Precio, sesiont1.Tit_Pel, sesiont1.N_Sala, sesiont1.Sesion_Hora);
-		
-		/*System.out.println();
-		System.out.println("ENTRADAS");
-		int id = 20;//incrementar cada vez que se prueba
-		DAOComentarioPostgres test6 = new DAOComentarioPostgres("admin", "admin");
-		Comentario coment1 = new Comentario();
-		coment1.Texto = "texto";
-		coment1.Pelicula = "titulo";
-		coment1.Usuario = "correocliente@gmail.com";
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		System.out.printf("sesion borrada: %s, %s, %s, %s \n", sesiont3.Precio, sesiont3.Tit_Pel, sesiont3.N_Sala, sesiont3.Sesion_Hora);
+		test8.crear(sesiont1); //Para prubeas posteriores
+		sesiont1.N_Sala = 2;
 		try {
-			coment1.Fecha = formatter.parse("2024-10-15 12:30:35");
+			sesiont1.Sesion_Hora = formatter.parse("2024-10-15 10:30:35");
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.printf("comentario 1: %s, %s, %s, %s \n", coment1.Texto, coment1.Pelicula, coment1.Usuario, coment1.Fecha);
-		System.out.println("crear");
-		test6.crear(coment1);
-		System.out.println("creado");
-		Comentario coment2 = new Comentario();
-		System.out.println("obtener");
-		coment2 = test6.obtener(id);
-		System.out.println("obtenido");
-		System.out.printf("%s \n", coment2.Fecha);
-		coment2.Texto = "texto2";
-		coment2.Pelicula = "titulo2";
-		coment2.Usuario = "correocliente2@gmail.com";
+		test8.crear(sesiont1);
+		
+		
+		System.out.println();
+		System.out.println("ENTRADAS");
+		int id2 = 17;//incrementar en 2 cada vez que se prueba
+		DAOEntradaPostgres test9 = new DAOEntradaPostgres("admin", "admin");
+		Entrada entradat1 = new Entrada();
+		entradat1.Correo = "correocliente@gmail.com";
+		entradat1.N_Sala = 1;
 		try {
-			coment2.Fecha = formatter.parse("2024-10-15 15:30:35");
+			entradat1.Sesion_Hora = formatter.parse("2024-10-15 12:30:35");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.printf("entrada 1: %s, %s, %s \n", entradat1.Correo, entradat1.N_Sala, entradat1.Sesion_Hora);
+		System.out.println("crear");
+		test9.crear(entradat1);
+		System.out.println("creado");
+		Entrada entradat2 = new Entrada();
+		System.out.println("obtener");
+		entradat2 = test9.obtener(id2);
+		System.out.println("obtenido");
+		System.out.printf("%s \n", entradat2.Sesion_Hora);
+		entradat2.Correo = "correocliente2@gmail.com";
+		entradat2.N_Sala = 2;
+		try {
+			entradat2.Sesion_Hora = formatter.parse("2024-10-15 10:30:35");
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.out.println("modificar");
-		test6.modificar(coment2);
+		test9.modificar(entradat2);
 		System.out.println("modificado");
-		coment1 = test6.obtener(id);
-		System.out.printf("comentario final: %s, %s, %s, %s \n", coment1.Texto, coment1.Pelicula, coment1.Usuario, coment1.Fecha);
+		entradat1 = test9.obtener(id2);
+		System.out.printf("entrada final: %s, %s, %s \n", entradat1.Correo, entradat1.N_Sala, entradat1.Sesion_Hora);
 		System.out.println("borrar");
-		test6.borrar(id);
+		test9.borrar(id2);
 		System.out.println("borrado");
-		Comentario coment3 = new Comentario();
-		coment3 = test6.obtener(id);
-		System.out.printf("comentario borrada: %s, %s, %s, %s \n", coment3.Texto, coment3.Pelicula, coment3.Usuario, coment3.Fecha);
-		*/
+		Entrada entradat3 = new Entrada();
+		entradat3 = test9.obtener(id2);
+		System.out.printf("entrada borrada: %s, %s, %s \n", entradat3.Correo, entradat3.N_Sala, entradat3.Sesion_Hora);
+		test9.crear(entradat1); //Para pruebas posteriores
+		
 		
 		//Borrado de elementos para pruebas
 		System.out.println();
+		test9.borrar(id2+1);
+		test8.borrar(claveSesion);
+		Pair<Date, Integer> claveSesion2 = new Pair<Date, Integer>(sesiont1.Sesion_Hora, 2);
+		test8.borrar(claveSesion2);
 		test4.borrar("titulo");
 		test4.borrar("titulo2");
 		test2.borrar(claveBut);
 		Pair<Integer, Integer> claveBut2 = new Pair<Integer, Integer>(2, 1);
-		test2.borrar(claveBut);
+		test2.borrar(claveBut2);
 		test3.borrar(1);
 		test3.borrar(2);
 		test5.borrar("correocliente@gmail.com");

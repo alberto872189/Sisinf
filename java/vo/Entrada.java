@@ -1,9 +1,9 @@
 package vo;
-import java.sql.Timestamp;
+import java.util.Date;
 
 public class Entrada {
 	public Integer ID;
 	public String Correo;
-	public Timestamp Sesion_Hora;
+	public Date Sesion_Hora;
 	public Integer N_Sala;
 }
