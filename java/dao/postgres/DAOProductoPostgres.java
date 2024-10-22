@@ -110,7 +110,7 @@ public class DAOProductoPostgres extends DAOProducto {
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
 	
-			String sql = "select * from Producto where Nombre=" + k;
+			String sql = "select * from Producto where Nombre='" + k + "'";
 			
 			Statement statement = connection.createStatement();
 			

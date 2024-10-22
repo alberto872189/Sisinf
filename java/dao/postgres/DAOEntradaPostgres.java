@@ -111,12 +111,11 @@ public class DAOEntradaPostgres extends DAOEntrada {
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
 	
-			String sql = "select * from Entrada where ID = " + k;
+			String sql = "select * from Entrada where ID =" + k;
 			
-			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			//preparedStatement.setInt(1, k);
+			Statement statement = connection.createStatement();
 			
-			ResultSet resultSet = preparedStatement.executeQuery(sql);
+			ResultSet resultSet = statement.executeQuery(sql);
 
 			while (resultSet.next())
 			{
@@ -128,7 +127,7 @@ public class DAOEntradaPostgres extends DAOEntrada {
 			}
 			connection.close();
 			resultSet.close();
-			preparedStatement.close();
+			statement.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {

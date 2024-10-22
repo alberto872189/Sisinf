@@ -28,6 +28,7 @@ public class DAOComentarioPostgres extends DAOComentario {
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
             String sql = "INSERT INTO Comentario(Texto, Pelicula, Usuario, Fecha) VALUES ('" + t.Texto + "','" + t.Pelicula + "','" + t.Usuario + "','" + t.Fecha + "')";
+            //System.out.println(sql);
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             /*preparedStatement.setString(1, t.Texto);
@@ -55,6 +56,7 @@ public class DAOComentarioPostgres extends DAOComentario {
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
             String sql = "UPDATE Comentario SET Texto = '" + t.Texto + "', Pelicula = '" + t.Pelicula + "', Usuario = '" + t.Usuario + "', Fecha = '" + t.Fecha + "' WHERE ID=" + t.ID;
+            //System.out.println(sql);
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             /*preparedStatement.setString(1, t.Texto);
@@ -114,10 +116,9 @@ public class DAOComentarioPostgres extends DAOComentario {
 	
 			String sql = "select * from Comentario where ID=" + k;
 			
-			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			//preparedStatement.setInt(1, k);
+			Statement statement = connection.createStatement();
 			
-			ResultSet resultSet = preparedStatement.executeQuery(sql);
+			ResultSet resultSet = statement.executeQuery(sql);
 
 			while (resultSet.next())
 			{
@@ -125,10 +126,11 @@ public class DAOComentarioPostgres extends DAOComentario {
 				res.Usuario = resultSet.getString("Usuario");
 				res.Pelicula = resultSet.getString("Pelicula");
 				res.Texto = resultSet.getString("Texto");
+				res.ID = resultSet.getInt("ID");
 			}
 			connection.close();
 			resultSet.close();
-			preparedStatement.close();
+			statement.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {

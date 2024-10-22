@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
+import java.util.Date;
 
 import dao.interfaces.DAOSesion;
 import utils.Pair;
@@ -76,7 +76,7 @@ public class DAOSesionPostgres extends DAOSesion {
 	}
 
 	@Override
-	public void borrar(Pair<Timestamp, Integer> k) {
+	public void borrar(Pair<Date, Integer> k) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		
 		try {
@@ -104,7 +104,7 @@ public class DAOSesionPostgres extends DAOSesion {
 	}
 
 	@Override
-	public Sesion obtener(Pair<Timestamp, Integer> k) {
+	public Sesion obtener(Pair<Date, Integer> k) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		Sesion res = new Sesion();
 		
@@ -117,12 +117,9 @@ public class DAOSesionPostgres extends DAOSesion {
 	
 			String sql = "select * from Sesion where Sesion_Hora='" + k.x + "' and N_Sala=" + k.y;
 			
-			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			Statement statement = connection.createStatement();
 			
-			/*preparedStatement.setTimestamp(1, k.x);
-            preparedStatement.setInt(2, k.y.intValue());*/
-			
-			ResultSet resultSet = preparedStatement.executeQuery(sql);
+			ResultSet resultSet = statement.executeQuery(sql);
 
 			while (resultSet.next())
 			{
@@ -134,7 +131,7 @@ public class DAOSesionPostgres extends DAOSesion {
 			}
 			connection.close();
 			resultSet.close();
-			preparedStatement.close();
+			statement.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {

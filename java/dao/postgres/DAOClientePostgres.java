@@ -109,7 +109,7 @@ public class DAOClientePostgres extends DAOCliente {
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
 	
-			String sql = "select * from Cliente where Correo=" + k;
+			String sql = "select * from Cliente where Correo='" + k + "'";
 			
 			Statement statement = connection.createStatement();
 			

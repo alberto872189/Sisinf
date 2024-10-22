@@ -1,8 +1,8 @@
 package vo;
-import java.sql.Timestamp;
+import java.util.Date;
 
 public class Sesion {
-		public Timestamp Sesion_Hora;
+		public Date Sesion_Hora;
 		public String Tit_Pel;
 		public Integer N_Sala;
 		public Double Precio;

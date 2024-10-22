@@ -86,7 +86,6 @@ public class DAOAdministradorPostgres extends DAOAdministrador {
 
             //preparedStatement.setString(1, k);
             
-
             int rowsDeleted = preparedStatement.executeUpdate();
             System.out.println(rowsDeleted + " row(s) deleted.");
             connection.close();

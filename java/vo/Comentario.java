@@ -1,10 +1,10 @@
 package vo;
-import java.sql.Timestamp;
+import java.util.Date;
 
 public class Comentario {
 	public String Texto;
 	public String Pelicula;
 	public Integer ID;
 	public String Usuario;
-	public Timestamp Fecha;
+	public Date Fecha;
 }
