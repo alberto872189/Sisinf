@@ -7,6 +7,8 @@ import dao.postgres.DAOPeliculaPostgres;
 import dao.postgres.DAOComentarioPostgres;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
 import jakarta.servlet.RequestDispatcher;
@@ -16,7 +18,7 @@ import vo.Cliente;
 import vo.Comentario;
 import vo.Pelicula;
 import vo.Administrador;
-import java.sql.Timestamp;
+import java.util.Date;
 
 public class PublicarComentarioServlet extends HttpServlet {
 	public void doPost (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -48,7 +50,12 @@ public class PublicarComentarioServlet extends HttpServlet {
 					comment.Texto = texto;
 					comment.Pelicula = pelicula;
 					comment.Usuario = usuario;
-					comment.Fecha = Timestamp.valueOf(fecha);
+					SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+					try {
+						comment.Fecha = formatter.parse(fecha);
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
 					daoComment.crear(comment);
 				}
 			}
