@@ -101,7 +101,7 @@
   function iniciarSesion() {
 	  if (username == "admin" && passwd == "admin") {
 		  window.location.href= "admin/indexAdmin.html"; //dirigir a index admin
-	  } else if (username == "user" && passwd == "user") {
+	  } else if (username == "usuario" && passwd == "user") {
 		  window.location.href= "indexUser.html"; //dirigir a index
 		  //añadir funciones de usuario registrado
 	  }
