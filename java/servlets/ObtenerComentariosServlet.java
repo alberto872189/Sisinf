@@ -17,7 +17,7 @@ import vo.Cliente;
 import vo.Comentario;
 import vo.Pelicula;
 import vo.Administrador;
-import java.sql.Timestamp;
+import java.util.Date;
 
 public class ObtenerComentariosServlet extends HttpServlet {
 	public void doPost (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
