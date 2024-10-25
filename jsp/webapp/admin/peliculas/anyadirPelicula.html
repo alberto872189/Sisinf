@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Anyadir Pelicula</title>
+</head>
+<body>
+	<h2>AÑADIR PELICULA</h2>
+	<div>
+		<input type="text" placeholder="Nombre de la pelicula"> <br>
+		<br> <input type="text" placeholder="Precio de la pelicula">
+		<br> <br> Sesiones: <br> Hora: <input type="time">
+		<br> <br> Fecha: <input type="date" name="Dia"> <br>
+		<br> Sala: <select name="Sala">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+		</select> <br> <br>
+		<button onclick="anyadirSesion()">Añadir sesion</button>
+		<br> <br>
+		<h3>Peliculas previamente disponibles:</h3>
+		<ul>
+			<li>Pelicula 1: 5€</li>
+			<li>Pelicula 2: 6€</li>
+		</ul>
+		<br> <br> <a href="/sisinf/admin/indexAdmin.html">VOLVER</a>
+	</div>
+</body>
+
+<!-- CSS -->
+<style>
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+li {
+	margin-right: 20px;
+}
+
+html {
+	display: flex;
+	text-align: center;
+	justify-content: center;
+}
+
+main {
+	display: flex;
+	text-align: center;
+	justify-content: center;
+}
+</style>
+</html>
