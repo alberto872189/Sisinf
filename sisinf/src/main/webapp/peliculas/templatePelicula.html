@@ -6,12 +6,12 @@
 </head>
 
 <body>
-<h1 style="text-align:left">TITULO PELICULA</h1>
-	<div style="float:left">
+	<h1 style="text-align: left">TITULO PELICULA</h1>
+	<div style="float: left">
 		<table id="infoPeliculas">
 			<tr>
 				<!-- imagen de la película-->
-				<td><img width="300" height="300" src="imagenes/template.jpg"/></td>
+				<td><img width="300" height="300" src="imagenes/template.jpg" /></td>
 			</tr>
 			<tr>
 				<!-- video local -->
@@ -19,9 +19,12 @@
 			</tr>
 			<tr>
 				<td>
-					<h2>TRAILER</h2>
-					<!-- esto se saca de yt dandole a compartir->insertar si queremos sacar un trailer de yt -->
-					<iframe width="560" height="315" src="https://www.youtube.com/embed/KAOdjqyG37A?si=uU6kTZnh_b9hMLR9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+					<h2>TRAILER</h2> <!-- esto se saca de yt dandole a compartir->insertar si queremos sacar un trailer de yt -->
+					<iframe width="560" height="315"
+						src="https://www.youtube.com/embed/KAOdjqyG37A?si=uU6kTZnh_b9hMLR9"
+						title="YouTube video player" frameborder="0"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+						referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 				</td>
 			</tr>
 			<tr>
@@ -34,11 +37,12 @@
 				<td><a href="reserva/indexReserva.html">Rerservar entrada</a></td>
 			</tr>
 			<tr>
-				<td><br><a onclick="volver()">VOLVER</a></td>
+				<td><br>
+				<a onclick="volver()">VOLVER</a></td>
 			</tr>
 		</table>
 	</div>
-	<div style="float:left">
+	<div style="float: left">
 		<table id="horarios">
 			<tr>
 				<td id="td-horarios">DIA</td>
@@ -61,13 +65,12 @@
 				<td id="td-horarios">3</td>
 			</tr>
 		</table>
-		<br>
-		<br>
-		<h2 style="text-align:left">Comentarios</h2>
+		<br> <br>
+		<h2 style="text-align: left">Comentarios</h2>
 		<form>
-			<textarea rows="10" cols="30" placeholder="Escribe aquí tu comentario"></textarea>
-			<br>
-			<input type="submit" value="Publicar">
+			<textarea rows="10" cols="30"
+				placeholder="Escribe aquí tu comentario"></textarea>
+			<br> <input type="submit" value="Publicar">
 		</form>
 	</div>
 </body>
@@ -80,10 +83,10 @@ function volver() {
 
 <style>
 body {
-  	text-align: center;  
-  	margin-left: 30px;
+	text-align: center;
+	margin-left: 30px;
 }
-  
+
 #infoPeliculas {
 	width: 400px;
 	padding-right: 200px;
@@ -93,7 +96,7 @@ body {
 	border: 2px solid;
 	border-collapse: collapse;
 }
-	
+
 #td-horarios {
 	border: 1px solid;
 }
