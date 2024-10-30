@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <%@ page import="java.util.Map" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!-- Index.html -->
 <h1>Desacine</h1>
 <!-- Menu -->
@@ -20,29 +22,29 @@
 		<div id="seccion1" class="tab-content">
 			<h2>Inicio de sesion</h2>
 			<form method="post">
+			
 				<%! Map<String,String> errors; %>
-				<% errors = (Map<String,String>)request.getAttribute("error"); %>
-				<input id="usernameInput" type="text" placeholder="Nombre de usuario">
+				<% errors = (Map<String,String>)request.getAttribute("errors"); %>
+				<input id="login" type="text" placeholder="Nombre de usuario">
 				<% if (errors != null && errors.get("Login") != null) { %>
 					<%= errors.get("Login") %>
 				<% } %>
+				
 				<br> <br> 
-				<input id="passwordInput" type="password"
+				<input id="passwd" type="password"
 					placeholder="Contrasenya">
+					
 					<% if (errors != null && errors.get("Clave") != null) { %>
 					<%= errors.get("Clave") %>
 					<% } %>
-				<br> <br>
 					
-					<% if (errors != null && errors.get("Login") == null && errors.get("Clave") == null) { %>
-						<script>
-						iniciarSesion();
-						</script>
-					<% } %>						
+				<br> <br>				
 				
 				<button type="submit">Iniciar Sesion</button>
-				<br> <a href="#" class="tab-link" data-tab="seccion2">Registrarse</a>
-			</form>
+				</form>
+				
+				<br>
+				<a href="#" class="tab-link" data-tab="seccion2">Registrarse</a>
 		</div>
 
 		<div id="seccion2" class="tab-content">
@@ -54,12 +56,15 @@
 				placeholder="Contrasenya"> <br> <br> <input
 				id="passwordInputReg2" type="password"
 				placeholder="Confirmar contrasenya"> <br> <br>
-			<button onclick="registrarse()">Registrarse</button>
+			<button>Registrarse</button>
 			<div id="registroIncorrecto"></div>
 			<br> <a href="#" class="tab-link" data-tab="seccion1">Iniciar
 				sesion</a>
 		</div>
 	</div>
+	<% if (request.getAttribute("errors") != null) { %>
+		<%= request.getAttribute("errors") %>
+	<% } %>	
 	<h2>CARTELERA</h2>
 	<br>
 	<table id="cartelera">
@@ -98,25 +103,6 @@
     });
   });
   
-  function iniciarSesion() {
-	  if (username == "admin" && passwd == "admin") {
-		  window.location.href= "admin/indexAdmin.html"; //dirigir a index admin
-	  } else if (username == "usuario" && passwd == "user") {
-		  window.location.href= "indexUser.html"; //dirigir a index
-		  //añadir funciones de usuario registrado
-	  }
-  }
-  
-  function registrarse() {
-	 var passwd1 = document.getElementById("passwordInputReg1").value;
-	 var passwd2 = document.getElementById("passwordInputReg2").value;
-	 if (passwd1 != passwd2) {
-		 document.getElementById("registroIncorrecto").innerHTML = "La contrasenya de confirmacion no coincide con la primera.";
-	 } else {
-		 window.location.href= "indexUser.html"; //dirigir a index
-		 //iniciar sesion y añadir funciones de usuario registrado
-	 }
-  }
 </script>
 
 <!-- CSS -->

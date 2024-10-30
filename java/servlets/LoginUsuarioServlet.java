@@ -10,12 +10,15 @@ import java.util.HashMap;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import vo.Cliente;
 import vo.Administrador;
 
-
+@WebServlet("/index")
 public class LoginUsuarioServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
 	public void doPost (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Map<String, String> errors = new HashMap <String, String>();
 		String login = request.getParameter("login");
@@ -43,9 +46,8 @@ public class LoginUsuarioServlet extends HttpServlet {
 				}
 			}
 		}
-		RequestDispatcher dispatcher=request.getRequestDispatcher("login.jsp");
+		RequestDispatcher dispatcher=request.getRequestDispatcher("indexUser.html");
 		request.setAttribute("errors", errors);
 		dispatcher.forward(request, response);
-	
 	}
 }
