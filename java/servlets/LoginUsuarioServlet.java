@@ -46,7 +46,7 @@ public class LoginUsuarioServlet extends HttpServlet {
 				}
 			}
 		}
-		RequestDispatcher dispatcher=request.getRequestDispatcher("indexUser.html");
+		RequestDispatcher dispatcher=request.getRequestDispatcher("/WEB-INF/indexUser.jsp");
 		request.setAttribute("errors", errors);
 		dispatcher.forward(request, response);
 	}

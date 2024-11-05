@@ -10,12 +10,16 @@ import java.util.HashMap;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import vo.Cliente;
 import vo.Administrador;
 
-
+@WebServlet("/index")
 public class RegistroUsuarioServlet extends HttpServlet {
+
+	private static final long serialVersionUID = 1L;
+
 	public void doPost (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Map<String, String> errors = new HashMap <String, String>();
 		String login = request.getParameter("login");
@@ -31,7 +35,7 @@ public class RegistroUsuarioServlet extends HttpServlet {
 		if(errors.isEmpty()) {
 			DAOClientePostgres dao = new DAOClientePostgres("usuario", "user");
 			Cliente client = dao.obtener(login);
-			if (client.Correo != null && client.Contrasenia != null) {
+			if (client.Correo != null) {
 				errors.put("Login", "El usuario ya existe");
 			}
 			else {
@@ -50,7 +54,7 @@ public class RegistroUsuarioServlet extends HttpServlet {
 				}
 			}
 		}
-		RequestDispatcher dispatcher=request.getRequestDispatcher("login.jsp");
+		RequestDispatcher dispatcher=request.getRequestDispatcher("index.jsp");
 		request.setAttribute("errors", errors);
 		dispatcher.forward(request, response);
 	

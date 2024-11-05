@@ -61,7 +61,7 @@ public class AnyadirPeliculaServlet extends HttpServlet {
 			
 			DAOSesionPostgres daoSesion = new DAOSesionPostgres("admin", "admin");
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-			Date fecha;
+			Date fecha = null;
 			try {
 				fecha = formatter.parse(hora);
 			} catch (ParseException e) {

@@ -3,12 +3,12 @@
 <%@ page import="java.util.Map" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!-- Index.html -->
+<!-- Index.jsp -->
 <h1>Desacine</h1>
 <!-- Menu -->
 <nav>
 	<ul>
-		<li><a href="index.html">CARTELERA</a></li>
+		<li><a href="index.jsp">CARTELERA</a></li>
 		<li><a href="#" class="tab-link" data-tab="seccion1">INICIO
 				DE SESION</a></li>
 		<li><a href="#" class="tab-link" data-tab="seccion2">REGISTRARSE</a></li>
@@ -21,7 +21,7 @@
 	<div id="tabs" class="tabs">
 		<div id="seccion1" class="tab-content">
 			<h2>Inicio de sesion</h2>
-			<form method="post">
+			<form method="post" action="LoginUsuarioServlet">
 			
 				<%! Map<String,String> errors; %>
 				<% errors = (Map<String,String>)request.getAttribute("errors"); %>
