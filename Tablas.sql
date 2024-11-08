@@ -2,9 +2,9 @@
 CREATE TABLE Pelicula (
     Titulo VARCHAR(255) PRIMARY KEY,
     Resumen TEXT,
-    Imagen BYTEA,
+    Imagen TEXT,
     Link_IMDB VARCHAR(255),
-    Trailer BYTEA
+    Trailer TEXT
 );
 
 -- Tabla Sala
