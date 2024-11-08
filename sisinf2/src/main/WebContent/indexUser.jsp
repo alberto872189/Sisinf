@@ -3,6 +3,10 @@
 <%@ page import="java.util.Map" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ page import="dao.postgres.DAOPeliculaPostgres" %>
+<%@ page import="vo.Pelicula" %>
+<%@ page import="java.util.List" %>
 <!-- IndexUser.jsp -->
 <h1>Desacine</h1>
 <!-- Menu -->
@@ -33,61 +37,78 @@
 
     <div id="seccion2" class="tab-content">
       <h2>Editar tus datos</h2>
-      <form method="post">
+      <form method="post" action="editUser">
       
       	  <%! Map<String,String> errors; %>
 		  <% errors = (Map<String,String>)request.getAttribute("errors"); %>
 			
-	      <input id="login" type="nombre" placeholder="Nombre de usuario"> 
+	      <input id="login" name="nombre" placeholder="Nombre de usuario"> 
 	   	  <br>
+	   	  <% if (errors != null && errors.get("Nombre") != null) { %>
+				<%= errors.get("Nombre") %>
+		  <% } %>
+		  <br> 
+	   	  <input id="email" name="login" placeholder="Email">
 	   	  <br>
-	   	  <input id="email" type="login" placeholder="Email">
+	      <% if (errors != null && errors.get("Login") != null) { %>
+				<%= errors.get("Login") %>
+		  <% } %> 
+		  <br>
+	 	  <input id="passwd" name="passwd" type="password" placeholder="Contrasenya">
 	   	  <br>
-	      <br>
-	 	  <input id="passwd" type="password" placeholder="Contrasenya">
+	   	  <% if (errors != null && errors.get("Clave") != null) { %>
+				<%= errors.get("Clave") %>
+		  <% } %> 
 	   	  <br>
+	   	  <input id="passwd2" name="passwd2" type="password" placeholder="Confirmar contrasenya">
 	   	  <br>
-	   	  <input id="passwd2" type="password" placeholder="Confirmar contrasenya">
-	   	  <br>
+	   	  <% if (errors != null && errors.get("Clave2") != null) { %>
+				<%= errors.get("Clave2") %>
+		  <% } %> 
 		  <% if (errors != null && errors.get("Claves") != null) { %>
 			  <%= errors.get("Claves") %>
 		  <% } %>
 		  <br>
-		  <button onclick="editar()">Guardar cambios</button>
+		  <button type="submit">Guardar cambios</button>
 		  <br>
 		  <br>
-		  <button onclick="borrarCuenta">Borrar cuenta</button>
-      </form> 
+		</form>
+		<form method="post" action="deleteUser">
+		  <button type="submit">Borrar cuenta</button>
+      	</form> 
     </div>
   </div>
  <h2>CARTELERA</h2>
  <br>
- <table id="cartelera">
-    <tr>
-    	<td id="td-cartelera">
-    		<img width="300" height="300" src="peliculas/imagenes/template.jpg"/>
-    		<br>
-    		<a href="peliculas/templatePelicula.html">Pelicula</a>
-    	</td>
-    		<td id="td-cartelera">
-    		<img width="300" height="300" src="peliculas/imagenes/template.jpg"/>
-    			<br>
-    		<a href="peliculas/templatePelicula.html">Pelicula</a>
-    	</td>
-    	</tr>
-    <tr>
-    		<td id="td-cartelera">
-    		<img width="300" height="300" src="peliculas/imagenes/template.jpg"/>
-    		<br>
-    			<a href="peliculas/templatePelicula.html">Pelicula</a>
-    	</td>
-    	<td id="td-cartelera">
-    		<img width="300" height="300" src="peliculas/imagenes/template.jpg"/>
-    		<br>
-    		<a href="peliculas/templatePelicula.html">Pelicula</a>
-    	</td>
-    </tr>
-  </table>
+	<%	
+		DAOPeliculaPostgres dao = new DAOPeliculaPostgres("usuario", "user"); 
+		List<Pelicula> peliculas = dao.obtenerPeliculas(); 
+	%>
+	<table id="cartelera">
+	<%
+		int ncolumnas = 2;
+		int i = 0;
+		int fintr = 1;
+		for (Pelicula pel : peliculas) {
+			if (i % ncolumnas == 0) {
+	%>
+			<%= "<tr>" %>
+	<%
+			}
+	%>
+		<%= "<td id=\"td-cartelera\"><img width=\"300\" height=\"300\" src=\"" + pel.Imagen + "\" /> <br> <a href=\"peliculas/pelicula.jsp\">" + pel.Titulo + "</a></td>"%>
+	<%		
+			if (fintr == ncolumnas) {
+	%>
+			<%= "</tr>" %>
+	<%
+			fintr = 0;
+			}
+			i++;
+			fintr++;
+		}
+	%>
+	</table>
 </main>
 
 <!-- JavaScript -->
