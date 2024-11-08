@@ -4,6 +4,7 @@ GRANT USAGE ON SCHEMA public TO usuario;
 GRANT SELECT ON ALL TABLES IN SCHEMA public TO usuario;
 ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO usuario;
 GRANT INSERT ON Entrada, Cliente, Ent_But, Prod_Ent, Comentario TO usuario;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT INSERT ON Entrada, Cliente, Ent_But, Prod_Ent, Comentario TO usuario;
 
 CREATE USER admin WITH PASSWORD 'admin';
 GRANT CONNECT ON DATABASE sisinf_grupo_c05 TO admin;

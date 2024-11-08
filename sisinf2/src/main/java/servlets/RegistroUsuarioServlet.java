@@ -15,6 +15,7 @@ import jakarta.servlet.http.*;
 import vo.Cliente;
 import vo.Administrador;
 
+//FUNCIONA
 @WebServlet(description = "Servlet de registro de usuarios", urlPatterns = { "/registroUsuario" })
 public class RegistroUsuarioServlet extends HttpServlet {
 

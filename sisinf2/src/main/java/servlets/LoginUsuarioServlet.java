@@ -15,6 +15,7 @@ import jakarta.servlet.http.*;
 import vo.Cliente;
 import vo.Administrador;
 
+//FUNCIONA
 @WebServlet(description = "Servlet de autenticación del usuario", urlPatterns = { "/login" })
 public class LoginUsuarioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

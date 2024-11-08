@@ -32,40 +32,50 @@
 				<%! Map<String,String> errors; %>
 				<% errors = (Map<String,String>)request.getAttribute("errors"); %>
 				<input id="login" name="login" type="text" placeholder="Nombre de usuario">
+				<br>
 				<% if (errors != null && errors.get("Login") != null) { %>
 					<%= errors.get("Login") %>
 				<% } %> 
 				
-				<br> <br> 
+				<br> 
 				<input id="passwd" name="passwd" type="password"
 					placeholder="Contrasenya">
-					
-					<% if (errors != null && errors.get("Clave") != null) { %>
+				<br>	
+				<% if (errors != null && errors.get("Clave") != null) { %>
 					<%= errors.get("Clave") %>
-					<% } %> 
+				<% } %> 
 					
-				<br> <br>				
+				<br>				
 				
 				<button type="submit">Iniciar Sesion</button>
-				</form>
+			</form>
 				
-				<br>
-				<a href="#" class="tab-link" data-tab="seccion2">Registrarse</a>
+			<br>
+			<a href="#" class="tab-link" data-tab="seccion2">Registrarse</a>
 		</div>
 
 		<div id="seccion2" class="tab-content">
 			<h2>Registrarse</h2>
-			<input id="usernameInputReg" type="text"
-				placeholder="Nombre de usuario"> <br> <br> <input
-				id="email" type="text" placeholder="Email"> <br> <br>
-			<input id="passwordInputReg1" type="password"
-				placeholder="Contrasenya"> <br> <br> <input
-				id="passwordInputReg2" type="password"
-				placeholder="Confirmar contrasenya"> <br> <br>
-			<button>Registrarse</button>
-			<div id="registroIncorrecto"></div>
-			<br> <a href="#" class="tab-link" data-tab="seccion1">Iniciar
-				sesion</a>
+			<form method="post" action="registroUsuario">
+				<input id="nombre" name="nombre" type="text"
+					placeholder="Nombre de usuario"> <br> <br>
+				<input id="email" name="login" type="text"
+					placeholder="Email"> <br> 
+				<% if (errors != null && errors.get("Login") != null) { %>
+					<%= errors.get("Login") %>
+				<% } %>
+					 <br>
+				<input id="passwd-reg" name="passwd" type="password"
+					placeholder="Contrasenya"> <br> <br> 
+				<input id="passwd2-reg" name="passwd2" type="password"
+					placeholder="Confirmar contrasenya"> <br> 
+				<% if (errors != null && errors.get("Claves") != null) { %>
+					<%= errors.get("Claves") %>
+				<% } %> 
+					<br>
+				<button type="submit">Registrarse</button>
+			</form>
+			<br> <a href="#" class="tab-link" data-tab="seccion1">Iniciar sesion</a>
 		</div>
 	</div>
 	
@@ -101,24 +111,6 @@
 		}
 	%>
 	</table>
-	<!-- <table id="cartelera">
-		<tr>
-			<td id="td-cartelera"><img width="300" height="300"
-				src="peliculas/imagenes/template.jpg" /> <br> <a
-				href="peliculas/templatePelicula.html">Pelicula</a></td>
-			<td id="td-cartelera"><img width="300" height="300"
-				src="peliculas/imagenes/template.jpg" /> <br> <a
-				href="peliculas/templatePelicula.html">Pelicula</a></td>
-		</tr>
-		<tr>
-			<td id="td-cartelera"><img width="300" height="300"
-				src="peliculas/imagenes/template.jpg" /> <br> <a
-				href="peliculas/templatePelicula.html">Pelicula</a></td>
-			<td id="td-cartelera"><img width="300" height="300"
-				src="peliculas/imagenes/template.jpg" /> <br> <a
-				href="peliculas/templatePelicula.html">Pelicula</a></td>
-		</tr>
-	</table> -->
 </main>
 
 <!-- JavaScript -->
