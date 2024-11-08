@@ -46,6 +46,10 @@ public class LoginUsuarioServlet extends HttpServlet {
 				}
 			}
 		}
+		if(errors.isEmpty()) {
+			Cookie cookie = new Cookie ("login", login);
+			response.addCookie(cookie);
+		}
 		RequestDispatcher dispatcher=request.getRequestDispatcher("/WEB-INF/indexUser.jsp");
 		request.setAttribute("errors", errors);
 		dispatcher.forward(request, response);
