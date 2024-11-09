@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Borrar productos</title>
+</head>
+	<h2>Borrar productos</h2>
+	<ol>
+  		<li> <span>Palomitas</span> $3 <input type="checkbox" name="product[]" value="1"> </li>
+  		<li> <span>Palomitas grandes</span> $5 <input type="checkbox" name="product[]" value="2"> </li>
+  		<li> <span>Coca-Cola</span> $1,5 <input type="checkbox" name="product[]" value="2"> </li>
+	</ol>
+
+	<button id="delete-selected">Borrar seleccionados</button>
+	<button id="cancel" onclick="window.location.href='../indexAdmin.html'">Cancelar</button>
+	<br>
+	<br>
+	<br>
+	<a href="../indexAdmin.html">VOLVER</a>
+<script>
+	document.getElementById('delete-selected').addEventListener('click', function() {
+  	const checkboxes = document.querySelectorAll('input[name="product[]"]:checked');
+  	checkboxes.forEach(function(checkbox) {
+    checkbox.parentNode.remove();	});
+	});
+</script>
+
+<style>
+html {
+  display: flex;
+  text-align: center; 
+  justify-content: center;
+}
+
+ol {
+  padding: 80px;
+  position: relative;
+  text-align: left; 
+}
+
+li {
+  margin-bottom: 40px;
+}
+
+
+
+</style>

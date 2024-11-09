@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <title>Pelicula</title>
 </head>
+<%@ page import="dao.postgres.DAOPeliculaPostgres" %>
+<%@ page import="dao.postgres.DAOSesionPostgres" %>
+<%@ page import="vo.Pelicula" %>
+<%@ page import="vo.Sesion" %>
+<%@ page import="java.util.List" %>
 
 <body>
 <h1 style="text-align:left">TITULO PELICULA</h1>
@@ -26,13 +31,13 @@
 				</td>
 			</tr>
 			<tr>
-				<td>Resumen de la pelicula</td>
+				<td>pelicula.Resumen</td>
 			</tr>
 			<tr>
-				<td><a href="https://www.imdb.com">MÃ¡s informaciÃ³n</a></td>
+				<%= "<td><a href=\"" + pelicula.Link_IMDB + "\">Más información</a></td>"%>
 			</tr>
 			<tr>
-				<td><a href="reserva/indexReserva.html">Rerservar entrada</a></td>
+				<td><a href="reserva/indexReserva.jsp">Rerservar entrada</a></td>
 			</tr>
 			<tr>
 				<td><br><a onclick="volver()">VOLVER</a></td>
@@ -42,34 +47,34 @@
 	<div style="float:left">
 		<table id="horarios">
 			<tr>
-				<td id="td-horarios">DIA</td>
 				<td id="td-horarios">HORA</td>
 				<td id="td-horarios">SALA</td>
+				<td id="td-horarios">PRECIO</td>
 			</tr>
-			<tr>
-				<td id="td-horarios">5/5/2025</td>
-				<td id="td-horarios">12:30</td>
-				<td id="td-horarios">1</td>
-			</tr>
-			<tr>
-				<td id="td-horarios">5/6/2025</td>
-				<td id="td-horarios">16:30</td>
-				<td id="td-horarios">2</td>
-			</tr>
-			<tr>
-				<td id="td-horarios">5/7/2025</td>
-				<td id="td-horarios">17:30</td>
-				<td id="td-horarios">3</td>
-			</tr>
+	<!-- OBTENER SESIONES DE LA PELICULA -->
+	<%
+		for (Sesion sesion : sesiones) {
+	%>
+		<%= "<tr>" %>
+		
+		<%= "<td id=\"td-horarios\">" + sesion.Sesion_Hora + "</td>"%>
+		<%= "<td id=\"td-horarios\">" + sesion.N_Sala + "</td>"%>
+		<%= "<td id=\"td-horarios\">" + sesion.Precio + "</td>"%>
+
+		<%= "</tr>" %>
+	<%
+		}
+	%>
 		</table>
 		<br>
 		<br>
 		<h2 style="text-align:left">Comentarios</h2>
-		<form>
-			<textarea rows="10" cols="30" placeholder="Escribe aquí tu comentario"></textarea>
+		<form method="post" action="publishComment">
+			<textarea rows="10" cols="30" name="texto" placeholder="Escribe aquí tu comentario"></textarea>
 			<br>
 			<input type="submit" value="Publicar">
 		</form>
+		<!-- OBTENER COMENTARIOS PREVIOS -->
 	</div>
 </body>
 

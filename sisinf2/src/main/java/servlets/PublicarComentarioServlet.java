@@ -13,11 +13,13 @@ import java.util.HashMap;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import vo.Cliente;
 import vo.Comentario;
 import vo.Pelicula;
 
+@WebServlet(description = "Servlet de publicación de comentarios de una película", urlPatterns = { "/publishComment" })
 public class PublicarComentarioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

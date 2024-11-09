@@ -25,7 +25,8 @@ public class LoginUsuarioServlet extends HttpServlet {
 		String login = request.getParameter("login");
 		String passwd = request.getParameter("passwd");
 		if ((login == null) || (login.trim().equals(""))) errors.put("Login", "Campo obligatorio");
-		if ((passwd == null) || (passwd.trim().equals(""))) errors.put("Clave", "Campo obligatorio"); 
+		if ((passwd == null) || (passwd.trim().equals(""))) errors.put("Clave", "Campo obligatorio");
+		boolean esAdmin = false;
 		if(errors.isEmpty()) {
 			DAOClientePostgres dao = new DAOClientePostgres("usuario", "user");
 			Cliente client = dao.obtener(login);
@@ -38,6 +39,7 @@ public class LoginUsuarioServlet extends HttpServlet {
 				DAOAdministradorPostgres daoAdmin = new DAOAdministradorPostgres("usuario", "user");
 				Administrador admin = daoAdmin.obtener(login);
 				if (admin.Correo != null) {
+					esAdmin = true;
 					if (!admin.Contrasenia.equals(passwd)) {
 						errors.put("Clave", "Contraseña incorrecta");
 					}
@@ -50,9 +52,16 @@ public class LoginUsuarioServlet extends HttpServlet {
 		if(errors.isEmpty()) {
 			Cookie cookie = new Cookie ("login", login);
 			response.addCookie(cookie);
-			RequestDispatcher dispatcher=request.getRequestDispatcher("indexUser.jsp");
-			request.setAttribute("errors", errors);
-			dispatcher.forward(request, response);
+			if(esAdmin) {
+				RequestDispatcher dispatcher=request.getRequestDispatcher("/admin/indexAdmin.jsp");
+				request.setAttribute("errors", errors);
+				dispatcher.forward(request, response);
+			}
+			else {
+				RequestDispatcher dispatcher=request.getRequestDispatcher("/indexUser.jsp");
+				request.setAttribute("errors", errors);
+				dispatcher.forward(request, response);
+			}
 		}
 		else {
 			RequestDispatcher dispatcher=request.getRequestDispatcher("index.jsp");

@@ -11,10 +11,12 @@ import java.util.List;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import vo.Comentario;
 import vo.Pelicula;
 
+@WebServlet(description = "Servlet de obtención de comentarios de una película", urlPatterns = { "/getComments" })
 public class ObtenerComentariosServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -35,7 +37,7 @@ public class ObtenerComentariosServlet extends HttpServlet {
 				comments = daoComment.obtenerPel(pelicula);
 			}
 		}
-		RequestDispatcher dispatcher=request.getRequestDispatcher("Peliculas.jsp");
+		RequestDispatcher dispatcher=request.getRequestDispatcher("pelicula.jsp");
 		request.setAttribute("errors", errors);
 		request.setAttribute("comments", comments);
 		dispatcher.forward(request, response);
