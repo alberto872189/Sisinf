@@ -9,6 +9,7 @@ import dao.postgres.DAOComentarioPostgres;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 import jakarta.servlet.RequestDispatcher;
@@ -52,19 +53,14 @@ public class PublicarComentarioServlet extends HttpServlet {
 					comment.Texto = texto;
 					comment.Pelicula = pelicula;
 					comment.Usuario = usuario;
-					SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-					try {
-						comment.Fecha = formatter.parse(fecha);
-					} catch (ParseException e) {
-						e.printStackTrace();
-					}
+					comment.Fecha = new Date(Long.valueOf(fecha));
 					daoComment.crear(comment);
-				}
 			}
 		}
-		RequestDispatcher dispatcher=request.getRequestDispatcher("Peliculas.jsp");
+		RequestDispatcher dispatcher=request.getRequestDispatcher("peliculas/pelicula.jsp");
 		request.setAttribute("errors", errors);
 		dispatcher.forward(request, response);
 	
+	}
 	}
 }

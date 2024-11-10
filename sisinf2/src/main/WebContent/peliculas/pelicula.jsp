@@ -8,8 +8,10 @@
 <%@ page import="dao.postgres.DAOSesionPostgres" %>
 <%@ page import="dao.postgres.DAOComentarioPostgres" %>
 <%@ page import="vo.Pelicula" %>
+<%@ page import="vo.Comentario" %>
 <%@ page import="vo.Sesion" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.Date" %>
 
 <body>
 <!-- OBTENER PELICULA DE request -->
@@ -17,6 +19,17 @@
 	DAOPeliculaPostgres dao = new DAOPeliculaPostgres("usuario", "user"); 
 	Pelicula pelicula = dao.obtener(pel); 
 %>
+
+<%
+		String user = null;
+		Cookie[] cookies = request.getCookies();
+		if(cookies != null){
+			for (Cookie cookie : cookies){
+				if(cookie.getName().equals("login"))
+					user = cookie.getValue();
+			}
+		}
+	%>
 
 <h1 style="text-align:left"><%=pelicula.Titulo %></h1>
 	<div style="float:left">
@@ -78,12 +91,30 @@
 		<br>
 		<br>
 		<h2 style="text-align:left">Comentarios</h2>
-		<form method="post" action="publishComment">
+		<form method="post" action="/sisinf2/publishComment">
 			<textarea rows="10" cols="30" name="texto" placeholder="Escribe aquí tu comentario"></textarea>
 			<br>
+			<%="<input type=\"hidden\" name=\"pelicula\" value=\""+ pel + "\">" %>
+			<%="<input type=\"hidden\" name=\"usuario\" value=\""+ user + "\">" %>
+			<%="<input type=\"hidden\" name=\"fecha\" value=\""+ new Date().getTime() + "\">" %>
 			<input type="submit" value="Publicar">
 		</form>
 		<!-- OBTENER COMENTARIOS PREVIOS -->
+		<br>
+		<%
+		DAOComentarioPostgres dao3 = new DAOComentarioPostgres("usuario", "user"); 
+		List<Comentario> comentarios = dao3.obtenerPel(pel); 
+		for (Comentario comentario : comentarios) {
+		%>
+		
+		<%= comentario.Fecha + " Usuario:" +comentario.Usuario%>
+		 <br>
+		 <%= comentario.Texto %>
+		 <br>
+		 <br>	
+		<%
+		}
+		%>
 	</div>
 </body>
 

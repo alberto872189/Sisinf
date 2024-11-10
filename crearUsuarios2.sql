@@ -7,6 +7,7 @@ GRANT INSERT ON Entrada, Cliente, Ent_But, Prod_Ent, Comentario TO usuario;
 GRANT UPDATE ON Cliente TO usuario;
 ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT UPDATE ON Cliente TO usuario;
 ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT INSERT ON Entrada, Cliente, Ent_But, Prod_Ent, Comentario TO usuario;
+GRANT USAGE ON SEQUENCE comentario_id_seq TO usuario;
 
 CREATE USER admin WITH PASSWORD 'admin';
 GRANT CONNECT ON DATABASE sisinf_grupo_c05 TO admin;
