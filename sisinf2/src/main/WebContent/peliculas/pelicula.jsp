@@ -47,7 +47,7 @@
 				<td>
 					<h2>TRAILER</h2>
 					<!-- esto se saca de yt dandole a compartir->insertar si queremos sacar un trailer de yt -->
-					<iframe width="560" height="315" src="https://www.youtube.com/embed/KAOdjqyG37A?si=uU6kTZnh_b9hMLR9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+					<iframe width="560" height="315" src=<%= pelicula.Trailer %> title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 				</td>
 			</tr>
 			<tr>
