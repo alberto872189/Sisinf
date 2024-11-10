@@ -5,10 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import dao.interfaces.DAOSesion;
 import utils.Pair;
+import vo.Pelicula;
 import vo.Sesion;
 
 public class DAOSesionPostgres extends DAOSesion {
@@ -128,6 +131,44 @@ public class DAOSesionPostgres extends DAOSesion {
 				res.N_Sala = resultSet.getInt("N_Sala");
 				res.Precio = resultSet.getDouble("Precio");
 				
+			}
+			connection.close();
+			resultSet.close();
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+	
+	public List<Sesion> obtenerSesionesPel(String k) {
+		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
+		
+		List<Sesion> res = new ArrayList<Sesion>();
+		
+		try {
+			Class.forName("org.postgresql.Driver");
+		
+			Connection connection;
+		
+			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+	
+			String sql = "select * from Sesion where Tit_Pel='" + k + "'";
+			
+			Statement statement = connection.createStatement();
+			
+			ResultSet resultSet = statement.executeQuery(sql);
+
+			while (resultSet.next())
+			{
+				Sesion sesion = new Sesion();
+				sesion.Sesion_Hora = resultSet.getTimestamp("Sesion_Hora");
+				sesion.Tit_Pel = resultSet.getString("Tit_Pel");
+				sesion.N_Sala = resultSet.getInt("N_Sala");
+				sesion.Precio = resultSet.getDouble("Precio");
+				res.add(sesion);
 			}
 			connection.close();
 			resultSet.close();

@@ -6,14 +6,21 @@
 </head>
 <%@ page import="dao.postgres.DAOPeliculaPostgres" %>
 <%@ page import="dao.postgres.DAOSesionPostgres" %>
+<%@ page import="dao.postgres.DAOComentarioPostgres" %>
 <%@ page import="vo.Pelicula" %>
 <%@ page import="vo.Sesion" %>
 <%@ page import="java.util.List" %>
 
 <body>
-<h1 style="text-align:left">TITULO PELICULA</h1>
+<!-- OBTENER PELICULA DE request -->
+<% String pel = request.getParameter("pelicula");
+	DAOPeliculaPostgres dao = new DAOPeliculaPostgres("usuario", "user"); 
+	Pelicula pelicula = dao.obtener(pel); 
+%>
+
+<h1 style="text-align:left"><%=pelicula.Titulo %></h1>
 	<div style="float:left">
-	<!-- OBTENER PELICULA DE COOKIE -->
+	
 		<table id="infoPeliculas">
 			<tr>
 				<!-- imagen de la pelÃ­cula-->
@@ -31,7 +38,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td>pelicula.Resumen</td>
+				<td><%=pelicula.Resumen %></td>
 			</tr>
 			<tr>
 				<%= "<td><a href=\"" + pelicula.Link_IMDB + "\">Más información</a></td>"%>
@@ -53,6 +60,8 @@
 			</tr>
 	<!-- OBTENER SESIONES DE LA PELICULA -->
 	<%
+		DAOSesionPostgres dao2 = new DAOSesionPostgres("usuario", "user"); 
+		List<Sesion> sesiones = dao2.obtenerSesionesPel(pel); 
 		for (Sesion sesion : sesiones) {
 	%>
 		<%= "<tr>" %>

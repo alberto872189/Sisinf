@@ -116,7 +116,7 @@ public class DAOPeliculaPostgres extends DAOPelicula {
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
 	
-			String sql = "select * from Pelicula where Titulo="+k;
+			String sql = "select * from Pelicula where Titulo='" + k + "'";
 			
 			Statement statement = connection.createStatement();
 			
