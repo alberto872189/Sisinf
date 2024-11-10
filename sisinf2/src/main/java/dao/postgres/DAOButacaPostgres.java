@@ -5,10 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import dao.interfaces.DAOButaca;
 import utils.Pair;
 import vo.Butaca;
+import vo.Comentario;
 
 public class DAOButacaPostgres extends DAOButaca {
 
@@ -102,6 +105,43 @@ public class DAOButacaPostgres extends DAOButaca {
 			{
 				res.N_Butaca = resultSet.getInt("N_Butaca");
 				res.Sala_N = resultSet.getInt("Sala_N");
+			}
+			connection.close();
+			resultSet.close();
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+	public List<Butaca> obtenerSala(Integer k) {
+		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
+		List<Butaca> res = new ArrayList<Butaca>();
+		
+		try {
+			Class.forName("org.postgresql.Driver");
+		
+			Connection connection;
+		
+			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+	
+			String sql = "select * from Butaca where Sala_N=" + k.toString();
+			
+			Statement statement = connection.createStatement();
+			
+			ResultSet resultSet = statement.executeQuery(sql);
+			
+			/*preparedStatement.setInt(1, k.x);
+            preparedStatement.setInt(2, k.y);*/
+
+			while (resultSet.next())
+			{
+				Butaca but = new Butaca();
+				but.N_Butaca = resultSet.getInt("N_Butaca");
+				but.Sala_N = resultSet.getInt("Sala_N");
+				res.add(but);
 			}
 			connection.close();
 			resultSet.close();

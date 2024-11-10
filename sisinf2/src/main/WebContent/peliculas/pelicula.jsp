@@ -57,7 +57,7 @@
 				<%= "<td><a href=\"" + pelicula.Link_IMDB + "\">Más información</a></td>"%>
 			</tr>
 			<tr>
-				<td><a href="reserva/indexReserva.jsp">Rerservar entrada</a></td>
+				<%= "<td><a href=\"reserva/indexReserva.jsp?pelicula="+ pel+ "\">Reservar entrada</a></td>" %>
 			</tr>
 			<tr>
 				<td><br><a onclick="volver()">VOLVER</a></td>

@@ -5,6 +5,7 @@
 <title>Reserva</title>
 </head>
 <%@ page import="dao.postgres.DAOSesionPostgres" %>
+<%@ page import="dao.postgres.DAOButacaPostgres" %>
 <%@ page import="vo.Pelicula" %>
 <%@ page import="vo.Sesion" %>
 <%@ page import="java.util.List" %>
@@ -12,7 +13,7 @@
 <%@ page import="vo.Producto" %>
 
 <body>
-		<form name ="reserva" action=entrada.html >
+		<form name ="reserva" action=indexReserva2.jsp >
 			 <label for="nEntradas">Número de entradas:</label><br>
 			 <input type="number" name="nEntradas" value="1"><br><br>
 			 <label for="dia">día:</label><br>
@@ -36,38 +37,8 @@
 			 </select>
 		 	<br>
 		 	<br>
-			 Asientos
-			 <table id="asientos">
-			
-	<!-- OBTENER BUTACAS -->
-	<%
-		int ncolumnas = 10;
-		int i = 0;
-		int fintr = 1;
-		int nfila = 1;
-		for (Butaca but : butacas) {
-			if (i % ncolumnas == 0) {
-	%>
-			<%= "<tr>" %>
-	<%
-			}
-	%>
-		<%= "<td id=\"td-asientos\"><input type=\"checkbox\" name=\"" + nfila + "-" + i+1 + "></td>"%>
-	<%		
-			if (fintr == ncolumnas) {
-				nfila++;
-	%>	
-			<%= "</tr>" %>
-	<%
-				fintr = 0;
-			}
-			i++;
-			fintr++;
-		}
-	%>
-		</table>
 		<br><br>
-		<input type="submit" value="Pagar">	 
+		<input type="submit" value="Asientos">	 
 		</form>
 		<br>
 		<a href="../templatePelicula.html">Volver</a>
