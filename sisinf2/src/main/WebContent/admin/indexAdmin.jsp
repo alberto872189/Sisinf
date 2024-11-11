@@ -11,10 +11,10 @@
     	<div id="seccion1" class="tab-content">
       		<h2>Peliculas</h2>
       		<ul>
-      			<li><a href="/admin/peliculas/anyadirPelicula.jsp">Añadir peliculas</a></li>
-      			<li><a href="/admin/peliculas/borrarPelicula.jsp">Borrar peliculas</a></li>
-      			<li><a href="/admin/peliculas/editarSesiones.jsp">Editar sesiones</a></li>
-      			<li><a href="/admin/peliculas/consultarDatos.jsp">Consultar datos</a></li>
+      			<li><a href="admin/peliculas/anyadirPelicula.jsp">Añadir peliculas</a></li>
+      			<li><a href="admin/peliculas/borrarPelicula.jsp">Borrar peliculas</a></li>
+      			<li><a href="admin/peliculas/editarSesiones.jsp">Editar sesiones</a></li>
+      			<li><a href="admin/peliculas/consultarDatos.jsp">Consultar datos</a></li>
       		</ul>
       		
     	</div>
@@ -23,9 +23,9 @@
     	<div id="seccion2" class="tab-content">
       		<h2>Bar</h2>
       		<ul>
-      			<li><a href="/admin/bar/anyadirProducto.jsp">Añadir productos</a></li>
-      			<li><a href="/admin/bar/borrarProducto.jsp">Borrar productos</a></li>
-      			<li><a href="/admin/bar/modificarPrecios.jsp">Editar precios</a></li>
+      			<li><a href="admin/bar/anyadirProducto.jsp">Añadir productos</a></li>
+      			<li><a href="admin/bar/borrarProducto.jsp">Borrar productos</a></li>
+      			<li><a href="admin/bar/modificarPrecios.jsp">Editar precios</a></li>
        		</ul>
     	</div>
 		<br>

@@ -32,14 +32,14 @@ public class AnyadirPeliculaServlet extends HttpServlet {
 		String sala = request.getParameter("sala");
 		String precio = request.getParameter("precio");
 		
-		if ((titulo == null) || (titulo.trim().equals(""))) errors.put("Titulo", "Campo obligatorio");
+		/*if ((titulo == null) || (titulo.trim().equals(""))) errors.put("Titulo", "Campo obligatorio");
 		if ((resumen == null) || (resumen.trim().equals(""))) errors.put("resumen", "Campo obligatorio");
 		if ((imagen == null) || (imagen.trim().equals(""))) errors.put("imagen", "Campo obligatorio");
 		if ((imagen == null) || (imagen.trim().equals(""))) errors.put("imagen", "Campo obligatorio");
 		if ((link == null) || (link.trim().equals(""))) errors.put("link", "Campo obligatorio");
 		if ((hora == null) || (hora.trim().equals(""))) errors.put("hora", "Campo obligatorio");
 		if ((sala == null) || (sala.trim().equals(""))) errors.put("sala", "Campo obligatorio");
-		if ((precio == null) || (precio.trim().equals(""))) errors.put("precio", "Campo obligatorio");
+		if ((precio == null) || (precio.trim().equals(""))) errors.put("precio", "Campo obligatorio");*/
 		
 		if(errors.isEmpty()) {
 			DAOPeliculaPostgres daoPeli = new DAOPeliculaPostgres("admin", "admin");

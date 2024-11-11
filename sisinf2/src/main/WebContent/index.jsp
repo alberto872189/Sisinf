@@ -31,7 +31,7 @@
 			
 				<%! Map<String,String> errors; %>
 				<% errors = (Map<String,String>)request.getAttribute("errors"); %>
-				<input id="login" name="login" type="text" placeholder="Nombre de usuario">
+				<input id="login" name="login" type="text" placeholder="Nombre de usuario" required>
 				<br>
 				<% if (errors != null && errors.get("Login") != null) { %>
 					<%= errors.get("Login") %>
@@ -39,7 +39,7 @@
 				
 				<br> 
 				<input id="passwd" name="passwd" type="password"
-					placeholder="Contrasenya">
+					placeholder="Contrasenya" required>
 				<br>	
 				<% if (errors != null && errors.get("Clave") != null) { %>
 					<%= errors.get("Clave") %>
@@ -58,17 +58,17 @@
 			<h2>Registrarse</h2>
 			<form method="post" action="registroUsuario">
 				<input id="nombre" name="nombre" type="text"
-					placeholder="Nombre de usuario"> <br> <br>
+					placeholder="Nombre de usuario" required> <br> <br>
 				<input id="email" name="login" type="text"
-					placeholder="Email"> <br> 
+					placeholder="Email" required> <br> 
 				<% if (errors != null && errors.get("Login") != null) { %>
 					<%= errors.get("Login") %>
 				<% } %>
 					 <br>
 				<input id="passwd-reg" name="passwd" type="password"
-					placeholder="Contrasenya"> <br> <br> 
+					placeholder="Contrasenya" required> <br> <br> 
 				<input id="passwd2-reg" name="passwd2" type="password"
-					placeholder="Confirmar contrasenya"> <br> 
+					placeholder="Confirmar contrasenya" required> <br> 
 				<% if (errors != null && errors.get("Claves") != null) { %>
 					<%= errors.get("Claves") %>
 				<% } %> 

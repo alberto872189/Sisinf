@@ -27,10 +27,10 @@ public class RegistroUsuarioServlet extends HttpServlet {
 		String passwd = request.getParameter("passwd");
 		String passwd2 = request.getParameter("passwd2");
 		String nombre = request.getParameter("nombre");
-		if ((login == null) || (login.trim().equals(""))) errors.put("Login", "Campo obligatorio");
+		/*if ((login == null) || (login.trim().equals(""))) errors.put("Login", "Campo obligatorio");
 		if ((passwd == null) || (passwd.trim().equals(""))) errors.put("Clave", "Campo obligatorio");
 		if ((passwd2 == null) || (passwd2.trim().equals(""))) errors.put("Clave2", "Campo obligatorio");
-		if ((nombre == null) || (nombre.trim().equals(""))) errors.put("Nombre", "Campo obligatorio");
+		if ((nombre == null) || (nombre.trim().equals(""))) errors.put("Nombre", "Campo obligatorio");*/
 		
 		if (!passwd.equals(passwd2)) errors.put("Claves", "Las contraseñas no coinciden");
 		if(errors.isEmpty()) {

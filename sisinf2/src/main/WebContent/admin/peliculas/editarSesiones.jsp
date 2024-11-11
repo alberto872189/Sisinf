@@ -5,16 +5,18 @@
 <title>editarSesiones</title>
 </head>
 <body>
-	<form name ="editarSesion" action=editarSesion() >
 			<h1>Editar sesión</h1>
 			 <h2>Sesión a cambiar</h2>
-			 <select name="Pelicula">
+			 	Pelicula:
+			 	<select name="PeliculaVieja">
 			 	<option value="Pelicula1">Pelicula1</option>
 			 	<option value="Pelicula2">Pelicula2</option>
 			 	<option value="Pelicula3">Pelicula3</option>
 			 	<option value="Pelicula3">Pelicula4</option>
 			 </select>
+			 Fecha:
 			 <input type="date" name="dia">
+			 Hora:
 			 <select name="Hora">
 			 	<option value="16:00">16:00</option>
 			 	<option value="18:00">18:00</option>
@@ -26,15 +28,20 @@
 			 	<option value="2">2</option>
 			 	<option value="3">3</option>
 			 </select>
+			 
 			 <h2>Nueva Sesión</h2>
-			 	<select name="Pelicula">
+		<form name="editarSesion" action="post" action="editarSesion">
+			 	Pelicula:
+			 	<select name="PeliculaNueva" required>
 			 	<option value="Pelicula1">Pelicula1</option>
 			 	<option value="Pelicula2">Pelicula2</option>
 			 	<option value="Pelicula3">Pelicula3</option>
 			 	<option value="Pelicula3">Pelicula4</option>
 			 	</select>
-			 	<input type="date" name="dia">
-			 	<input type="time">
+			 	Fecha:
+			 	<input type="date" name="diaNuevo" required>
+			 	Hora:
+			 	<input type="time" required>
 			 	Sala
 			 	<select name="Sala">
 			 	<option value="1">1</option>
@@ -44,10 +51,9 @@
 			 <br>
 			 <br>
 		<input type="submit" value="Cambiar">
-			 
 		</form>
 		<br>
-		<a href="../indexAdmin.html">Volver</a>
+		<a href="../indexAdmin.jsp">Volver</a>
 </body>
 
 

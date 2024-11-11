@@ -7,32 +7,37 @@
 <body>
 <h2>AÃ‘ADIR PELICULA</h2>
 <div>
-	<input type="text" placeholder="Nombre de la pelicula">
-	<br>
-	<br>
-	<input type="text" placeholder="Precio de la pelicula">
-	<br>
-	<br>
-	Sesiones:
-	<br>
-	Hora:
-	<input type="time">
-	<br>
-	<br>
-	Fecha:
-	<input type="date" name="Dia" id = "dia">
-	<div id = "texto"></div>
-	<br>
-	<br>
-	Sala:
-	<select name="Sala">
-		<option value="1">1</option>
-		<option value="2">2</option>
-		<option value="3">3</option>
-	</select>
-	<br>
-	<br>
-	<button onclick="anyadirSesion()">AÃ±adir sesion</button>
+	<form method="post" action="añadirPelicula">
+            Nombre:
+            <br>
+            <input type="text" id="nombre" name="nombre" placeholder="Nombre de la película" required>
+            <br><br>
+
+            Precio:
+            <br>
+            <input type="text" id="precio" name="precio" placeholder="Precio de la película" required>
+            <br><br>
+
+            Sesiones:
+            <br>
+            Hora:
+            <input type="time" id="hora" name="hora" required>
+            <br><br>
+
+            Fecha:
+            <input type="date" id="dia" name="dia" required>
+            <br><br>
+
+            Sala:
+            <select id="sala" name="sala" required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+            <br><br>
+
+            <button type="submit">Añadir Sesión</button>
+        </form>
 	<br>
 	<br>
 	<h3>Peliculas previamente disponibles:</h3>
@@ -42,7 +47,7 @@
 	</ul>
 	<br>
 	<br>
-	<a href="/sisinf/admin/indexAdmin.html">VOLVER</a>
+	<a href="../indexAdmin.jsp">VOLVER</a>
 </div>
 </body>
 
