@@ -13,6 +13,8 @@
 <%@ page import="vo.Producto" %>
 
 <body>
+<% String pel = request.getParameter("pelicula");
+	String ret = request.getParameter("anteriorPagina"); %>
 		<form name ="reserva" action=indexReserva2.jsp >
 			 <label for="nEntradas">Número de entradas:</label><br>
 			 <input type="number" name="nEntradas" value="1"><br><br>
@@ -41,7 +43,7 @@
 		<input type="submit" value="Asientos">	 
 		</form>
 		<br>
-		<a href="../templatePelicula.html">Volver</a>
+		<%="<a href=\"peliculas/pelicula.jsp?pelicula=\"" + pel + "\"?anteriorPagina=\"" + ret + "\">Volver</a>" %>
 </body>
 
 <!-- CSS -->

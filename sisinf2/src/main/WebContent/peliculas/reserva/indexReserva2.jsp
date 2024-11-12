@@ -13,6 +13,8 @@
 <%@ page import="vo.Producto" %>
 
 <body>
+<% String pel = request.getParameter("pelicula");
+	String ret = request.getParameter("anteriorPagina"); %>
 		<form name ="reserva" action=entrada.html >
 			 Asientos
 			 <table id="asientos">
@@ -34,7 +36,7 @@
 	<%
 			}
 	%>
-		<%= "<td id=\"td-asientos\"><input type=\"checkbox\" name=\"" + nfila + "-" + i+1 + "></td>"%>
+		<%= "<td id=\"td-asientos\"><input type=\"checkbox\" name=\"" + nfila + "-" + i+1 + "\"></td>"%>
 	<%		
 			if (fintr == ncolumnas) {
 				nfila++;
@@ -52,7 +54,7 @@
 		<input type="submit" value="Pagar">	 
 		</form>
 		<br>
-		<a href="indexReserva.jsp">Volver</a>
+		<%="<a href=\"peliculas/reserva/indexReserva.jsp?pelicula=\"" + pel + "\"?anteriorPagina=\"" + ret + "\">Volver</a>" %>
 </body>
 
 <!-- CSS -->

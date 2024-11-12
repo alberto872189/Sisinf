@@ -96,7 +96,7 @@
 	<%
 			}
 	%>
-		<%= "<td id=\"td-cartelera\"><img width=\"300\" height=\"300\" src=\"" + pel.Imagen + "\" /> <br> <a href=\"peliculas/pelicula.jsp?pelicula="+ pel.Titulo+ "\">" + pel.Titulo + "</a></td>"%>
+		<%= "<td id=\"td-cartelera\"><img width=\"300\" height=\"300\" src=\"" + pel.Imagen + "\" /> <br> <a href=\"peliculas/pelicula.jsp?pelicula=" + "\"?anteriorPagina=\"/sisinf2/indexUser.jsp\">" + pel.Titulo+ "\">" + pel.Titulo + "</a></td>"%>
 	<%		
 			if (fintr == ncolumnas) {
 	%>

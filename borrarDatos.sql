@@ -1,0 +1,9 @@
+delete from comentario;
+delete from prod_ent;
+delete from producto;
+delete from butaca;
+delete from sesion;
+delete from sala;
+delete from pelicula;
+delete from administrador;
+delete from cliente;

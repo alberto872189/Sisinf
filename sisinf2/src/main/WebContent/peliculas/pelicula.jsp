@@ -16,6 +16,7 @@
 <body>
 <!-- OBTENER PELICULA DE request -->
 <% String pel = request.getParameter("pelicula");
+	String ret = request.getParameter("anteriorPagina");
 	DAOPeliculaPostgres dao = new DAOPeliculaPostgres("usuario", "user"); 
 	Pelicula pelicula = dao.obtener(pel); 
 %>
@@ -37,17 +38,13 @@
 		<table id="infoPeliculas">
 			<tr>
 				<!-- imagen de la pelÃ­cula-->
-				<%= "<td><img width=\"300\" height=\"300\" src=\"" + pelicula.Imagen + "/></td>"%>
-			</tr>
-			<tr>
-				<!-- video local -->
-				<!-- <td><video width="500" height="500" src="videos/template.mp4" poster="imagenes/template.jpg" controls></video></td> -->
+				<%= "<td><img width=\"300\" height=\"300\" src=\"" + pelicula.Imagen + "\"/></td>"%>
 			</tr>
 			<tr>
 				<td>
 					<h2>TRAILER</h2>
 					<!-- esto se saca de yt dandole a compartir->insertar si queremos sacar un trailer de yt -->
-					<iframe width="560" height="315" src=<%= pelicula.Trailer %> title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+					<iframe width="560" height="315" src="<%= pelicula.Trailer %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 				</td>
 			</tr>
 			<tr>
@@ -57,10 +54,10 @@
 				<%= "<td><a href=\"" + pelicula.Link_IMDB + "\">Más información</a></td>"%>
 			</tr>
 			<tr>
-				<%= "<td><a href=\"reserva/indexReserva.jsp?pelicula="+ pel+ "\">Reservar entrada</a></td>" %>
+				<%= "<td><a href=\"/sisinf2/peliculas/reserva/indexReserva.jsp?pelicula="+ pel + "\"?anteriorPagina=\"" + ret + "\">Reservar entrada</a></td>" %>
 			</tr>
 			<tr>
-				<td><br><a onclick="volver()">VOLVER</a></td>
+				<td><br><a href="<%=ret%>">VOLVER</a></td>
 			</tr>
 		</table>
 	</div>
@@ -107,7 +104,7 @@
 		for (Comentario comentario : comentarios) {
 		%>
 		
-		<%= comentario.Fecha + " Usuario:" +comentario.Usuario%>
+		<%= comentario.Fecha + " Usuario:" + comentario.Usuario%>
 		 <br>
 		 <%= comentario.Texto %>
 		 <br>
@@ -118,11 +115,6 @@
 	</div>
 </body>
 
-<script>
-function volver() {
-	window.history.back();
-}
-</script>
 
 <style>
 body {
