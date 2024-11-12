@@ -5,9 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import dao.interfaces.DAOEntrada;
 import vo.Entrada;
+import vo.Producto;
 
 public class DAOEntradaPostgres extends DAOEntrada {
 
@@ -25,7 +28,7 @@ public class DAOEntradaPostgres extends DAOEntrada {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "INSERT INTO Entrada(Correo, Sesion_Hora, N_Sala) VALUES ('" + t.Correo + "','" + t.Sesion_Hora + "'," +  t.N_Sala + ")";
+            String sql = "INSERT INTO Entrada(Correo, Sesion_Hora, N_Sala, N_But) VALUES ('" + t.Correo + "','" + t.Sesion_Hora + "'," +  t.N_Sala + "," + t.N_But + ")";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             /*preparedStatement.setString(1, t.Correo);
@@ -52,7 +55,7 @@ public class DAOEntradaPostgres extends DAOEntrada {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "UPDATE Entrada SET Correo = '" + t.Correo + "', Sesion_Hora = '" + t.Sesion_Hora + "', N_Sala = " + t.N_Sala + " WHERE ID=" + t.ID;
+            String sql = "UPDATE Entrada SET Correo = '" + t.Correo + "', Sesion_Hora = '" + t.Sesion_Hora + "', N_Sala = " + t.N_Sala + ", N_But = " + t.N_But + " WHERE ID=" + t.ID;
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             /*preparedStatement.setString(1, t.Correo);
@@ -122,7 +125,47 @@ public class DAOEntradaPostgres extends DAOEntrada {
 				res.Correo = resultSet.getString("Correo");
 				res.N_Sala = resultSet.getInt("N_Sala");
 				res.ID = resultSet.getInt("ID");
+				res.N_But = resultSet.getInt("N_But");
 				
+			}
+			connection.close();
+			resultSet.close();
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+	
+	public List<Entrada> obtenerEntradas() {
+		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
+		
+		List<Entrada> res = new ArrayList<Entrada>();
+		
+		try {
+			Class.forName("org.postgresql.Driver");
+		
+			Connection connection;
+		
+			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+	
+			String sql = "select * from Entrada";
+			
+			Statement statement = connection.createStatement();
+			
+			ResultSet resultSet = statement.executeQuery(sql);
+
+			while (resultSet.next())
+			{
+				Entrada entrada = new Entrada();
+				entrada.Correo = resultSet.getString("Correo");
+				entrada.ID = resultSet.getInt("ID");
+				entrada.Sesion_Hora = resultSet.getDate("Sesion_Hora");
+				entrada.N_Sala = resultSet.getInt("N_Sala");
+				entrada.N_But = resultSet.getInt("N_But");
+				res.add(entrada);
 			}
 			connection.close();
 			resultSet.close();

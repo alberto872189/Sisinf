@@ -6,4 +6,5 @@ public class Entrada {
 	public String Correo;
 	public Date Sesion_Hora;
 	public Integer N_Sala;
+	public Integer N_But;
 }
