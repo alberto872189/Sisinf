@@ -39,7 +39,7 @@
 	<%
 			}
 	%>
-		<%= "<td id=\"td-asientos\"><input type=\"checkbox\" name=\"" + nfila + "-" + i+1 + "\"></td>"%>
+		<%= "<td id=\"td-asientos\"><input type=\"checkbox\" name=\"" + nfila + "-" + i+1 + "\" required></td>"%>
 	<%		
 			if (fintr == ncolumnas) {
 				nfila++;
@@ -54,6 +54,9 @@
 	%>
 		</table>
 		<br><br>
+		<input type="hidden" value="<%=pel%>" name="hora" required>
+		<input type="hidden" value="<%=pel%>" name="sala" required>
+		<input type="hidden" value="<%=pel%>" name="usuario" required>
 		<input type="submit" value="Pagar">	 
 		</form>
 		<br>

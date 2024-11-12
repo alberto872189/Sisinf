@@ -24,7 +24,7 @@
 			List<Sesion> sesiones = dao.obtenerSesionesPel(pel); 
 			%>
 			Sesión:
-			<select name="Hora">
+			<select name="Hora" required>
 			<%
 			for (Sesion sesion : sesiones) {
 			%>
@@ -47,7 +47,7 @@
 		 	<br>
 		 	<br>
 		<br><br>
-		<input type="hidden" value="<%=pel%>" name="pelicula">
+		<input type="hidden" value="<%=pel%>" name="pelicula" required>
 		<input type="submit" value="Asientos">	 
 		</form>
 		<br>
