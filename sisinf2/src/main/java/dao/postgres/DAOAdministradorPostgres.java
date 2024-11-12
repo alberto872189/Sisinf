@@ -16,7 +16,7 @@ public class DAOAdministradorPostgres extends DAOAdministrador {
 	}
 	
 	@Override
-	public void crear(Administrador t) {
+	public int crear(Administrador t) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		
 		try {
@@ -39,7 +39,8 @@ public class DAOAdministradorPostgres extends DAOAdministrador {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-		}   
+		}
+		return 1;
 	}
 
 	@Override

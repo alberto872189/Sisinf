@@ -16,7 +16,7 @@ public class DAOSalaPostgres extends DAOSala {
 	}
 	
 	@Override
-	public void crear(Sala t) {
+	public int crear(Sala t) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		
 		try {
@@ -37,7 +37,8 @@ public class DAOSalaPostgres extends DAOSala {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-		}   
+		}
+		return 1;
 	}
 
 	@Override

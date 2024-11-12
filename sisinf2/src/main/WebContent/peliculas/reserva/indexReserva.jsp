@@ -40,7 +40,7 @@
 			List<Producto> productos = dao2.obtenerProductos();
 			for (Producto producto : productos) {	
 			%>
-				<%="<input type=\"checkbox\" name=\"" + producto.Nombre + "\">" + producto.Nombre + "<br>" %>
+				<%="<input type=\"checkbox\" name=\"producto\" value=\"" + producto.Nombre + "\">" + producto.Nombre + "<br>" %>
 			<%	
 			}
 			%>	 

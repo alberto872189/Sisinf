@@ -21,7 +21,7 @@ public class DAOSesionPostgres extends DAOSesion {
 	}
 	
 	@Override
-	public void crear(Sesion t) {
+	public int crear(Sesion t) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		
 		try {
@@ -45,7 +45,8 @@ public class DAOSesionPostgres extends DAOSesion {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-		}   
+		}
+		return 1;
 	}
 
 	@Override

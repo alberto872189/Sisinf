@@ -16,7 +16,7 @@ public class DAOClientePostgres extends DAOCliente {
 	}
 
 	@Override
-	public void crear(Cliente t) {
+	public int crear(Cliente t) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		
 		try {
@@ -39,7 +39,8 @@ public class DAOClientePostgres extends DAOCliente {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-		}   
+		}
+		return 1;
 	}
 
 	@Override

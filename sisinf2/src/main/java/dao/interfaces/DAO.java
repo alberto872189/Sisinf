@@ -8,7 +8,7 @@ public abstract class DAO<T,K>{
 		pwd = pwd_;
 	}
 	
-	public abstract void crear(T t);
+	public abstract int crear(T t);
 	public abstract void modificar(T t);
 	public abstract void borrar(K k);
 	public abstract T obtener(K k);

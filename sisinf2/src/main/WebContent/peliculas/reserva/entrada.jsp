@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>entrada</title>
+</head>
+<body>
+		La compra se ha realizado correctamente y se ha enviado a su correo electrónico
+</body>
+</html>
+

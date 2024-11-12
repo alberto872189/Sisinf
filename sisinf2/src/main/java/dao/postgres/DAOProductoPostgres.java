@@ -19,7 +19,7 @@ public class DAOProductoPostgres extends DAOProducto {
 	}
 	
 	@Override
-	public void crear(Producto t) {
+	public int crear(Producto t) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		
 		try {
@@ -42,7 +42,8 @@ public class DAOProductoPostgres extends DAOProducto {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-		}   
+		}
+		return 1;
 	}
 
 	@Override

@@ -19,16 +19,16 @@ public class DAOEntradaPostgres extends DAOEntrada {
 	}
 	
 	@Override
-	public void crear(Entrada t) {
+	public int crear(Entrada t) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		
+		int ret = -1;
 		try {
 			Class.forName("org.postgresql.Driver");
 		
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "INSERT INTO Entrada(Correo, Sesion_Hora, N_Sala, N_But) VALUES ('" + t.Correo + "','" + t.Sesion_Hora + "'," +  t.N_Sala + "," + t.N_But + ")";
+            String sql = "INSERT INTO Entrada(Correo, Sesion_Hora, N_Sala, N_But) VALUES ('" + t.Correo + "','" + t.Sesion_Hora + "'," +  t.N_Sala + "," + t.N_But + ") RETURNING ID";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             /*preparedStatement.setString(1, t.Correo);
@@ -36,13 +36,18 @@ public class DAOEntradaPostgres extends DAOEntrada {
             preparedStatement.setInt(3, t.N_Sala);*/
             
 
-            int rowsInserted = preparedStatement.executeUpdate();
+            boolean rowsInserted = preparedStatement.execute();
             System.out.println(rowsInserted + " row(s) inserted.");
+            ResultSet lastId = preparedStatement.getResultSet();
+            if(lastId.next()) {
+               ret = lastId.getInt(1);
+            }
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-		}   
+		}
+		return ret;
 	}
 
 	@Override

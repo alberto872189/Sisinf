@@ -20,7 +20,7 @@ public class DAOButacaPostgres extends DAOButaca {
 	}
 
 	@Override
-	public void crear(Butaca t) {
+	public int crear(Butaca t) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		
 		try {
@@ -42,7 +42,8 @@ public class DAOButacaPostgres extends DAOButaca {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-		}   
+		}
+		return 1;
 	}
 
 	@Override

@@ -13,8 +13,22 @@
 <%@ page import="vo.Producto" %>
 
 <body>
-<% String pel = request.getParameter("pelicula"); %>
-		<form name ="reserva" action=entrada.html >
+<% 
+	String pel = request.getParameter("pelicula");
+	String nEntradas = request.getParameter("nEntradas"); 
+	
+	String user = null;
+	Cookie[] cookies = request.getCookies();
+	if(cookies != null){
+		for (Cookie cookie : cookies){
+			if(cookie.getName().equals("login"))
+				user = cookie.getValue();
+		}
+	}
+%>
+<%=user %>
+
+		<form name ="reserva" method="post" action="/sisinf2/reservarEntrada" >
 	<!-- OBTENER BUTACAS -->
 	<%	
 		DAOButacaPostgres dao = new DAOButacaPostgres("usuario", "user");
@@ -31,18 +45,17 @@
 		int ncolumnas = 10;
 		int i = 0;
 		int fintr = 1;
-		int nfila = 1;
 		for (Butaca but : butacas) {
+			int idButaca = i+1;
 			if (i % ncolumnas == 0) {
 	%>
 			<%= "<tr>" %>
 	<%
 			}
 	%>
-		<%= "<td id=\"td-asientos\"><input type=\"checkbox\" name=\"" + nfila + "-" + i+1 + "\" required></td>"%>
+		<%= "<td id=\"td-asientos\"><input type=\"checkbox\" name=\"butaca\" value=\"" + idButaca + "\"></td>"%>
 	<%		
 			if (fintr == ncolumnas) {
-				nfila++;
 	%>	
 			<%= "</tr>" %>
 	<%
@@ -54,11 +67,15 @@
 	%>
 		</table>
 		<br><br>
-		<input type="hidden" value="<%=pel%>" name="hora" required>
-		<input type="hidden" value="<%=pel%>" name="sala" required>
-		<input type="hidden" value="<%=pel%>" name="usuario" required>
+		<input type="hidden" value="<%=hora.substring(0, k)%>" name="hora" required>
+		<input type="hidden" value="<%=sala%>" name="sala" required>
+		<input type="hidden" value="<%=user%>" name="usuario" required>
+		<input type="hidden" value="<%=nEntradas%>" name="nEntradas" required>
+		<input type="hidden" value="<%=pel%>" name="pelicula" required>
+		<input type="hidden" value="<%=request.getParameterValues("producto")%>" name="producto">
 		<input type="submit" value="Pagar">	 
 		</form>
+		<p>${Butacas}</p>
 		<br>
 		<a onclick="history.back()">Volver</a>
 </body>
