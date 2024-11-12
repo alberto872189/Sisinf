@@ -13,7 +13,7 @@
 <nav>
   <ul>
   	<li><a href="indexUser.jsp">CARTELERA</a></li>
-    <li><a href="index.jsp">CERRAR SESION</a></li>
+    <li><a href="index.jsp" onclick="cerrarSesion()">CERRAR SESION</a></li>
     <li><a href="#" class="tab-link" data-tab="seccion2">EDITAR TUS DATOS</a></li>
   </ul>
 </nav>
@@ -96,7 +96,7 @@
 	<%
 			}
 	%>
-		<%= "<td id=\"td-cartelera\"><img width=\"300\" height=\"300\" src=\"" + pel.Imagen + "\" /> <br> <a href=\"peliculas/pelicula.jsp?pelicula=" + "\"?anteriorPagina=\"/sisinf2/indexUser.jsp\">" + pel.Titulo+ "\">" + pel.Titulo + "</a></td>"%>
+		<%= "<td id=\"td-cartelera\"><img width=\"300\" height=\"300\" src=\"" + pel.Imagen + "\" /> <br> <a href=\"peliculas/pelicula.jsp?pelicula=" + pel.Titulo + "\">" + pel.Titulo + "</a></td>"%>
 	<%		
 			if (fintr == ncolumnas) {
 	%>
@@ -126,11 +126,9 @@
       document.getElementById(tabId).classList.add('active');
     });
   });
- 
   
-  function editar() {
-  }
-  function borrarCuenta() {
+  function cerrarSesion() {
+	  document.cookie = "login=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
   }
 </script>
 

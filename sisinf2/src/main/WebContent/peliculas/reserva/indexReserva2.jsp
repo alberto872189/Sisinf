@@ -13,18 +13,21 @@
 <%@ page import="vo.Producto" %>
 
 <body>
-<% String pel = request.getParameter("pelicula");
-	String ret = request.getParameter("anteriorPagina"); %>
+<% String pel = request.getParameter("pelicula"); %>
 		<form name ="reserva" action=entrada.html >
-			 Asientos
-			 <table id="asientos">
-			
 	<!-- OBTENER BUTACAS -->
 	<%	
 		DAOButacaPostgres dao = new DAOButacaPostgres("usuario", "user");
-		Integer sala = Integer.valueOf(request.getParameter("Sala"));
+		String hora = String.valueOf(request.getParameter("Hora"));
+		int k = hora.indexOf(";");
+		Integer sala = Integer.valueOf(hora.substring(k+1, hora.length()));
 		List<Butaca> butacas = dao.obtenerSala(sala); 
-	
+	%>
+	<h1><%=pel%>, SALA <%=sala%>, <%=hora.substring(0, k)%></h1>
+	<h2>Asientos</h2>
+	<br>
+	<table id="asientos">
+	<%
 		int ncolumnas = 10;
 		int i = 0;
 		int fintr = 1;
@@ -54,7 +57,7 @@
 		<input type="submit" value="Pagar">	 
 		</form>
 		<br>
-		<%="<a href=\"peliculas/reserva/indexReserva.jsp?pelicula=\"" + pel + "\"?anteriorPagina=\"" + ret + "\">Volver</a>" %>
+		<a onclick="history.back()">Volver</a>
 </body>
 
 <!-- CSS -->

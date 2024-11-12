@@ -6,44 +6,52 @@
 </head>
 <%@ page import="dao.postgres.DAOSesionPostgres" %>
 <%@ page import="dao.postgres.DAOButacaPostgres" %>
+<%@ page import="dao.postgres.DAOProductoPostgres" %>
 <%@ page import="vo.Pelicula" %>
+<%@ page import="vo.Producto" %>
 <%@ page import="vo.Sesion" %>
 <%@ page import="java.util.List" %>
 <%@ page import="vo.Butaca" %>
 <%@ page import="vo.Producto" %>
 
 <body>
-<% String pel = request.getParameter("pelicula");
-	String ret = request.getParameter("anteriorPagina"); %>
+<% String pel = request.getParameter("pelicula"); %>
 		<form name ="reserva" action=indexReserva2.jsp >
 			 <label for="nEntradas">Número de entradas:</label><br>
 			 <input type="number" name="nEntradas" value="1"><br><br>
-			 <label for="dia">día:</label><br>
-			 <input type="date" name="dia"><br><br>
-			 Hora
-			 <select name="Hora">
-			 	<option value="16:00">16:00</option>
-			 	<option value="18:00">18:00</option>
-			 	<option value="20:00">20:00</option>
+			 <%
+			DAOSesionPostgres dao = new DAOSesionPostgres("usuario", "user"); 
+			List<Sesion> sesiones = dao.obtenerSesionesPel(pel); 
+			%>
+			Sesión:
+			<select name="Hora">
+			<%
+			for (Sesion sesion : sesiones) {
+			%>
+				<%="<option value=\"" + sesion.Sesion_Hora +";" + sesion.N_Sala + "\">" + sesion.Sesion_Hora + ",  sala " + sesion.N_Sala + "</option>"%>
+			<%
+			}
+			%>
 			 </select>
 			 <br><br>
 			Productos del bar <br>
-			<input type="checkbox" name="Palomitas" > Palomitas<br>
-			<input type="checkbox" name="Palomitas" > Refresco<br>	 
-			 <br>
-			Sala
-		 	<select name="Sala">
-			 	<option value="1">1</option>
-			 	<option value="2">2</option>
-			 	<option value="3">3</option>
-			 </select>
+			<%
+			DAOProductoPostgres dao2 = new DAOProductoPostgres("usuario", "user");
+			List<Producto> productos = dao2.obtenerProductos();
+			for (Producto producto : productos) {	
+			%>
+				<%="<input type=\"checkbox\" name=\"" + producto.Nombre + "\">" + producto.Nombre + "<br>" %>
+			<%	
+			}
+			%>	 
 		 	<br>
 		 	<br>
 		<br><br>
+		<input type="hidden" value="<%=pel%>" name="pelicula">
 		<input type="submit" value="Asientos">	 
 		</form>
 		<br>
-		<%="<a href=\"peliculas/pelicula.jsp?pelicula=\"" + pel + "\"?anteriorPagina=\"" + ret + "\">Volver</a>" %>
+		<a onclick="history.back()">Volver</a>
 </body>
 
 <!-- CSS -->

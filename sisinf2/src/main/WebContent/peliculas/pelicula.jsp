@@ -16,7 +16,6 @@
 <body>
 <!-- OBTENER PELICULA DE request -->
 <% String pel = request.getParameter("pelicula");
-	String ret = request.getParameter("anteriorPagina");
 	DAOPeliculaPostgres dao = new DAOPeliculaPostgres("usuario", "user"); 
 	Pelicula pelicula = dao.obtener(pel); 
 %>
@@ -54,10 +53,10 @@
 				<%= "<td><a href=\"" + pelicula.Link_IMDB + "\">Más información</a></td>"%>
 			</tr>
 			<tr>
-				<%= "<td><a href=\"/sisinf2/peliculas/reserva/indexReserva.jsp?pelicula="+ pel + "\"?anteriorPagina=\"" + ret + "\">Reservar entrada</a></td>" %>
+				<%= "<td><a href=\"/sisinf2/peliculas/reserva/indexReserva.jsp?pelicula=" + pel + "\">Reservar entrada</a></td>" %>
 			</tr>
 			<tr>
-				<td><br><a href="<%=ret%>">VOLVER</a></td>
+				<td><br><a onclick="history.back()">VOLVER</a></td>
 			</tr>
 		</table>
 	</div>

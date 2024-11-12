@@ -5,8 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import dao.interfaces.DAOProducto;
+import vo.Comentario;
 import vo.Producto;
 
 public class DAOProductoPostgres extends DAOProducto {
@@ -134,4 +137,40 @@ public class DAOProductoPostgres extends DAOProducto {
 		return res;
 	}
 
+	public List<Producto> obtenerProductos() {
+		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
+		
+		List<Producto> res = new ArrayList<Producto>();
+		
+		try {
+			Class.forName("org.postgresql.Driver");
+		
+			Connection connection;
+		
+			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+	
+			String sql = "select * from Producto";
+			
+			Statement statement = connection.createStatement();
+			
+			ResultSet resultSet = statement.executeQuery(sql);
+
+			while (resultSet.next())
+			{
+				Producto producto = new Producto();
+				producto.Nombre = resultSet.getString("Nombre");
+				producto.Precio = resultSet.getDouble("Precio");
+				producto.Disponible = resultSet.getBoolean("Disponible");
+				res.add(producto);
+			}
+			connection.close();
+			resultSet.close();
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
 }
