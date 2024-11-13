@@ -1,3 +1,4 @@
 /.metadata/
-/servlets/
 /dao/
+/servlets/
+/vo/

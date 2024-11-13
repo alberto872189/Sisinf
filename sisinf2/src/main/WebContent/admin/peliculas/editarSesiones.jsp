@@ -14,8 +14,8 @@
 <title>editarSesiones</title>
 </head>
 <body>
-			<h1>Editar sesión</h1>
-			 <h2>Sesión a cambiar</h2>
+			<h1>Editar sesion</h1>
+			 <h2>Sesion a cambiar</h2>
 			 	Pelicula:
 			 	<select name="PeliculaVieja">
 			 	<%
@@ -28,18 +28,13 @@
 			 </select>
 			 Fecha y hora:
 			 <select name="FechaHora">
-				<%
-					String peliculaVieja = request.getParameter("PeliculaVieja");
-					if (peliculaVieja != null){
-						DAOSesionPostgres dao3 = new DAOSesionPostgres("usuario", "user");
-						SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-	                    List<Sesion> sesiones = dao3.obtenerSesionesPel(peliculaVieja);
-	                    for (Sesion ses : sesiones) {
-	                    	String horaFormateada = sdf.format(ses.Sesion_Hora);
-	                        out.print("<option value='" + horaFormateada + "'>" + horaFormateada + "</option>");
-	                    }
-					}   
-                %>
+			 	<% String peliculaVieja = request.getParameter("PeliculaVieja");
+					DAOSesionPostgres dao3 = new DAOSesionPostgres("usuario", "user"); 
+					List<Sesion> sesiones = dao3.obtenerSesionesPel(peliculaVieja); 
+					%>
+					<%for (Sesion sesion : sesiones) {%>
+						<%="<option value=\"" + sesion.Sesion_Hora +";" + sesion.N_Sala + "\">" + sesion.Sesion_Hora + ",  sala " + sesion.N_Sala + "</option>"%>
+					<%}%>
 			 </select>
 			 Sala
 			 <select name="Sala">
