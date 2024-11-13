@@ -6,7 +6,6 @@
 </head>
 <%@ page import="dao.postgres.DAOSesionPostgres" %>
 <%@ page import="dao.postgres.DAOButacaPostgres" %>
-<%@ page import="dao.postgres.DAOProductoPostgres" %>
 <%@ page import="vo.Pelicula" %>
 <%@ page import="vo.Producto" %>
 <%@ page import="vo.Sesion" %>
@@ -33,19 +32,6 @@
 			}
 			%>
 			 </select>
-			 <br><br>
-			Productos del bar <br>
-			<%
-			DAOProductoPostgres dao2 = new DAOProductoPostgres("usuario", "user");
-			List<Producto> productos = dao2.obtenerProductos();
-			for (Producto producto : productos) {	
-			%>
-				<%="<input type=\"checkbox\" name=\"producto\" value=\"" + producto.Nombre + "\">" + producto.Nombre + "<br>" %>
-			<%	
-			}
-			%>	 
-		 	<br>
-		 	<br>
 		<br><br>
 		<input type="hidden" value="<%=pel%>" name="pelicula" required>
 		<input type="submit" value="Asientos">	 
