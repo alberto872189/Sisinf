@@ -28,12 +28,13 @@ public class AnyadirProductoEntradaServlet extends HttpServlet {
 		
 		DAOProd_EntPostgres dao = new DAOProd_EntPostgres("usuario", "user");
 		Prod_Ent prodent = new Prod_Ent();
-
-		for (String prod : productos) {
-			int k = prod.indexOf(";");
-			prodent.ID_Ent = Integer.valueOf(prod.substring(k+1));
-			prodent.Nombre_Prod = prod.substring(0, k);
-			dao.crear(prodent);
+		if (productos != null) {
+			for (String prod : productos) {
+				int k = prod.indexOf(";");
+				prodent.ID_Ent = Integer.valueOf(prod.substring(k+1));
+				prodent.Nombre_Prod = prod.substring(0, k);
+				dao.crear(prodent);
+			}
 		}
 
 		RequestDispatcher dispatcher = null;

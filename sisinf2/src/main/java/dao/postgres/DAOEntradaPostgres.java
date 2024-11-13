@@ -11,6 +11,7 @@ import java.util.List;
 import dao.interfaces.DAOEntrada;
 import vo.Entrada;
 import vo.Producto;
+import vo.Sesion;
 
 public class DAOEntradaPostgres extends DAOEntrada {
 
@@ -157,6 +158,45 @@ public class DAOEntradaPostgres extends DAOEntrada {
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
 	
 			String sql = "select * from Entrada";
+			
+			Statement statement = connection.createStatement();
+			
+			ResultSet resultSet = statement.executeQuery(sql);
+
+			while (resultSet.next())
+			{
+				Entrada entrada = new Entrada();
+				entrada.Correo = resultSet.getString("Correo");
+				entrada.ID = resultSet.getInt("ID");
+				entrada.Sesion_Hora = resultSet.getDate("Sesion_Hora");
+				entrada.N_Sala = resultSet.getInt("N_Sala");
+				entrada.N_But = resultSet.getInt("N_But");
+				res.add(entrada);
+			}
+			connection.close();
+			resultSet.close();
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+	
+	public List<Entrada> obtenerEntradasSesion(Integer sala, String hora) {
+		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
+		
+		List<Entrada> res = new ArrayList<Entrada>();
+		
+		try {
+			Class.forName("org.postgresql.Driver");
+		
+			Connection connection;
+		
+			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+	
+			String sql = "select * from Entrada WHERE N_Sala=" + sala + " AND Sesion_Hora ='" + hora + "'";
 			
 			Statement statement = connection.createStatement();
 			
