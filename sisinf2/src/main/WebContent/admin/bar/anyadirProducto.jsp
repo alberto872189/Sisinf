@@ -4,26 +4,38 @@
 <meta charset="UTF-8">
 <title>Anyadir producto</title>
 </head>
+<%@ page import="vo.Producto" %>
+<%@ page import="dao.postgres.DAOProductoPostgres" %>
+<%@ page import="java.util.List" %>
 <body>
 <h2>AÑADIR PRODUCTO</h2>
 <div>
-	<input type="text" placeholder="Nombre del producto">
-	<br>
-	<br>
-	<input type="text" placeholder="Precio del producto">
-	<br>
-	<br>
-	<button onclick="anyadirProducto()">Añadir</button>
+	<form method="post" action="/sisinf2/addProducto">
+		<input type="text" name="producto" placeholder="Nombre del producto">
+		<br>
+		<br>
+		<input type="number" step="0.01" name="precio" placeholder="Precio del producto">
+		<br>
+		<br>
+		<input type="submit" value="A�adir">
+	</form>
 	<br>
 	<br>
 	<h3>Productos previamente disponibles:</h3>
 	<ul>
-		<li>Palomitas: 3€</li>
-		<li>Refresco: 2€</li>
+	<%
+		DAOProductoPostgres dao2 = new DAOProductoPostgres("usuario", "user");
+		List<Producto> productos = dao2.obtenerProductos();
+		for (Producto producto : productos) {
+				%>
+					<%="<li>" + producto.Nombre + ": " + producto.Precio + "</li><br>" %>
+				<%
+		}
+	%>
 	</ul>
 	<br>
 	<br>
-	<a href="/sisinf/admin/indexAdmin.html">VOLVER</a>
+	<a href="/sisinf2/admin/indexAdmin.jsp">VOLVER</a>
 </div>
 </body>
 

@@ -56,7 +56,7 @@
 				<%= "<td><a href=\"/sisinf2/peliculas/reserva/indexReserva.jsp?pelicula=" + pel + "\">Reservar entrada</a></td>" %>
 			</tr>
 			<tr>
-				<td><br><a onclick="history.back()">VOLVER</a></td>
+				<td><br><a href="/sisinf2/index.jsp">VOLVER</a></td>
 			</tr>
 		</table>
 	</div>

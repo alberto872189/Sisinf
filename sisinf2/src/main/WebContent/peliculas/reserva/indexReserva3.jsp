@@ -42,7 +42,7 @@
 				<%
 				for (Producto producto : productos) {
 				%>
-					<%="<input type=\"checkbox\" name=\"productos\" value=\"" + producto.Nombre + ";" + id + "\">" + producto.Nombre + "<br>" %>
+					<%="<input width=\"12px\" heigth=\"12px\" type=\"checkbox\" name=\"productos\" value=\"" + producto.Nombre + ";" + id + "\">" + producto.Nombre + "<br>" %>
 				<%
 				}
 				%>
@@ -64,7 +64,7 @@
 					<%
 				}
 			%>
-			<input type="submit" onclick="history.back()" value="Volver">
+			<input type="submit" value="Volver">
 		</form>
 	</body>
 

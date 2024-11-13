@@ -85,7 +85,7 @@
 		}
 		else {
 			%>
-			<%="<input type=\"hidden\" value=\"" + user + "\" name=\"usuario\" required>"%>
+			<%="<input width=\"12px\" heigth=\"12px\" type=\"hidden\" value=\"" + user + "\" name=\"usuario\" required>"%>
 		<%
 		}
 	%>

@@ -37,7 +37,7 @@
 		<input type="submit" value="Asientos">	 
 		</form>
 		<br>
-		<a href="/sisinf2/index.jsp">Volver</a>
+		<a onclick="history.back()">Volver</a>
 </body>
 
 <!-- CSS -->
