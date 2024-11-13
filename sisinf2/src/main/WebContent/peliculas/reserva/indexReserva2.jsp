@@ -15,8 +15,13 @@
 <body>
 <% 
 	String pel = request.getParameter("pelicula");
+	if (pel == null) {
+		pel = (String)request.getAttribute("pelicula");
+	}
 	String nEntradas = request.getParameter("nEntradas"); 
-	
+	if (nEntradas == null) {
+		nEntradas = (String)request.getAttribute("nEntradas");
+	}
 	String user = null;
 	Cookie[] cookies = request.getCookies();
 	if(cookies != null){
@@ -26,16 +31,18 @@
 		}
 	}
 %>
-<%=user %>
 
 		<form name ="reserva" method="post" action="/sisinf2/reservarEntrada" >
 	<!-- OBTENER BUTACAS -->
 	<%	
 		DAOButacaPostgres dao = new DAOButacaPostgres("usuario", "user");
 		String hora = String.valueOf(request.getParameter("Hora"));
+		if (hora == null) {
+			hora = String.valueOf(request.getAttribute("Hora"));
+		}
 		int k = hora.indexOf(";");
 		Integer sala = Integer.valueOf(hora.substring(k+1, hora.length()));
-		List<Butaca> butacas = dao.obtenerSala(sala); 
+		List<Butaca> butacas = dao.obtenerSala(sala);
 	%>
 	<h1><%=pel%>, SALA <%=sala%>, <%=hora.substring(0, k)%></h1>
 	<h2>Asientos</h2>
@@ -66,14 +73,14 @@
 		}
 	%>
 		</table>
+		<br>
 		<br><br>
 		<input type="hidden" value="<%=hora.substring(0, k)%>" name="hora" required>
 		<input type="hidden" value="<%=sala%>" name="sala" required>
 		<input type="hidden" value="<%=user%>" name="usuario" required>
 		<input type="hidden" value="<%=nEntradas%>" name="nEntradas" required>
 		<input type="hidden" value="<%=pel%>" name="pelicula" required>
-		<input type="hidden" value="<%=request.getParameterValues("producto")%>" name="producto">
-		<input type="submit" value="Pagar">	 
+		<input type="submit" value="Seleccionar productos">	 
 		</form>
 		<p>${Butacas}</p>
 		<br>

@@ -4,7 +4,6 @@ import java.util.Map;
 
 import dao.postgres.DAOClientePostgres;
 import dao.postgres.DAOEntradaPostgres;
-import dao.postgres.DAOProd_EntPostgres;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -27,12 +26,11 @@ public class ReservarEntradaServlet extends HttpServlet {
 		Map<String, String> errors = new HashMap <String, String>();
 		String hora = request.getParameter("hora");
 		String butacas[] = request.getParameterValues("butaca");
-		String productos[] = request.getParameterValues("producto");
 		String usuario = request.getParameter("usuario");
 		String sala = request.getParameter("sala");
 		Integer nButacas = Integer.valueOf(request.getParameter("nEntradas"));
 		String pelicula = request.getParameter("pelicula");
-		
+		String idEntradas[] = new String[nButacas];
 		if (butacas.length != nButacas) {
 			errors.put("Butacas", "Número de butacas incorrecto");
 		}
@@ -44,32 +42,30 @@ public class ReservarEntradaServlet extends HttpServlet {
 			}
 			else {
 				DAOEntradaPostgres daoEntrada = new DAOEntradaPostgres("usuario", "user");
-				DAOProd_EntPostgres daoProdEnt = new DAOProd_EntPostgres("usuario", "user");
-				Prod_Ent prodent = new Prod_Ent();
 				Entrada entrada = new Entrada();
+				int i = 0;
 				for (String but : butacas) {
 					entrada.N_But = Integer.valueOf(but);
 					entrada.N_Sala = Integer.valueOf(sala);
 					entrada.Correo = usuario;
 					entrada.Sesion_Hora = Timestamp.valueOf(hora);
 					int idEnt = daoEntrada.crear(entrada);
-					for (String prod : productos) {
-						prodent.ID_Ent = idEnt;
-						prodent.Nombre_Prod = prod;
-						daoProdEnt.crear(prodent);
-					}
+					idEntradas[i] = Integer.toString(idEnt);
+					i++;
 				}
 			}
 		}
 		request.setAttribute("errors", errors);
-		request.setAttribute("Hora", hora + ";" + sala);
-		request.setAttribute("pelicula", pelicula);
-		request.setAttribute("nEntradas", nButacas);
 		RequestDispatcher dispatcher = null;
 		if (errors.isEmpty()) {
-			dispatcher=request.getRequestDispatcher("peliculas/reserva/entrada.jsp");
+			request.setAttribute("nEntradas", nButacas);
+			request.setAttribute("idEntradas", idEntradas);
+			dispatcher=request.getRequestDispatcher("peliculas/reserva/indexReserva3.jsp");
 		}
 		else {
+			request.setAttribute("nEntradas", nButacas);
+			request.setAttribute("Hora", hora + ";" + sala);
+			request.setAttribute("pelicula", pelicula);
 			dispatcher=request.getRequestDispatcher("peliculas/reserva/indexReserva2.jsp");
 		}
 		dispatcher.forward(request, response);
