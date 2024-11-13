@@ -53,7 +53,7 @@
 		<input type="submit" value="Cambiar">
 		</form>
 		<br>
-		<a href="../indexAdmin.jsp">Volver</a>
+		<a href="/sisinf2/admin/indexAdmin.jsp">Volver</a>
 </body>
 
 

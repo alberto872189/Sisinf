@@ -1,80 +1,71 @@
 <!DOCTYPE html>
 <html>
+<%@ page import="java.util.Map" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<%@ page import="dao.postgres.DAOPeliculaPostgres" %>
+<%@ page import="vo.Pelicula" %>
+<%@ page import="java.util.List" %>
 <head>
 <meta charset="UTF-8">
 <title>Consultar datos</title>
 </head>
-<body>
+<main>
 	<h2>CARTELERA</h2>
+	<br>
+	
+	<%	
+		DAOPeliculaPostgres dao = new DAOPeliculaPostgres("usuario", "user"); 
+		List<Pelicula> peliculas = dao.obtenerPeliculas(); 
+	%>
 	<table id="cartelera">
-	    <tr>
-   	 		<td id="td-cartelera">
-   	 			<img width="300" height="300" src="/sisinf/peliculas/imagenes/template.jpg"/>
-   				<br>
-  				Pelicula
-    			<br>
-    			Entradas vendidas: 3212312
-   	 		</td>
-   	 		<td id="td-cartelera">
-   	 			<img width="300" height="300" src="/sisinf/peliculas/imagenes/template.jpg"/>
-  	  			<br>
-    			Pelicula
-    			<br>
-    			Entradas vendidas: 123242
-    		</td>
-    	</tr>
-    	<tr>
-    		<td id="td-cartelera">
-    			<img width="300" height="300" src="/sisinf/peliculas/imagenes/template.jpg"/>
-    			<br>
-    			Pelicula
-    			<br>
-    			Entradas vendidas: 87341
-    		</td>
-    		<td id="td-cartelera">
-    			<img width="300" height="300" src="/sisinf/peliculas/imagenes/template.jpg"/>
-    			<br>
-    			Pelicula
-    			<br>
-    			Entradas vendidas: 1234537
-    		</td>
-    	</tr>
-    </table>
+	<%
+		int ncolumnas = 2;
+		int i = 0;
+		int fintr = 1;
+		for (Pelicula pel : peliculas) {
+			if (i % ncolumnas == 0) {
+	%>
+			<%= "<tr>" %>
+	<%
+			}
+	%>
+		<%= "<td id=\"td-cartelera\"><img width=\"300\" height=\"300\" src=\"" + pel.Imagen + "\" /> <br>Datos ejemplo : ***</td>"%>
+	<%		
+			if (fintr == ncolumnas) {
+	%>
+			<%= "</tr>" %>
+	<%
+			fintr = 0;
+			}
+			i++;
+			fintr++;
+		}
+	%>
+	</table>
     <br>
-    <a href="/sisinf/admin/indexAdmin.html">VOLVER</a>
-</body>
+    <a href="/sisinf2/admin/indexAdmin.jsp">VOLVER</a>
+</main>
 
 <!-- CSS -->
 <style>
- ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: space-between;
-  }
 
-  li {
-    margin-right: 20px;
-  }
-  
-  html{
-  	display: flex; 
-  	text-align: center; 
-	justify-content: center; 
-  }
-  
-  main{
-  	display: flex; 
-  	text-align: center; 
-	justify-content: center; 
-  }
-  
- 
-  #td-cartelera {
-  	padding-bottom: 60px;
-  	padding-right: 10px;
-  	padding-left: 10px;
-  }
+html {
+	display: flex;
+	text-align: center;
+	justify-content: center;
+}
+
+main {
+	text-align: center;
+	justify-content: center;
+}
+
+#td-cartelera {
+	padding-bottom: 60px;
+	padding-right: 10px;
+	padding-left: 10px;
+}
   </style>
 </html>

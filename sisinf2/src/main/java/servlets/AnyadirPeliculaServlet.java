@@ -12,12 +12,14 @@ import java.util.HashMap;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import utils.Pair;
 import vo.Pelicula;
 import vo.Sesion;
 import java.util.Date;
 
+@WebServlet(description = "Servlet para añadir películas al catálogo", urlPatterns = { "/añadirPelicula" })
 public class AnyadirPeliculaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -31,15 +33,6 @@ public class AnyadirPeliculaServlet extends HttpServlet {
 		String hora = request.getParameter("hora");
 		String sala = request.getParameter("sala");
 		String precio = request.getParameter("precio");
-		
-		/*if ((titulo == null) || (titulo.trim().equals(""))) errors.put("Titulo", "Campo obligatorio");
-		if ((resumen == null) || (resumen.trim().equals(""))) errors.put("resumen", "Campo obligatorio");
-		if ((imagen == null) || (imagen.trim().equals(""))) errors.put("imagen", "Campo obligatorio");
-		if ((imagen == null) || (imagen.trim().equals(""))) errors.put("imagen", "Campo obligatorio");
-		if ((link == null) || (link.trim().equals(""))) errors.put("link", "Campo obligatorio");
-		if ((hora == null) || (hora.trim().equals(""))) errors.put("hora", "Campo obligatorio");
-		if ((sala == null) || (sala.trim().equals(""))) errors.put("sala", "Campo obligatorio");
-		if ((precio == null) || (precio.trim().equals(""))) errors.put("precio", "Campo obligatorio");*/
 		
 		if(errors.isEmpty()) {
 			DAOPeliculaPostgres daoPeli = new DAOPeliculaPostgres("admin", "admin");

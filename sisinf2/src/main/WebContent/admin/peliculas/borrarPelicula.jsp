@@ -46,7 +46,7 @@
     <br>
     <br>
     <br>
-    <a href="/sisinf/admin/indexAdmin.html">VOLVER</a>
+    <a href="/sisinf2/admin/indexAdmin.jsp">VOLVER</a>
 </body>
 
 <!-- CSS -->
