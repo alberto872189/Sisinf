@@ -42,12 +42,12 @@
 		}
 		int k = hora.indexOf(";");
 		Integer sala = Integer.valueOf(hora.substring(k+1, hora.length()));
-		List<Butaca> butacas = dao.obtenerSala(sala);
+		List<Butaca> butacas = dao.obtenerSesion(sala, hora.substring(0,k));
 	%>
 	<h1><%=pel%>, SALA <%=sala%>, <%=hora.substring(0, k)%></h1>
 	<h2>Asientos</h2>
 	<br>
-	<table id="asientos">
+	<table id="asientos" align="center">
 	<%
 		int ncolumnas = 10;
 		int i = 0;
@@ -59,9 +59,16 @@
 			<%= "<tr>" %>
 	<%
 			}
+			if(but.Ocupada) {
+	%>
+				<%="<td id=\"td-asientos\"><img src=\"/sisinf2/img/redSquare.png\" width=\"12px\" heigth=\"12px\"></td>"%>
+	<%
+			}
+			else {
 	%>
 		<%= "<td id=\"td-asientos\"><input type=\"checkbox\" name=\"butaca\" value=\"" + idButaca + "\"></td>"%>
 	<%		
+			}
 			if (fintr == ncolumnas) {
 	%>	
 			<%= "</tr>" %>
@@ -71,13 +78,22 @@
 			i++;
 			fintr++;
 		}
+		if(user == null) {
+			%>
+			<%="<input type=\"text\" placeholder=\"correo electronico\" name=\"usuario\" required>"%>
+			<%
+		}
+		else {
+			%>
+			<%="<input type=\"hidden\" value=\"" + user + "\" name=\"usuario\" required>"%>
+		<%
+		}
 	%>
 		</table>
 		<br>
 		<br><br>
 		<input type="hidden" value="<%=hora.substring(0, k)%>" name="hora" required>
 		<input type="hidden" value="<%=sala%>" name="sala" required>
-		<input type="hidden" value="<%=user%>" name="usuario" required>
 		<input type="hidden" value="<%=nEntradas%>" name="nEntradas" required>
 		<input type="hidden" value="<%=pel%>" name="pelicula" required>
 		<input type="submit" value="Seleccionar productos">	 
@@ -104,7 +120,6 @@
   }
   
   html{
-  	display: flex; 
   	text-align: center; 
 	justify-content: center; 
   }

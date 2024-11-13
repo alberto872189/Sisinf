@@ -8,6 +8,20 @@
 <%@ page import="vo.Pelicula" %>
 <%@ page import="java.util.List" %>
 
+<%
+		String user = null;
+		Cookie[] cookies = request.getCookies();
+		if(cookies != null){
+			for (Cookie cookie : cookies){
+				if(cookie.getName().equals("login"))
+					user = cookie.getValue();
+			}
+		}
+		if (user != null) {
+			response.sendRedirect("/sisinf2/indexUser.jsp");
+		}
+	%>
+
 <!-- Index.jsp -->
 <h1>Desacine</h1>
 <!-- Menu -->

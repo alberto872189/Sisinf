@@ -30,6 +30,9 @@
 					user = cookie.getValue();
 			}
 		}
+		if (user == null) {
+			response.sendRedirect("/sisinf2/index.jsp");
+		}
 	%>
   <div id="tabs" class="tabs">
     <div id="seccion1" class="tab-content">
@@ -48,12 +51,7 @@
 				<%= errors.get("Nombre") %>
 		  <% } %>
 		  <br> 
-	   	  <input id="email" name="login" placeholder="Email">
-	   	  <br>
-	      <% if (errors != null && errors.get("Login") != null) { %>
-				<%= errors.get("Login") %>
-		  <% } %> 
-		  <br>
+	   	  <input id="email" type="hidden" name="login">
 	 	  <input id="passwd" name="passwd" type="password" placeholder="Contrasenya">
 	   	  <br>
 	   	  <% if (errors != null && errors.get("Clave") != null) { %>
@@ -73,7 +71,8 @@
 		  <br>
 		  <br>
 		</form>
-		<form method="post" action="deleteUser">
+		<form method="post" action="/sisinf2/deleteUser">
+		  <input type="hidden" value="<%=user%>" name="login" required>
 		  <button type="submit">Borrar cuenta</button>
       	</form> 
     </div>

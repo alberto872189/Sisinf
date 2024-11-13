@@ -17,7 +17,7 @@ public class DAOEnt_ButPostgres extends DAOEnt_But {
 	}
 	
 	@Override
-	public void crear(Ent_But t) {
+	public int crear(Ent_But t) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		
 		try {
@@ -39,7 +39,8 @@ public class DAOEnt_ButPostgres extends DAOEnt_But {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-		}   
+		}
+		return 1;
 	}
 
 	@Override
