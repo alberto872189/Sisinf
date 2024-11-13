@@ -3,20 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <title>Borrar productos</title>
+<%@ page import="vo.Producto" %>
+<%@ page import="dao.postgres.DAOProductoPostgres" %>
+<%@ page import="java.util.List" %>
 </head>
 	<h2>Borrar productos</h2>
+	<form method="post" action="/sisinf2/borrarProductos">
 	<ol>
-  		<li> <span>Palomitas</span> $3 <input type="checkbox" name="product[]" value="1"> </li>
-  		<li> <span>Palomitas grandes</span> $5 <input type="checkbox" name="product[]" value="2"> </li>
-  		<li> <span>Coca-Cola</span> $1,5 <input type="checkbox" name="product[]" value="2"> </li>
+	<%
+		DAOProductoPostgres dao2 = new DAOProductoPostgres("usuario", "user");
+		List<Producto> productos = dao2.obtenerProductos();
+		for (Producto producto : productos) {
+			if(producto.Disponible) {
+				%>
+					<%="<li><span>" + producto.Nombre + ": " + producto.Precio + "</span><input type=\"checkbox\" name=\"productos\" value=\"" + producto.Nombre + "\"></li><br>" %>
+				<%
+			}
+		}
+	%>
 	</ol>
 
-	<button id="delete-selected">Borrar seleccionados</button>
-	<button id="cancel" onclick="window.location.href='../indexAdmin.html'">Cancelar</button>
+	<button id="delete-selected" type="submit">Borrar seleccionados</button>
+	</form>
 	<br>
 	<br>
-	<br>
-	<a href="../indexAdmin.html">VOLVER</a>
+	<a href="/sisinf2/admin/indexAdmin.jsp">VOLVER</a>
 <script>
 	document.getElementById('delete-selected').addEventListener('click', function() {
   	const checkboxes = document.querySelectorAll('input[name="product[]"]:checked');

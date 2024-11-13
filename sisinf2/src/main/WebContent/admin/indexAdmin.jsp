@@ -81,7 +81,7 @@
     	</div>
     	<br>
     	<br>
-    	<a href="/sisinf2/index.jsp">CERRAR SESION</a>
+    	<a href="/sisinf2/index.jsp" onclick="cerrarSesion()">CERRAR SESION</a>
   	</div>
 </main>
 
@@ -89,8 +89,8 @@
 
 <!-- JavaScript -->
 <script>
-function enviarDescuento() {
-	
+function cerrarSesion() {
+	  document.cookie = "login=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
 }
 </script>
 	

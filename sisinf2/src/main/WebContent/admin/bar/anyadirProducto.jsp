@@ -27,9 +27,11 @@
 		DAOProductoPostgres dao2 = new DAOProductoPostgres("usuario", "user");
 		List<Producto> productos = dao2.obtenerProductos();
 		for (Producto producto : productos) {
+			if (producto.Disponible) {
 				%>
 					<%="<li>" + producto.Nombre + ": " + producto.Precio + "</li><br>" %>
 				<%
+			}
 		}
 	%>
 	</ul>

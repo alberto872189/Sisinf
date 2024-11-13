@@ -41,9 +41,11 @@
 				<%="<td> Entrada " + i + ": " + id + "<br>" %>
 				<%
 				for (Producto producto : productos) {
+					if (producto.Disponible) {
 				%>
 					<%="<input width=\"12px\" heigth=\"12px\" type=\"checkbox\" name=\"productos\" value=\"" + producto.Nombre + ";" + id + "\">" + producto.Nombre + "<br>" %>
 				<%
+					}
 				}
 				%>
 				<%="</td>"%>

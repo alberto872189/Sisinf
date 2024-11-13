@@ -27,9 +27,18 @@ public class AnyadirProductoServlet extends HttpServlet {
 		DAOProductoPostgres dao = new DAOProductoPostgres("admin", "admin");
 		Producto prod = new Producto();
 		if (producto != null) {
+			prod = dao.obtener(producto);
+			if (prod.Nombre == null) {
 				prod.Nombre = producto;
 				prod.Precio = Double.parseDouble(precio);
+				prod.Disponible = true;
 				dao.crear(prod);
+			}
+			else {
+				prod.Precio = Double.parseDouble(precio);
+				prod.Disponible = true;
+				dao.modificar(prod);
+			}
 		}
 
 		RequestDispatcher dispatcher = null;
