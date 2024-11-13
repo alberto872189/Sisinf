@@ -3,23 +3,23 @@ package servlets;
 import java.util.Map;
 
 import dao.postgres.DAOPeliculaPostgres;
-import dao.postgres.DAOSesionPostgres;
 
+import java.io.File;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
-import utils.Pair;
 import vo.Pelicula;
-import vo.Sesion;
-import java.util.Date;
 
-@WebServlet(description = "Servlet para añadir películas al catálogo", urlPatterns = { "/añadirPelicula" })
+@MultipartConfig
+@WebServlet(description = "Servlet para añadir películas al catálogo", urlPatterns = { "/anyadirPelicula" })
 public class AnyadirPeliculaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -27,49 +27,45 @@ public class AnyadirPeliculaServlet extends HttpServlet {
 		Map<String, String> errors = new HashMap <String, String>();
 		String titulo = request.getParameter("titulo");
 		String resumen = request.getParameter("resumen");
-		String imagen = request.getParameter("imagen");
-		String link = request.getParameter("link");
+		Part filePart = request.getPart("imagen");
+		String link = request.getParameter("imdb");
 		String trailer = request.getParameter("trailer");
-		String hora = request.getParameter("hora");
-		String sala = request.getParameter("sala");
-		String precio = request.getParameter("precio");
+		
+
+		subirImagen(filePart, titulo, request);
 		
 		if(errors.isEmpty()) {
 			DAOPeliculaPostgres daoPeli = new DAOPeliculaPostgres("admin", "admin");
 			Pelicula peli = daoPeli.obtener(titulo);
-			if (peli.Titulo != null) {
-				errors.put("Pelicula", "La película ya existe");
+			if (peli != null && peli.Titulo != null) {
+				request.setAttribute("mensaje", "Ya existe película con ese título");
 			}
+
 			else {
 				peli.Titulo = titulo;
 				peli.Resumen = resumen;
-				peli.Imagen = imagen;
+				peli.Imagen = "/sisinf2/peliculas/imagenes/"+titulo+".jpg";
 				peli.Link_IMDB = link;
 				peli.Trailer = trailer;
 				daoPeli.crear(peli);
 			}
 			
-			DAOSesionPostgres daoSesion = new DAOSesionPostgres("admin", "admin");
-			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-			Date fecha = null;
-			try {
-				fecha = formatter.parse(hora);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-			int nSesion = Integer.parseInt(sala);
-			Sesion sesion = daoSesion.obtener(new Pair<Date, Integer>(fecha, nSesion));
-			if (sesion.N_Sala != null) {
-				errors.put("Sesion", "La sesión ya existe");
-			} else {
-				sesion.Sesion_Hora = fecha;
-				sesion.N_Sala = nSesion;
-				sesion.Precio = Double.parseDouble(precio);
-				daoSesion.crear(sesion);
-			}
 		}
-		RequestDispatcher dispatcher=request.getRequestDispatcher("PeliculasCrear.jsp");
-		request.setAttribute("errors", errors);
+		RequestDispatcher dispatcher=request.getRequestDispatcher("admin/peliculas/anyadirPelicula.jsp");
+        request.setAttribute("mensaje", "Pelicula subida exitosamente");
 		dispatcher.forward(request, response);
 	}
+
+private void subirImagen(Part filePart, String titulo, HttpServletRequest request) {
+	String uploadPath = getServletContext().getRealPath("/peliculas/imagenes");
+	String fileName = titulo+".jpg";
+	String filePath = uploadPath + File.separator + fileName;
+    try (InputStream fileContent = filePart.getInputStream()) {
+        Files.copy(fileContent, new File(filePath).toPath(), StandardCopyOption.REPLACE_EXISTING);
+    } catch (Exception e) {
+    	request.setAttribute("mensaje", "No se pudo subir la imagen en");
+    }
+}
+
+
 }

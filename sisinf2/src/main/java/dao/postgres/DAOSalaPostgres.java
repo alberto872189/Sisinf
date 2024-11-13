@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import dao.interfaces.DAOSala;
 import vo.Sala;
@@ -102,6 +104,41 @@ public class DAOSalaPostgres extends DAOSala {
 			resultSet.close();
 			statement.close();
 			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+	
+	public List<Sala> obtenerSalas() {
+		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
+		
+		List<Sala> res = new ArrayList<Sala>();
+		
+		try {
+			Class.forName("org.postgresql.Driver");
+		
+			Connection connection;
+		
+			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+	
+			String sql = "select * from Sala";
+			
+			Statement statement = connection.createStatement();
+			
+			ResultSet resultSet = statement.executeQuery(sql);
+
+			while (resultSet.next())
+			{
+				Sala sala = new Sala();
+				sala.n = resultSet.getInt("n_sala");
+				res.add(sala);
+			}
+			connection.close();
+			resultSet.close();
+			statement.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {

@@ -31,7 +31,7 @@
 	<%
 			}
 	%>
-		<%= "<td id=\"td-cartelera\"><img width=\"300\" height=\"300\" src=\"" + pel.Imagen + "\" /> <br>Datos ejemplo : ***</td>"%>
+		<%= "<td id=\"td-cartelera\"><img width=\"300\" height=\"300\" src=\"" + pel.Imagen + "\" /><br>"+pel.Titulo+"<br>Datos ejemplo : ***</td>"%>
 	<%		
 			if (fintr == ncolumnas) {
 	%>

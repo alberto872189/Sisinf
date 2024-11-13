@@ -81,7 +81,7 @@
     	</div>
     	<br>
     	<br>
-    	<a href="/index.jsp">CERRAR SESION</a>
+    	<a href="/sisinf2/index.jsp">CERRAR SESION</a>
   	</div>
 </main>
 

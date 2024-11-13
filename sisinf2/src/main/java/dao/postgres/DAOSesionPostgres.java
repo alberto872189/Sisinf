@@ -11,7 +11,6 @@ import java.util.List;
 
 import dao.interfaces.DAOSesion;
 import utils.Pair;
-import vo.Pelicula;
 import vo.Sesion;
 
 public class DAOSesionPostgres extends DAOSesion {

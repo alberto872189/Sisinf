@@ -1,5 +1,14 @@
 <!DOCTYPE html>
 <html>
+<%@ page import="dao.postgres.DAOPeliculaPostgres" %>
+<%@ page import="vo.Pelicula" %>
+<%@ page import="dao.postgres.DAOSalaPostgres" %>
+<%@ page import="vo.Sala" %>
+<%@ page import="dao.postgres.DAOSesionPostgres" %>
+<%@ page import="vo.Sesion" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat"%>
 <head>
 <meta charset="UTF-8">
 <title>editarSesiones</title>
@@ -9,34 +18,49 @@
 			 <h2>Sesión a cambiar</h2>
 			 	Pelicula:
 			 	<select name="PeliculaVieja">
-			 	<option value="Pelicula1">Pelicula1</option>
-			 	<option value="Pelicula2">Pelicula2</option>
-			 	<option value="Pelicula3">Pelicula3</option>
-			 	<option value="Pelicula3">Pelicula4</option>
+			 	<%
+                    DAOPeliculaPostgres dao = new DAOPeliculaPostgres("usuario", "user");
+                    List<Pelicula> peliculas = dao.obtenerPeliculas();
+                    for (Pelicula pel : peliculas) {
+                        out.print("<option value='" + pel.Titulo + "'>" + pel.Titulo + "</option>");
+                    }
+                %>
 			 </select>
-			 Fecha:
-			 <input type="date" name="dia">
-			 Hora:
-			 <select name="Hora">
-			 	<option value="16:00">16:00</option>
-			 	<option value="18:00">18:00</option>
-			 	<option value="20:00">20:00</option>
+			 Fecha y hora:
+			 <select name="FechaHora">
+				<%
+					String peliculaVieja = request.getParameter("PeliculaVieja");
+					if (peliculaVieja != null){
+						DAOSesionPostgres dao3 = new DAOSesionPostgres("usuario", "user");
+						SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	                    List<Sesion> sesiones = dao3.obtenerSesionesPel(peliculaVieja);
+	                    for (Sesion ses : sesiones) {
+	                    	String horaFormateada = sdf.format(ses.Sesion_Hora);
+	                        out.print("<option value='" + horaFormateada + "'>" + horaFormateada + "</option>");
+	                    }
+					}   
+                %>
 			 </select>
 			 Sala
 			 <select name="Sala">
-			 	<option value="1">1</option>
-			 	<option value="2">2</option>
-			 	<option value="3">3</option>
+			 	<%
+                    DAOSalaPostgres dao2 = new DAOSalaPostgres("usuario", "user");
+                    List<Sala> salas = dao2.obtenerSalas();
+                    for (Sala sala : salas) {
+                        out.print("<option value='" + String.valueOf(sala.n) + "'>" + String.valueOf(sala.n) + "</option>");
+                    }
+                %>
 			 </select>
 			 
 			 <h2>Nueva Sesión</h2>
 		<form name="editarSesion" action="post" action="editarSesion">
 			 	Pelicula:
 			 	<select name="PeliculaNueva" required>
-			 	<option value="Pelicula1">Pelicula1</option>
-			 	<option value="Pelicula2">Pelicula2</option>
-			 	<option value="Pelicula3">Pelicula3</option>
-			 	<option value="Pelicula3">Pelicula4</option>
+			 	<%
+                    for (Pelicula pel : peliculas) {
+                        out.print("<option value='" + pel.Titulo + "'>" + pel.Titulo + "</option>");
+                    }
+                %>
 			 	</select>
 			 	Fecha:
 			 	<input type="date" name="diaNuevo" required>
@@ -44,9 +68,11 @@
 			 	<input type="time" required>
 			 	Sala
 			 	<select name="Sala">
-			 	<option value="1">1</option>
-			 	<option value="2">2</option>
-			 	<option value="3">3</option>
+			 	<%
+                    for (Sala sala : salas) {
+                        out.print("<option value='" + String.valueOf(sala.n) + "'>" + String.valueOf(sala.n) + "</option>");
+                    }
+                %>
 			 </select>
 			 <br>
 			 <br>
