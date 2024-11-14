@@ -2,12 +2,12 @@ insert into administrador(correo, contrasenia, nombre) values ('admin@gmail.com'
 
 insert into cliente(correo, contrasenia, nombre) values ('user@gmail.com', 'user', 'user');
 
-insert into pelicula(titulo, resumen, imagen, link_imdb, trailer) values ('Pelicula 1', 'resumen pelicula 1', '/sisinf2/peliculas/imagenes/template.jpg', 'https://www.imdb.com', 'https://www.youtube.com/embed/KAOdjqyG37A?si=ieum95YSZFWByCOP');
-insert into pelicula(titulo, resumen, imagen, link_imdb, trailer) values ('Pelicula 2', 'resumen pelicula 2', '/sisinf2/peliculas/imagenes/template2.png', 'https://www.imdb.com', 'https://www.youtube.com/embed/IFTH_yUz7iI?si=XSI8eV9w4aaGnqFj');
-insert into pelicula(titulo, resumen, imagen, link_imdb, trailer) values ('Pelicula 3', 'resumen pelicula 3', '/sisinf2/peliculas/imagenes/template3.jpg', 'https://www.imdb.com', 'https://www.youtube.com/embed/KTw6pDYLKLQ?si=T01pYVWeXlVVqhv2');
-insert into pelicula(titulo, resumen, imagen, link_imdb, trailer) values ('Pelicula 4', 'resumen pelicula 4', '/sisinf2/peliculas/imagenes/template2.png', 'https://www.imdb.com', 'https://www.youtube.com/embed/IFTH_yUz7iI?si=XSI8eV9w4aaGnqFj');
-insert into pelicula(titulo, resumen, imagen, link_imdb, trailer) values ('Pelicula 5', 'resumen pelicula 5', '/sisinf2/peliculas/imagenes/template.jpg', 'https://www.imdb.com', 'https://www.youtube.com/embed/KAOdjqyG37A?si=ieum95YSZFWByCOP');
-insert into pelicula(titulo, resumen, imagen, link_imdb, trailer) values ('Pelicula 6', 'resumen pelicula 6', '/sisinf2/peliculas/imagenes/template3.jpg', 'https://www.imdb.com', 'https://www.youtube.com/embed/KTw6pDYLKLQ?si=T01pYVWeXlVVqhv2');
+insert into pelicula(titulo, resumen, imagen, link_imdb, trailer) values ('Pelicula 1', 'resumen pelicula 1', '/sisinf/peliculas/imagenes/template.jpg', 'https://www.imdb.com', 'https://www.youtube.com/embed/KAOdjqyG37A?si=ieum95YSZFWByCOP');
+insert into pelicula(titulo, resumen, imagen, link_imdb, trailer) values ('Pelicula 2', 'resumen pelicula 2', '/sisinf/peliculas/imagenes/template2.png', 'https://www.imdb.com', 'https://www.youtube.com/embed/IFTH_yUz7iI?si=XSI8eV9w4aaGnqFj');
+insert into pelicula(titulo, resumen, imagen, link_imdb, trailer) values ('Pelicula 3', 'resumen pelicula 3', '/sisinf/peliculas/imagenes/template3.jpg', 'https://www.imdb.com', 'https://www.youtube.com/embed/KTw6pDYLKLQ?si=T01pYVWeXlVVqhv2');
+insert into pelicula(titulo, resumen, imagen, link_imdb, trailer) values ('Pelicula 4', 'resumen pelicula 4', '/sisinf/peliculas/imagenes/template2.png', 'https://www.imdb.com', 'https://www.youtube.com/embed/IFTH_yUz7iI?si=XSI8eV9w4aaGnqFj');
+insert into pelicula(titulo, resumen, imagen, link_imdb, trailer) values ('Pelicula 5', 'resumen pelicula 5', '/sisinf/peliculas/imagenes/template.jpg', 'https://www.imdb.com', 'https://www.youtube.com/embed/KAOdjqyG37A?si=ieum95YSZFWByCOP');
+insert into pelicula(titulo, resumen, imagen, link_imdb, trailer) values ('Pelicula 6', 'resumen pelicula 6', '/sisinf/peliculas/imagenes/template3.jpg', 'https://www.imdb.com', 'https://www.youtube.com/embed/KTw6pDYLKLQ?si=T01pYVWeXlVVqhv2');
 
 insert into sala(n_sala) values (1);
 insert into sala(n_sala) values (2);
