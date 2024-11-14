@@ -27,7 +27,7 @@ public class DAOEntradaPostgres extends DAOEntrada {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "INSERT INTO Entrada(Correo, Sesion_Hora, N_Sala, N_But) VALUES ('" + t.Correo + "','" + t.Sesion_Hora + "'," +  t.N_Sala + "," + t.N_But + ") RETURNING ID";
+            String sql = "INSERT INTO Entrada(Correo, Sesion_Hora, N_Sala, N_But, Tit_Pel) VALUES ('" + t.Correo + "','" + t.Sesion_Hora + "'," +  t.N_Sala + "," + t.N_But + ",'" + t.Tit_Pel + "') RETURNING ID";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             /*preparedStatement.setString(1, t.Correo);
@@ -59,7 +59,7 @@ public class DAOEntradaPostgres extends DAOEntrada {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "UPDATE Entrada SET Correo = '" + t.Correo + "', Sesion_Hora = '" + t.Sesion_Hora + "', N_Sala = " + t.N_Sala + ", N_But = " + t.N_But + " WHERE ID=" + t.ID;
+            String sql = "UPDATE Entrada SET Correo = '" + t.Correo + "', Sesion_Hora = '" + t.Sesion_Hora + "', N_Sala = " + t.N_Sala + ", N_But = " + t.N_But + ", Tit_Pel = '" + t.Tit_Pel  + "' WHERE ID=" + t.ID;
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             /*preparedStatement.setString(1, t.Correo);
@@ -130,6 +130,7 @@ public class DAOEntradaPostgres extends DAOEntrada {
 				res.N_Sala = resultSet.getInt("N_Sala");
 				res.ID = resultSet.getInt("ID");
 				res.N_But = resultSet.getInt("N_But");
+				res.Tit_Pel = resultSet.getString("Tit_Pel");
 				
 			}
 			connection.close();
@@ -169,6 +170,7 @@ public class DAOEntradaPostgres extends DAOEntrada {
 				entrada.Sesion_Hora = resultSet.getDate("Sesion_Hora");
 				entrada.N_Sala = resultSet.getInt("N_Sala");
 				entrada.N_But = resultSet.getInt("N_But");
+				entrada.Tit_Pel = resultSet.getString("Tit_Pel");
 				res.add(entrada);
 			}
 			connection.close();
@@ -208,8 +210,37 @@ public class DAOEntradaPostgres extends DAOEntrada {
 				entrada.Sesion_Hora = resultSet.getDate("Sesion_Hora");
 				entrada.N_Sala = resultSet.getInt("N_Sala");
 				entrada.N_But = resultSet.getInt("N_But");
+				entrada.Tit_Pel = resultSet.getString("Tit_Pel");
 				res.add(entrada);
 			}
+			connection.close();
+			resultSet.close();
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+	
+	public int obtenerNumEntradasPelicula(String pelicula) {
+		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
+		int res = 0;
+		try {
+			Class.forName("org.postgresql.Driver");
+		
+			Connection connection;
+		
+			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+	
+			String sql = "select count(*) AS nEntradas from Entrada WHERE Tit_Pel = '" + pelicula + "'";
+			
+			Statement statement = connection.createStatement();
+			
+			ResultSet resultSet = statement.executeQuery(sql);
+			
+			res = resultSet.getInt("nEntradas");
 			connection.close();
 			resultSet.close();
 			statement.close();

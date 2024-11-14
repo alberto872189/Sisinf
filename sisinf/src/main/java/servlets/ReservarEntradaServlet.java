@@ -48,6 +48,7 @@ public class ReservarEntradaServlet extends HttpServlet {
 					entrada.N_Sala = Integer.valueOf(sala);
 					entrada.Correo = usuario;
 					entrada.Sesion_Hora = Timestamp.valueOf(hora);
+					entrada.Tit_Pel = pelicula;
 					int idEnt = daoEntrada.crear(entrada);
 					idEntradas[i] = Integer.toString(idEnt);
 					i++;

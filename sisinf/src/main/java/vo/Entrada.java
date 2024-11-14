@@ -7,4 +7,5 @@ public class Entrada {
 	public Date Sesion_Hora;
 	public Integer N_Sala;
 	public Integer N_But;
+	public String Tit_Pel;
 }

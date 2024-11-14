@@ -52,7 +52,8 @@ CREATE TABLE Entrada (
     Sesion_Hora TIMESTAMP,
 	N_Sala INT,
 	N_But INT,
-    FOREIGN KEY (Correo) REFERENCES Cliente(Correo) ON DELETE CASCADE,
+	Tit_Pel VARCHAR(255),
+	FOREIGN KEY (Tit_Pel) REFERENCES Pelicula(Titulo) ON DELETE CASCADE,
     FOREIGN KEY (Sesion_Hora, N_Sala) REFERENCES Sesion(Sesion_Hora, N_Sala),
 	FOREIGN KEY (N_But, N_Sala) REFERENCES Butaca(N_Butaca, Sala_N)
 );

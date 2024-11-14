@@ -5,6 +5,7 @@
     pageEncoding="UTF-8"%>
     
 <%@ page import="dao.postgres.DAOPeliculaPostgres" %>
+<%@ page import="dao.postgres.DAOEntradaPostgres" %>
 <%@ page import="vo.Pelicula" %>
 <%@ page import="java.util.List" %>
 <head>
@@ -31,8 +32,12 @@
 	<%
 			}
 	%>
-		<%= "<td id=\"td-cartelera\"><img width=\"300\" height=\"300\" src=\"" + pel.Imagen + "\" /><br>"+pel.Titulo+"<br>Datos ejemplo : ***</td>"%>
-	<%		
+		<%= "<td id=\"td-cartelera\"><img width=\"300\" height=\"300\" src=\"" + pel.Imagen + "\" /><br>"+pel.Titulo+"<br>"%>
+	<%		DAOEntradaPostgres dao2 = new DAOEntradaPostgres("usuario", "user");
+			int numEntPel = dao2.obtenerNumEntradasPelicula(pel.Titulo);
+	%>
+		<%= "Entradas vendidas: " + numEntPel + "<br></td>" %>
+	<%
 			if (fintr == ncolumnas) {
 	%>
 			<%= "</tr>" %>
