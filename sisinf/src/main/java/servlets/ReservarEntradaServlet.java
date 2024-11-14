@@ -2,7 +2,6 @@ package servlets;
 
 import java.util.Map;
 
-import dao.postgres.DAOClientePostgres;
 import dao.postgres.DAOEntradaPostgres;
 
 import java.io.IOException;
@@ -12,7 +11,6 @@ import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
-import vo.Cliente;
 import vo.Entrada;
 
 import java.sql.Timestamp;

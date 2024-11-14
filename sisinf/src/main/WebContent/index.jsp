@@ -7,6 +7,8 @@
 <%@ page import="dao.postgres.DAOPeliculaPostgres" %>
 <%@ page import="vo.Pelicula" %>
 <%@ page import="java.util.List" %>
+<%@ page import="dao.postgres.DAOAdministradorPostgres" %>
+<%@ page import="vo.Administrador" %>
 
 <%
 		String user = null;
@@ -18,7 +20,17 @@
 			}
 		}
 		if (user != null) {
-			response.sendRedirect("/sisinf/indexUser.jsp");
+			DAOAdministradorPostgres daoAdmin = new DAOAdministradorPostgres("usuario", "user");
+			Administrador admin = daoAdmin.obtener(user);
+			if (admin.Correo.equals(user)) {
+				Cookie cookie = new Cookie ("login", "");
+				cookie.setMaxAge(0);
+				response.addCookie(cookie);
+				user = null;
+			}
+			else {
+				response.sendRedirect("/sisinf/indexUser.jsp");
+			}
 		}
 	%>
 
