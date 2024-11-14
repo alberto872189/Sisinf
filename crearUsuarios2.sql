@@ -5,8 +5,6 @@ GRANT SELECT ON ALL TABLES IN SCHEMA public TO usuario;
 ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO usuario;
 GRANT INSERT ON Entrada, Cliente, Prod_Ent, Comentario TO usuario;
 GRANT UPDATE ON Cliente TO usuario;
-ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT UPDATE ON Cliente TO usuario;
-ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT INSERT ON Entrada, Cliente, Prod_Ent, Comentario TO usuario;
 GRANT USAGE ON SEQUENCE comentario_id_seq TO usuario;
 GRANT USAGE ON SEQUENCE entrada_id_seq TO usuario;
 
