@@ -29,9 +29,6 @@ public class DAOProd_EntPostgres extends DAOProd_Ent {
             String sql = "INSERT INTO Prod_Ent(ID_Ent, Nombre_Prod) VALUES (" + t.ID_Ent + ",'" +  t.Nombre_Prod + "')";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            /*preparedStatement.setInt(1, t.ID_Ent);
-            preparedStatement.setString(2, t.Nombre_Prod);*/
-            
             int rowsInserted = preparedStatement.executeUpdate();
             System.out.println(rowsInserted + " row(s) inserted.");
 		} catch (SQLException e) {
@@ -59,9 +56,6 @@ public class DAOProd_EntPostgres extends DAOProd_Ent {
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
             String sql = "DELETE FROM Prod_Ent WHERE ID_Ent=" + k.x + " AND Nombre_Prod = '" + k.y + "'";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-            /*preparedStatement.setInt(1, k.x);
-			preparedStatement.setString(2, k.y);*/
 
             int rowsDeleted = preparedStatement.executeUpdate();
             System.out.println(rowsDeleted + " row(s) deleted.");

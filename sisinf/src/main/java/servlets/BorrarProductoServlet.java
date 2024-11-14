@@ -1,12 +1,8 @@
 package servlets;
 
-
-
-
 import dao.postgres.DAOProductoPostgres;
 
 import java.io.IOException;
-
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;

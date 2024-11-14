@@ -1,10 +1,8 @@
 package servlets;
 
-
 import dao.postgres.DAOProd_EntPostgres;
 
 import java.io.IOException;
-
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -12,8 +10,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
 import vo.Prod_Ent;
-
-
 
 @WebServlet(description = "Servlet de asignación de productos a su entrada", urlPatterns = { "/addProductoEntrada"})
 public class AnyadirProductoEntradaServlet extends HttpServlet {

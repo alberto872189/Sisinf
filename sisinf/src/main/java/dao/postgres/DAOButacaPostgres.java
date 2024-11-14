@@ -32,10 +32,6 @@ public class DAOButacaPostgres extends DAOButaca {
             String sql = "INSERT INTO Butaca(N_Butaca, Sala_N) VALUES (" + t.N_Butaca + "," + t.Sala_N + ")";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            /*preparedStatement.setInt(1, t.N_Butaca);
-            preparedStatement.setInt(2, t.Sala_N);*/
-            
-
             int rowsInserted = preparedStatement.executeUpdate();
             System.out.println(rowsInserted + " row(s) inserted.");
 		} catch (SQLException e) {
@@ -66,10 +62,6 @@ public class DAOButacaPostgres extends DAOButaca {
             String sql = "DELETE FROM Butaca WHERE N_Butaca=" + k.x.toString() + " and Sala_N=" + k.y.toString();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            /*preparedStatement.setInt(1, k.x);
-            preparedStatement.setInt(2, k.y);*/
-            
-
             int rowsDeleted = preparedStatement.executeUpdate();
             System.out.println(rowsDeleted + " row(s) deleted.");
             connection.close();
@@ -98,9 +90,6 @@ public class DAOButacaPostgres extends DAOButaca {
 			Statement statement = connection.createStatement();
 			
 			ResultSet resultSet = statement.executeQuery(sql);
-			
-			/*preparedStatement.setInt(1, k.x);
-            preparedStatement.setInt(2, k.y);*/
 
 			while (resultSet.next())
 			{
@@ -137,8 +126,6 @@ public class DAOButacaPostgres extends DAOButaca {
 			DAOEntradaPostgres daoEntrada = new DAOEntradaPostgres("usuario", "user");
 			
 			List<Entrada> listaEntradas = daoEntrada.obtenerEntradasSesion(sala, hora);
-			/*preparedStatement.setInt(1, k.x);
-            preparedStatement.setInt(2, k.y);*/
 
 			while (resultSet.next())
 			{

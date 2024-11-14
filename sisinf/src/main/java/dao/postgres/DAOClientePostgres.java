@@ -28,11 +28,6 @@ public class DAOClientePostgres extends DAOCliente {
             String sql = "INSERT INTO Cliente(Correo, Contrasenia, Nombre) VALUES ('" + t.Correo + "','" + t.Contrasenia + "','" + t.Nombre + "')";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            /*preparedStatement.setString(1, t.Correo);
-            preparedStatement.setString(2, t.Contrasenia);
-            preparedStatement.setString(3, t.Nombre);*/
-            
-
             int rowsInserted = preparedStatement.executeUpdate();
             System.out.println(rowsInserted + " row(s) inserted.");
 		} catch (SQLException e) {
@@ -55,11 +50,6 @@ public class DAOClientePostgres extends DAOCliente {
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
             String sql = "UPDATE Cliente SET Contrasenia = '" + t.Contrasenia + "', Nombre = '" + t.Nombre + "' WHERE Correo='" + t.Correo + "'";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-            /*preparedStatement.setString(1, t.Contrasenia);
-            preparedStatement.setString(2, t.Nombre);
-            preparedStatement.setString(3, t.Correo);*/
-            
 
             int rowsUpdated = preparedStatement.executeUpdate();
             System.out.println(rowsUpdated + " row(s) updated.");
@@ -84,8 +74,6 @@ public class DAOClientePostgres extends DAOCliente {
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
             String sql = "DELETE FROM Cliente WHERE Correo='" + k + "'";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-            //preparedStatement.setString(1, k);
 
             int rowsDeleted = preparedStatement.executeUpdate();
             System.out.println(rowsDeleted + " row(s) deleted.");

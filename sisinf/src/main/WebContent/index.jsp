@@ -57,7 +57,7 @@
 			
 				<%! Map<String,String> errors; %>
 				<% errors = (Map<String,String>)request.getAttribute("errors"); %>
-				<input id="login" name="login" type="text" placeholder="Nombre de usuario" required>
+				<input id="login" name="login" type="text" placeholder="Correo" required>
 				<br>
 				<% if (errors != null && errors.get("Login") != null) { %>
 					<%= errors.get("Login") %>

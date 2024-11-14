@@ -30,11 +30,6 @@ public class DAOEntradaPostgres extends DAOEntrada {
             String sql = "INSERT INTO Entrada(Correo, Sesion_Hora, N_Sala, N_But, Tit_Pel) VALUES ('" + t.Correo + "','" + t.Sesion_Hora + "'," +  t.N_Sala + "," + t.N_But + ",'" + t.Tit_Pel + "') RETURNING ID";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            /*preparedStatement.setString(1, t.Correo);
-            preparedStatement.setTimestamp(2, t.Sesion_Hora);
-            preparedStatement.setInt(3, t.N_Sala);*/
-            
-
             boolean rowsInserted = preparedStatement.execute();
             System.out.println(rowsInserted + " row(s) inserted.");
             ResultSet lastId = preparedStatement.getResultSet();
@@ -62,12 +57,6 @@ public class DAOEntradaPostgres extends DAOEntrada {
             String sql = "UPDATE Entrada SET Correo = '" + t.Correo + "', Sesion_Hora = '" + t.Sesion_Hora + "', N_Sala = " + t.N_Sala + ", N_But = " + t.N_But + ", Tit_Pel = '" + t.Tit_Pel  + "' WHERE ID=" + t.ID;
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            /*preparedStatement.setString(1, t.Correo);
-            preparedStatement.setTimestamp(2, t.Sesion_Hora);
-            preparedStatement.setInt(3, t.N_Sala);
-            preparedStatement.setInt(4, t.ID);*/
-            
-
             int rowsUpdated = preparedStatement.executeUpdate();
             System.out.println(rowsUpdated + " row(s) updated.");
             connection.close();
@@ -91,9 +80,7 @@ public class DAOEntradaPostgres extends DAOEntrada {
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
             String sql = "DELETE FROM Entrada WHERE ID=" + k;
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-            //preparedStatement.setInt(1, k);
-
+			
             int rowsDeleted = preparedStatement.executeUpdate();
             System.out.println(rowsDeleted + " row(s) deleted.");
             connection.close();

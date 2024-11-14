@@ -27,14 +27,8 @@ public class DAOComentarioPostgres extends DAOComentario {
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
             String sql = "INSERT INTO Comentario(Texto, Pelicula, Usuario, Fecha) VALUES ('" + t.Texto + "','" + t.Pelicula + "','" + t.Usuario + "','" + t.Fecha + "')";
-            //System.out.println(sql);
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            /*preparedStatement.setString(1, t.Texto);
-			preparedStatement.setString(2, t.Pelicula);
-			preparedStatement.setString(3, t.Usuario);
-            preparedStatement.setTimestamp(4, t.Fecha);*/
-			
             int rowsInserted = preparedStatement.executeUpdate();
             System.out.println(rowsInserted + " row(s) inserted.");
 		} catch (SQLException e) {
@@ -56,15 +50,8 @@ public class DAOComentarioPostgres extends DAOComentario {
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
             String sql = "UPDATE Comentario SET Texto = '" + t.Texto + "', Pelicula = '" + t.Pelicula + "', Usuario = '" + t.Usuario + "', Fecha = '" + t.Fecha + "' WHERE ID=" + t.ID;
-            //System.out.println(sql);
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            /*preparedStatement.setString(1, t.Texto);
-			preparedStatement.setString(2, t.Pelicula);
-			preparedStatement.setString(3, t.Usuario);
-            preparedStatement.setTimestamp(4, t.Fecha);
-			preparedStatement.setInt(5, t.ID);*/
-            
             int rowsUpdated = preparedStatement.executeUpdate();
             System.out.println(rowsUpdated + " row(s) updated.");
             connection.close();

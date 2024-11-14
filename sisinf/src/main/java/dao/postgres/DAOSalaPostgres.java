@@ -30,9 +30,6 @@ public class DAOSalaPostgres extends DAOSala {
             String sql = "INSERT INTO Sala(N_Sala) VALUES (" + t.n + ")";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-//            preparedStatement.setInt(1, t.n.intValue());
-            
-
             int rowsInserted = preparedStatement.executeUpdate();
             System.out.println(rowsInserted + " row(s) inserted.");
 		} catch (SQLException e) {
@@ -62,9 +59,6 @@ public class DAOSalaPostgres extends DAOSala {
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
             String sql = "DELETE FROM Sala WHERE N_Sala=" + k.toString();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-            //preparedStatement.setInt(1, k.intValue());
-            
 
             int rowsDeleted = preparedStatement.executeUpdate();
             System.out.println(rowsDeleted + " row(s) deleted.");

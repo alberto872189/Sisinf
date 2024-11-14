@@ -30,13 +30,6 @@ public class DAOPeliculaPostgres extends DAOPelicula {
             String sql = "INSERT INTO Pelicula(Titulo, Resumen, Imagen, Link_IMDB, Trailer) VALUES ('" + t.Titulo + "','" + t.Resumen + "','" + t.Imagen + "','" + t.Link_IMDB + "','" + t.Trailer + "')";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            /*preparedStatement.setString(1, t.Titulo);
-            preparedStatement.setString(2, t.Resumen);
-            preparedStatement.setString(3, t.Imagen);
-            preparedStatement.setString(4, t.Link_IMDB);
-            preparedStatement.setString(5, t.Trailer);*/
-            
-
             int rowsInserted = preparedStatement.executeUpdate();
             System.out.println(rowsInserted + " row(s) inserted.");
 		} catch (SQLException e) {
@@ -59,13 +52,6 @@ public class DAOPeliculaPostgres extends DAOPelicula {
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
             String sql = "UPDATE Pelicula SET Resumen = '" + t.Resumen + "', Imagen = '" + t.Imagen + "', Link_IMDB='" + t.Link_IMDB + "', Trailer='" + t.Trailer + "' WHERE Titulo='" + t.Titulo + "'";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-            /*preparedStatement.setString(1, t.Resumen);
-            preparedStatement.setString(2, t.Imagen);
-            preparedStatement.setString(3, t.Link_IMDB);
-            preparedStatement.setString(4, t.Trailer);
-            preparedStatement.setString(5, t.Titulo);*/
-            
 
             int rowsUpdated = preparedStatement.executeUpdate();
             System.out.println(rowsUpdated + " row(s) updated.");
@@ -90,9 +76,6 @@ public class DAOPeliculaPostgres extends DAOPelicula {
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
             String sql = "DELETE FROM Pelicula WHERE Titulo='" + k + "'";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-            //preparedStatement.setString(1, k);
-            
 
             int rowsDeleted = preparedStatement.executeUpdate();
             System.out.println(rowsDeleted + " row(s) deleted.");

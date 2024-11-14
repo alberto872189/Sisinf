@@ -30,11 +30,6 @@ public class DAOProductoPostgres extends DAOProducto {
             String sql = "INSERT INTO Producto(Nombre, Precio, Disponible) VALUES ('" + t.Nombre + "'," + t.Precio + "," + t.Disponible + ")";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            /*preparedStatement.setString(1, t.Nombre);
-            preparedStatement.setDouble(2, t.Precio);
-            preparedStatement.setBoolean(3, t.Disponible);*/
-            
-
             int rowsInserted = preparedStatement.executeUpdate();
             System.out.println(rowsInserted + " row(s) inserted.");
 		} catch (SQLException e) {
@@ -57,11 +52,6 @@ public class DAOProductoPostgres extends DAOProducto {
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
             String sql = "UPDATE Producto SET Precio = " + t.Precio + ", Disponible = " + t.Disponible + " WHERE Nombre='" + t.Nombre + "'";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-            /*preparedStatement.setDouble(1, t.Precio);
-            preparedStatement.setBoolean(2, t.Disponible);
-            preparedStatement.setString(3, t.Nombre);*/
-            
 
             int rowsUpdated = preparedStatement.executeUpdate();
             System.out.println(rowsUpdated + " row(s) updated.");
@@ -86,9 +76,6 @@ public class DAOProductoPostgres extends DAOProducto {
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
             String sql = "DELETE FROM Producto WHERE Nombre='" + k + "'";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-            //preparedStatement.setString(1, k);
-            
 
             int rowsDeleted = preparedStatement.executeUpdate();
             System.out.println(rowsDeleted + " row(s) deleted.");

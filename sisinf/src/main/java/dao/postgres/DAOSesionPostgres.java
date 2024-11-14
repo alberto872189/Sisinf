@@ -32,12 +32,6 @@ public class DAOSesionPostgres extends DAOSesion {
             String sql = "INSERT INTO Sesion(Sesion_Hora, Tit_Pel, N_Sala, Precio) VALUES ('" + t.Sesion_Hora + "','" + t.Tit_Pel + "'," + t.N_Sala + "," + t.Precio + ")";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            /*preparedStatement.setTimestamp(1, t.Sesion_Hora);
-            preparedStatement.setString(2, t.Tit_Pel);
-            preparedStatement.setInt(3, t.N_Sala);
-            preparedStatement.setDouble(4, t.Precio);*/
-            
-
             int rowsInserted = preparedStatement.executeUpdate();
             System.out.println(rowsInserted + " row(s) inserted.");
 		} catch (SQLException e) {
@@ -87,11 +81,7 @@ public class DAOSesionPostgres extends DAOSesion {
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
             String sql = "DELETE FROM Sesion WHERE Sesion_Hora='" + k.x + "' and N_Sala=" + k.y;
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-            /*preparedStatement.setTimestamp(1, k.x);
-            preparedStatement.setInt(2, k.y.intValue());*/
-            
+            PreparedStatement preparedStatement = connection.prepareStatement(sql); 
 
             int rowsDeleted = preparedStatement.executeUpdate();
             System.out.println(rowsDeleted + " row(s) deleted.");
@@ -181,8 +171,7 @@ public class DAOSesionPostgres extends DAOSesion {
 
 	@Override
 	public void modificar(Sesion t) {
-		// TODO Auto-generated method stub
-		//No nos sirve
+		
 	}
 
 }
