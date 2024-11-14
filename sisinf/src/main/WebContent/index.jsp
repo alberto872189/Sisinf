@@ -22,7 +22,7 @@
 		if (user != null) {
 			DAOAdministradorPostgres daoAdmin = new DAOAdministradorPostgres("usuario", "user");
 			Administrador admin = daoAdmin.obtener(user);
-			if (admin.Correo.equals(user)) {
+			if (admin.Correo != null && admin.Correo.equals(user)) {
 				Cookie cookie = new Cookie ("login", "");
 				cookie.setMaxAge(0);
 				response.addCookie(cookie);
