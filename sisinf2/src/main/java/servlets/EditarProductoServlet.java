@@ -29,8 +29,7 @@ public class EditarProductoServlet extends HttpServlet {
 			int i = 0;
 			for (String prod : productos) {
 				double precio = Double.parseDouble(precios[i]);
-				Producto producto = new Producto();
-				producto = dao.obtener(prod);
+				Producto producto = dao.obtener(prod);
 				producto.Precio = precio;
 				dao.modificar(producto);
 				i++;
