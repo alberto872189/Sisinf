@@ -17,7 +17,7 @@
 		for (Producto producto : productos) {
 			if(producto.Disponible) {
 				%>
-					<%="<input type=\"hidden\" name=\"productos\" value=\"producto.Nombre\" required>" %>
+					<%="<input type=\"hidden\" name=\"productos\" value=\"" + producto.Nombre + "\" required>" %>
 					<%="<li><span>" + producto.Nombre + ": " + producto.Precio + "</span><input type=\"number\" step=\"0.01\" name=\"precios\" value=\"" + producto.Precio + "\" required></li><br>" %>
 				<%
 			}

@@ -21,7 +21,10 @@
 			 	<%
                     DAOPeliculaPostgres dao = new DAOPeliculaPostgres("usuario", "user");
                     List<Pelicula> peliculas = dao.obtenerPeliculas();
+                    
                     for (Pelicula pel : peliculas) {
+    					DAOSesionPostgres dao2 = new DAOSesionPostgres("usuario", "user"); 
+    					List<Sesion> sesiones = dao2.obtenerSesionesPel(pel.Titulo); 
                         out.print("<option value='" + pel.Titulo + "'>" + pel.Titulo + "</option>");
                     }
                 %>
