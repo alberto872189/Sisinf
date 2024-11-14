@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <title>Home admin</title>
 </head>
+<%@ page import="vo.Producto" %>
+<%@ page import="dao.postgres.DAOProductoPostgres" %>
+<%@ page import="java.util.List" %>
+<%@ page import="vo.Pelicula" %>
+<%@ page import="dao.postgres.DAOPeliculaPostgres" %>
 
 <!-- Secciones -->
 <main>
@@ -42,33 +47,35 @@
     			<table style="margin:0 auto;">
     				<tr>
     					<td>
-    					Pelicula 1
-    					<input type="checkbox" name="pelicula1">
+    					<ul>
+    					<%
+				DAOPeliculaPostgres dao = new DAOPeliculaPostgres("usuario", "user");
+				List<Pelicula> peliculas = dao.obtenerPeliculas();
+				for (Pelicula pelicula : peliculas) {
+				%>
+					<%="<li><span>" + pelicula.Titulo + "</span><input type=\"checkbox\" name=\"peliculas\" value=\"" + pelicula.Titulo + "\"></li><br>" %>
+				<%
+				}
+				%>
+				</ul>
     					</td>
+    					</tr>
+    					<tr>
     					<td>
-    					Pelicula 2
-    					<input type="checkbox" name="pelicula2">
+    					<ul>
+    					<%
+				DAOProductoPostgres dao2 = new DAOProductoPostgres("usuario", "user");
+				List<Producto> productos = dao2.obtenerProductos();
+				for (Producto producto : productos) {
+					if(producto.Disponible) {
+				%>
+					<%="<li><span>" + producto.Nombre + ": " + producto.Precio + "</span><input type=\"checkbox\" name=\"productos\" value=\"" + producto.Nombre + "\"></li><br>" %>
+				<%
+					}
+				}
+				%>
+				</ul>
     					</td>
-    					<td>
-    					Pelicula 3
-    					<input type="checkbox" name="pelicula2">
-    					</td>
-    					<td>
-    					Pelicula 4
-    					<input type="checkbox" name="pelicula2">
-    					</td>
-    				</tr>
-    				<tr>
-    					<td></td>
-    					<td>
-    					Palomitas
-    					<input type="checkbox" name="pelicula2">
-    					</td>
-    					<td>
-    					Refresco
-    					<input type="checkbox" name="pelicula2">
-    					</td>
-    					<td></td>
     				</tr>
     			</table>
     		</div>

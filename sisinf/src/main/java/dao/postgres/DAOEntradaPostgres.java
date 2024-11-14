@@ -240,7 +240,9 @@ public class DAOEntradaPostgres extends DAOEntrada {
 			
 			ResultSet resultSet = statement.executeQuery(sql);
 			
-			res = resultSet.getInt("nEntradas");
+			if (resultSet.next()) {
+				res = resultSet.getInt("nEntradas");	
+			}
 			connection.close();
 			resultSet.close();
 			statement.close();

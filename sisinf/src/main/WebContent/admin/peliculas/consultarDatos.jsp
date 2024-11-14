@@ -50,7 +50,7 @@
 	%>
 	</table>
     <br>
-    <a href="/sisinf2/admin/indexAdmin.jsp">VOLVER</a>
+    <a href="/sisinf/admin/indexAdmin.jsp">VOLVER</a>
 </main>
 
 <!-- CSS -->

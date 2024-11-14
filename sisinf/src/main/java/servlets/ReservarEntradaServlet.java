@@ -34,25 +34,18 @@ public class ReservarEntradaServlet extends HttpServlet {
 			errors.put("Butacas", "Número de butacas incorrecto");
 		}
 		if(errors.isEmpty()) {
-			DAOClientePostgres dao = new DAOClientePostgres("usuario", "user");
-			Cliente client = dao.obtener(usuario);
-			if (client.Correo == null) {
-				errors.put("Login", "El usuario no existe");
-			}
-			else {
-				DAOEntradaPostgres daoEntrada = new DAOEntradaPostgres("usuario", "user");
-				Entrada entrada = new Entrada();
-				int i = 0;
-				for (String but : butacas) {
-					entrada.N_But = Integer.valueOf(but);
-					entrada.N_Sala = Integer.valueOf(sala);
-					entrada.Correo = usuario;
-					entrada.Sesion_Hora = Timestamp.valueOf(hora);
-					entrada.Tit_Pel = pelicula;
-					int idEnt = daoEntrada.crear(entrada);
-					idEntradas[i] = Integer.toString(idEnt);
-					i++;
-				}
+			DAOEntradaPostgres daoEntrada = new DAOEntradaPostgres("usuario", "user");
+			Entrada entrada = new Entrada();
+			int i = 0;
+			for (String but : butacas) {
+				entrada.N_But = Integer.valueOf(but);
+				entrada.N_Sala = Integer.valueOf(sala);
+				entrada.Correo = usuario;
+				entrada.Sesion_Hora = Timestamp.valueOf(hora);
+				entrada.Tit_Pel = pelicula;
+				int idEnt = daoEntrada.crear(entrada);
+				idEntradas[i] = Integer.toString(idEnt);
+				i++;
 			}
 		}
 		request.setAttribute("errors", errors);
