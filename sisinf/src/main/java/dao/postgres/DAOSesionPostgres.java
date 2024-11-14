@@ -48,8 +48,7 @@ public class DAOSesionPostgres extends DAOSesion {
 		return 1;
 	}
 
-	@Override
-	public void modificar(Sesion t) {
+	public void modificar(Pair<Date, Integer> k, Sesion nuevaSes) {
 		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		
 		try {
@@ -58,15 +57,14 @@ public class DAOSesionPostgres extends DAOSesion {
 			Connection connection;
 		
 			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
-            String sql = "UPDATE Sesion SET Tit_Pel = '" + t.Tit_Pel + "', Precio = " + t.Precio + " WHERE Sesion_Hora='" + t.Sesion_Hora + "' and N_Sala=" + t.N_Sala;
+			String sql = "UPDATE Sesion " +
+                    "SET Tit_Pel = '" + nuevaSes.Tit_Pel + "', " +
+                    "Precio = " + nuevaSes.Precio + ", " +
+                    "Sesion_Hora = '" + nuevaSes.Sesion_Hora + "', " +
+                    "N_Sala = " + nuevaSes.N_Sala + " " +
+                    "WHERE Sesion_Hora = '" + k.x + "' " +
+                    "AND N_Sala = " + k.y;
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-            /*preparedStatement.setString(1, t.Tit_Pel);
-            preparedStatement.setDouble(2, t.Precio);
-            preparedStatement.setTimestamp(3, t.Sesion_Hora);
-            preparedStatement.setInt(4, t.N_Sala);*/
-            
-
             int rowsUpdated = preparedStatement.executeUpdate();
             System.out.println(rowsUpdated + " row(s) updated.");
             connection.close();
@@ -179,6 +177,12 @@ public class DAOSesionPostgres extends DAOSesion {
 			e.printStackTrace();
 		}
 		return res;
+	}
+
+	@Override
+	public void modificar(Sesion t) {
+		// TODO Auto-generated method stub
+		//No nos sirve
 	}
 
 }

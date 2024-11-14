@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dao.interfaces.DAOProducto;
-import vo.Comentario;
 import vo.Producto;
 
 public class DAOProductoPostgres extends DAOProducto {

@@ -6,15 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import dao.interfaces.DAOButaca;
 import utils.Pair;
 import vo.Butaca;
 import vo.Entrada;
-import vo.Sesion;
-import dao.postgres.DAOEntradaPostgres;
 
 public class DAOButacaPostgres extends DAOButaca {
 

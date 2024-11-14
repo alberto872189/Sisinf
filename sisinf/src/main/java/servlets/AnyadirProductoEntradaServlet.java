@@ -1,23 +1,19 @@
 package servlets;
 
-import java.util.Map;
 
-import dao.postgres.DAOClientePostgres;
-import dao.postgres.DAOEntradaPostgres;
 import dao.postgres.DAOProd_EntPostgres;
 
 import java.io.IOException;
-import java.util.HashMap;
+
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
-import vo.Cliente;
-import vo.Entrada;
+
 import vo.Prod_Ent;
 
-import java.sql.Timestamp;
+
 
 @WebServlet(description = "Servlet de asignación de productos a su entrada", urlPatterns = { "/addProductoEntrada"})
 public class AnyadirProductoEntradaServlet extends HttpServlet {

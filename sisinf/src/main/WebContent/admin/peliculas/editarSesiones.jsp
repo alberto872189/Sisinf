@@ -16,68 +16,59 @@
 <body>
 			<h1>Editar sesion</h1>
 			 <h2>Sesion a cambiar</h2>
-			 	Pelicula:
-			 	<select name="PeliculaVieja">
+			 <form method="post" action="/sisinf/editarSesion">
+			 	<select id="sesionVieja" name="sesionVieja" required>
 			 	<%
                     DAOPeliculaPostgres dao = new DAOPeliculaPostgres("usuario", "user");
                     List<Pelicula> peliculas = dao.obtenerPeliculas();
-                    
+                	DAOSesionPostgres dao2 = new DAOSesionPostgres("usuario", "user"); 
                     for (Pelicula pel : peliculas) {
-    					DAOSesionPostgres dao2 = new DAOSesionPostgres("usuario", "user"); 
     					List<Sesion> sesiones = dao2.obtenerSesionesPel(pel.Titulo); 
-                        out.print("<option value='" + pel.Titulo + "'>" + pel.Titulo + "</option>");
+    					for (Sesion sesion : sesiones) {
+    						out.print("<option value=\""+sesion.Sesion_Hora+";"+sesion.N_Sala+"\">" + pel.Titulo + ", Fecha y Hora " + sesion.Sesion_Hora + ",  Sala " + sesion.N_Sala + ", Precio" + sesion.Precio + " $</option>");
+    					}
                     }
                 %>
 			 </select>
-			 Fecha y hora:
-			 <select name="FechaHora">
-			 	<% String peliculaVieja = request.getParameter("PeliculaVieja");
-					DAOSesionPostgres dao3 = new DAOSesionPostgres("usuario", "user"); 
-					List<Sesion> sesiones = dao3.obtenerSesionesPel(peliculaVieja); 
-					%>
-					<%for (Sesion sesion : sesiones) {%>
-						<%="<option value=\"" + sesion.Sesion_Hora +";" + sesion.N_Sala + "\">" + sesion.Sesion_Hora + ",  sala " + sesion.N_Sala + "</option>"%>
-					<%}%>
-			 </select>
-			 Sala
-			 <select name="Sala">
-			 	<%
-                    DAOSalaPostgres dao2 = new DAOSalaPostgres("usuario", "user");
-                    List<Sala> salas = dao2.obtenerSalas();
-                    for (Sala sala : salas) {
-                        out.print("<option value='" + String.valueOf(sala.n) + "'>" + String.valueOf(sala.n) + "</option>");
-                    }
-                %>
-			 </select>
-			 
-			 <h2>Nueva SesiÃ³n</h2>
-		<form name="editarSesion" action="post" action="editarSesion">
+			 <h2>Nueva Sesión</h2>
 			 	Pelicula:
-			 	<select name="PeliculaNueva" required>
+			 	<select id="peliculaNueva" name="peliculaNueva" required>
 			 	<%
                     for (Pelicula pel : peliculas) {
                         out.print("<option value='" + pel.Titulo + "'>" + pel.Titulo + "</option>");
                     }
                 %>
 			 	</select>
-			 	Fecha:
-			 	<input type="date" name="diaNuevo" required>
-			 	Hora:
-			 	<input type="time" required>
-			 	Sala
-			 	<select name="Sala">
+			 	<br>
+			 <div class="inline-group">
+			 	Sala:
+			 	<select id="salaNueva" name="salaNueva">
 			 	<%
+			 		DAOSalaPostgres dao3 = new DAOSalaPostgres("usuario", "user"); 
+			 		List<Sala> salas = dao3.obtenerSalas();
                     for (Sala sala : salas) {
                         out.print("<option value='" + String.valueOf(sala.n) + "'>" + String.valueOf(sala.n) + "</option>");
                     }
                 %>
-			 </select>
+			 	</select>
+				 Precio:
+			 	<input type="number" step="0.01" id="precioNuevo" name="precioNuevo" required>
+			</div>
+			<br>
+			<div class="inline-group">
+			 	Fecha:
+			 	<input type="date" id="diaNuevo" name="diaNuevo" required>
+			 	Hora:
+			 	<input type="time" id="horaNueva" name="horaNueva" required>
+			 </div>
 			 <br>
 			 <br>
 		<input type="submit" value="Cambiar">
 		</form>
 		<br>
-		<a href="/sisinf2/admin/indexAdmin.jsp">Volver</a>
+		<p>${mensajeEditarSesion}</p>
+		<br>
+		<a href="/sisinf/admin/indexAdmin.jsp">Volver</a>
 </body>
 
 
@@ -90,20 +81,21 @@ function editarSesion() {
 	
 <!-- CSS -->
 <style>
-  
-  
-  ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: space-between;
-  }
 
-  li {
-    margin-right: 20px;
-  }
-  
+	form {
+        display: flex;
+        flex-direction: column;
+        width: 450px;
+        margin: 0 auto;
+    }
+    
+    .inline-group {
+        display: flex;
+        gap: 10px; /* Espaciado entre los campos */
+        align-items: center;
+        justify-content: space-between;
+    }
+    
   html{
   	display: flex; 
   	text-align: center; 

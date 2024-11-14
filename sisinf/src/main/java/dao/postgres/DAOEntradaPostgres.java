@@ -10,8 +10,6 @@ import java.util.List;
 
 import dao.interfaces.DAOEntrada;
 import vo.Entrada;
-import vo.Producto;
-import vo.Sesion;
 
 public class DAOEntradaPostgres extends DAOEntrada {
 

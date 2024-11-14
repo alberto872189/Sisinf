@@ -7,8 +7,6 @@ import dao.postgres.DAOPeliculaPostgres;
 import dao.postgres.DAOComentarioPostgres;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 

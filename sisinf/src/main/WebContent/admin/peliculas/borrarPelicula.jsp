@@ -13,7 +13,7 @@
 		DAOPeliculaPostgres dao = new DAOPeliculaPostgres("usuario", "user"); 
 		List<Pelicula> peliculas = dao.obtenerPeliculas(); 
 	%>
-	<form method="post" action="deletePel">
+	<form method="post" action="/sisinf/borrarPelicula">
 	<table id="cartelera">
 	
     <%
@@ -27,7 +27,7 @@
 	<%
 			}
 	%>
-		<%= "<td id=\"td-cartelera\"><img width=\"300\" height=\"300\" src=\"" + pel.Imagen + "\" /> <br>" + pel.Titulo + "<br><input type=\"checkbox\" name=\"pelicula[]\" value=\"" + i + "\"></td>"%>
+		<%= "<td id=\"td-cartelera\"><img width=\"300\" height=\"300\" src=\"" + pel.Imagen + "\" /> <br>" + pel.Titulo + "<br><input type=\"checkbox\" name=\"pelicula[]\" value=\""+pel.Titulo+"\"></td>"%>
 	<%		
 			if (fintr == ncolumnas) {
 	%>
@@ -41,6 +41,9 @@
 	%>
 	
     </table>
+    <br>
+    <p>${mensajeBorrarPel}</p>
+    <br>
     <button id="delete-selected" type="submit">Borrar seleccionados</button>
     </form>
     <br>
