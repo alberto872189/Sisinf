@@ -10,13 +10,11 @@
 <!-- IndexUser.jsp -->
 <h1>Desacine</h1>
 <!-- Menu -->
-<nav>
-  <ul>
-  	<li><a href="indexUser.jsp">CARTELERA</a></li>
-    <li><a href="index.jsp" onclick="cerrarSesion()">CERRAR SESION</a></li>
-    <li><a href="#" class="tab-link" data-tab="seccion2">EDITAR TUS DATOS</a></li>
-  </ul>
-</nav>
+<div class="menu">
+	<button onclick="showTab('cartelera')">CARTELERA</button>
+	<button onclick="cerrarSesion()">CERRAR SESION</button>
+	<button onclick="showTab('editarDatos')">EDITAR DATOS</button>
+</div>
 
 
 <!-- Secciones -->
@@ -35,10 +33,43 @@
 		}
 	%>
   <div id="tabs" class="tabs">
-    <div id="seccion1" class="tab-content">
-    </div>
+		<div id="cartelera" class="tab-content">
+			<h2>CARTELERA</h2>
+			<br>
 
-    <div id="seccion2" class="tab-content">
+			<%
+			DAOPeliculaPostgres dao = new DAOPeliculaPostgres("usuario", "user");
+			List<Pelicula> peliculas = dao.obtenerPeliculas();
+			%>
+			<table id="cartelera">
+				<%
+				int ncolumnas = 2;
+				int i = 0;
+				int fintr = 1;
+				for (Pelicula pel : peliculas) {
+					if (i % ncolumnas == 0) {
+				%>
+				<%="<tr>"%>
+				<%
+				}
+				%>
+				<%="<td id=\"td-cartelera\"><a href=\"peliculas/pelicula.jsp?pelicula=" + pel.Titulo + "\"><img width=\"300\" height=\"300\" src=\"" + pel.Imagen
+		+ "\" /> <br>" + pel.Titulo + "</a></td>"%>
+				<%
+				if (fintr == ncolumnas) {
+				%>
+				<%="</tr>"%>
+				<%
+				fintr = 0;
+				}
+				i++;
+				fintr++;
+				}
+				%>
+			</table>
+		</div>
+
+    <div id="editarDatos" class="tab-content">
       <h2>Editar tus datos</h2>
       <form method="post" action="editUser">
       
@@ -77,107 +108,77 @@
       	</form> 
     </div>
   </div>
- <h2>CARTELERA</h2>
- <br>
-	<%	
-		DAOPeliculaPostgres dao = new DAOPeliculaPostgres("usuario", "user"); 
-		List<Pelicula> peliculas = dao.obtenerPeliculas(); 
-	%>
-	<table id="cartelera">
-	<%
-		int ncolumnas = 2;
-		int i = 0;
-		int fintr = 1;
-		for (Pelicula pel : peliculas) {
-			if (i % ncolumnas == 0) {
-	%>
-			<%= "<tr>" %>
-	<%
-			}
-	%>
-		<%= "<td id=\"td-cartelera\"><img width=\"300\" height=\"300\" src=\"" + pel.Imagen + "\" /> <br> <a href=\"peliculas/pelicula.jsp?pelicula=" + pel.Titulo + "\">" + pel.Titulo + "</a></td>"%>
-	<%		
-			if (fintr == ncolumnas) {
-	%>
-			<%= "</tr>" %>
-	<%
-			fintr = 0;
-			}
-			i++;
-			fintr++;
-		}
-	%>
-	</table>
 </main>
 
 <!-- JavaScript -->
 <script>
-  const tabs = document.querySelectorAll('.tab-link');
-  const tabContents = document.querySelectorAll('.tab-content');
-
-  tabs.forEach((tab) => {
-    tab.addEventListener('click', (e) => {
-      e.preventDefault();
-      const tabId = tab.getAttribute('data-tab');
-      tabContents.forEach((content) => {
-        content.classList.remove('active');
-      });
-      document.getElementById(tabId).classList.add('active');
-    });
+  document.addEventListener("DOMContentLoaded", () => {
+		showTab('cartelera');
   });
+  function showTab(tabId) {
+     	const tabs = document.querySelectorAll('.tab-content');
+      	tabs.forEach(tab => tab.style.display = 'none');
+
+    	document.getElementById(tabId).style.display = 'block';
+  }
   
   function cerrarSesion() {
-	  document.cookie = "login=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+	  	document.cookie = "login=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+	  	window.location.href = "index.jsp";
   }
 </script>
 
 <!-- CSS -->
 <style>
-  .tabs {
-    display: flex;
-    flex-wrap: wrap;
-  }
+.tabs {
+	display: flex;
+	flex-wrap: wrap;
+}
 
-  .tab-content {
-    display: none;
-  }
+.tab-content {
+	display: none;
+}
 
-  .tab-content.active {
-    display: block;
-  }
-  
-  
-  ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: space-between;
-  }
+.tab-content.active {
+	display: block;
+}
 
-  li {
-    margin-right: 20px;
-  }
-  
-  html{
-  	display: flex; 
-  	text-align: center; 
-	justify-content: center; 
-  }
-  
-  main{
-  	text-align: center; 
-	justify-content: center; 
-  }
-  
- #tabs {
- 	display: flex; 
- 	text-align: center; 
-	justify-content: center; 
- }
-  #td-cartelera {
-  	padding-bottom: 60px;
-  	padding-right: 10px;
-  	padding-left: 10px;
-  }
+.menu button{
+	display: flex; /* Usa flexbox para centrar el contenido */
+    align-items: center; /* Centra verticalmente */
+    justify-content: center; /* Opcional: centra horizontalmente */
+    height: 50px; /* Asegúrate de que el botón tenga suficiente altura */
+    padding: 10px; /* Opcional: ajusta el espacio interno */
+    font-size: 16px; 
+}
+.menu {
+    display: flex; /* Organiza los hijos en un eje horizontal */
+    gap: 10px; /* Espaciado entre los botones */
+    justify-content: center; /* Opcional: centra los botones horizontalmente en el contenedor */
+    align-items: center; /* Alinea los botones verticalmente */
+}
+
+html {
+	display: flex;
+	text-align: center;
+	justify-content: center;
+}
+
+main {
+	text-align: center;
+	justify-content: center;
+}
+
+#tabs {
+	display: flex;
+	text-align: center;
+	justify-content: center;
+}
+
+#td-cartelera {
+	padding-bottom: 60px;
+	padding-right: 10px;
+	padding-left: 10px;
+}
 </style>
+</html>

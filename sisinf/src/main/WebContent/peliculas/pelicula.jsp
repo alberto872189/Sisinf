@@ -53,12 +53,12 @@
 				<%= "<td><a href=\"" + pelicula.Link_IMDB + "\">Más información</a></td>"%>
 			</tr>
 			<tr>
-				<%= "<td><a href=\"/sisinf/peliculas/reserva/indexReserva.jsp?pelicula=" + pel + "\">Reservar entrada</a></td>" %>
-			</tr>
-			<tr>
 				<td><br><a href="/sisinf/index.jsp">VOLVER</a></td>
 			</tr>
 		</table>
+	</div>
+	<div style="float:left">
+		<%= "<td><button id=\"reservaBoton\" onClick=\"reservarEntrada('"+pel+"')\">Reservar entrada</button></td>" %>
 	</div>
 	<div style="float:left">
 		<table id="horarios">
@@ -113,7 +113,11 @@
 		%>
 	</div>
 </body>
-
+<script>
+function reservarEntrada(pelicula){
+	window.location.href = "/sisinf/peliculas/reserva/indexReserva.jsp?pelicula="+pelicula;
+}
+</script>
 
 <style>
 body {
@@ -134,6 +138,14 @@ body {
 #td-horarios {
 	border: 1px solid;
 }
+
+div{
+	padding: 10px; 
+}
+
+#reservaBoton{  
+}
+
 </style>
 
 </html>

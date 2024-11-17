@@ -15,6 +15,7 @@
 
 <body>
 <% String pel = request.getParameter("pelicula"); %>
+		<h1><%=pel%></h1>
 		<form name ="reserva" action=indexReserva2.jsp >
 			 <label for="nEntradas">Número de entradas:</label><br>
 			 <input type="number" name="nEntradas" value="1"><br><br>
@@ -56,16 +57,15 @@
     margin-right: 20px;
   }
   
-  html{
-  	display: flex; 
-  	text-align: center; 
-	justify-content: center; 
-  }
-  
-  main{
-  	display: flex; 
-  	text-align: center; 
-	justify-content: center; 
-  }
+  html {
+	display: flex;
+	text-align: center;
+	justify-content: center;
+}
+
+main {
+	text-align: center;
+	justify-content: center;
+}
 </style>
 </html>
