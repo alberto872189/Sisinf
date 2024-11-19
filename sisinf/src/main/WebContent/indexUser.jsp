@@ -1,38 +1,39 @@
 <!DOCTYPE html>
 <html>
-<%@ page import="java.util.Map" %>
+<%@ page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-<%@ page import="dao.postgres.DAOPeliculaPostgres" %>
-<%@ page import="vo.Pelicula" %>
-<%@ page import="java.util.List" %>
-<!-- IndexUser.jsp -->
-<h1>Desacine</h1>
-<!-- Menu -->
-<div class="menu">
-	<button onclick="showTab('cartelera')">CARTELERA</button>
-	<button onclick="cerrarSesion()">CERRAR SESION</button>
-	<button onclick="showTab('editarDatos')">EDITAR DATOS</button>
-</div>
+	pageEncoding="UTF-8"%>
 
+<%@ page import="dao.postgres.DAOPeliculaPostgres"%>
+<%@ page import="vo.Pelicula"%>
+<%@ page import="java.util.List"%>
+<!-- IndexUser.jsp -->
+<div class="topbar">
+	<h1>Desacine</h1>
+	<!-- Menu -->
+	<div class="menu">
+		<button onclick="showTab('cartelera')">CARTELERA</button>
+		<button onclick="cerrarSesion()">CERRAR SESION</button>
+		<button onclick="showTab('editarDatos')">EDITAR DATOS</button>
+	</div>
+</div>
 
 <!-- Secciones -->
 <main>
 	<%
-		String user = null;
-		Cookie[] cookies = request.getCookies();
-		if(cookies != null){
-			for (Cookie cookie : cookies){
-				if(cookie.getName().equals("login"))
-					user = cookie.getValue();
-			}
+	String user = null;
+	Cookie[] cookies = request.getCookies();
+	if (cookies != null) {
+		for (Cookie cookie : cookies) {
+			if (cookie.getName().equals("login"))
+		user = cookie.getValue();
 		}
-		if (user == null) {
-			response.sendRedirect("/sisinf/index.jsp");
-		}
+	}
+	if (user == null) {
+		response.sendRedirect("/sisinf/index.jsp");
+	}
 	%>
-  <div id="tabs" class="tabs">
+	<div id="tabs" class="tabs">
 		<div id="cartelera" class="tab-content">
 			<h2>CARTELERA</h2>
 			<br>
@@ -41,7 +42,7 @@
 			DAOPeliculaPostgres dao = new DAOPeliculaPostgres("usuario", "user");
 			List<Pelicula> peliculas = dao.obtenerPeliculas();
 			%>
-			<table id="cartelera">
+			<table id="table_cartelera">
 				<%
 				int ncolumnas = 2;
 				int i = 0;
@@ -53,8 +54,8 @@
 				<%
 				}
 				%>
-				<%="<td id=\"td-cartelera\"><a href=\"peliculas/pelicula.jsp?pelicula=" + pel.Titulo + "\"><img width=\"300\" height=\"300\" src=\"" + pel.Imagen
-		+ "\" /> <br>" + pel.Titulo + "</a></td>"%>
+				<%="<td id=\"td-cartelera\"><a href=\"peliculas/pelicula.jsp?pelicula=" + pel.Titulo
+		+ "\"><img width=\"300\" height=\"300\" src=\"" + pel.Imagen + "\" /> <br>" + pel.Titulo + "</a></td>"%>
 				<%
 				if (fintr == ncolumnas) {
 				%>
@@ -69,45 +70,60 @@
 			</table>
 		</div>
 
-    <div id="editarDatos" class="tab-content">
-      <h2>Editar tus datos</h2>
-      <form method="post" action="editUser">
-      
-      	  <%! Map<String,String> errors; %>
-		  <% errors = (Map<String,String>)request.getAttribute("errors"); %>
-			
-	      <input id="login" name="nombre" placeholder="Nombre de usuario"> 
-	   	  <br>
-	   	  <% if (errors != null && errors.get("Nombre") != null) { %>
-				<%= errors.get("Nombre") %>
-		  <% } %>
-		  <br> 
-	   	  <input id="email" type="hidden" name="login">
-	 	  <input id="passwd" name="passwd" type="password" placeholder="Contrasenya">
-	   	  <br>
-	   	  <% if (errors != null && errors.get("Clave") != null) { %>
-				<%= errors.get("Clave") %>
-		  <% } %> 
-	   	  <br>
-	   	  <input id="passwd2" name="passwd2" type="password" placeholder="Confirmar contrasenya">
-	   	  <br>
-	   	  <% if (errors != null && errors.get("Clave2") != null) { %>
-				<%= errors.get("Clave2") %>
-		  <% } %> 
-		  <% if (errors != null && errors.get("Claves") != null) { %>
-			  <%= errors.get("Claves") %>
-		  <% } %>
-		  <br>
-		  <button type="submit">Guardar cambios</button>
-		  <br>
-		  <br>
-		</form>
-		<form method="post" action="/sisinf/deleteUser">
-		  <input type="hidden" value="<%=user%>" name="login" required>
-		  <button type="submit">Borrar cuenta</button>
-      	</form> 
-    </div>
-  </div>
+		<div id="editarDatos" class="tab-content">
+			<h2>Editar tus datos</h2>
+			<form method="post" action="editUser">
+
+				<%!Map<String, String> errors;%>
+				<%
+				errors = (Map<String, String>) request.getAttribute("errors");
+				%>
+
+				<input id="login" name="nombre" placeholder="Nombre de usuario">
+				<br>
+				<%
+				if (errors != null && errors.get("Nombre") != null) {
+				%>
+				<%=errors.get("Nombre")%>
+				<%
+				}
+				%>
+				<br> <input id="email" type="hidden" name="login"> <input
+					id="passwd" name="passwd" type="password" placeholder="Contrasenya">
+				<br>
+				<%
+				if (errors != null && errors.get("Clave") != null) {
+				%>
+				<%=errors.get("Clave")%>
+				<%
+				}
+				%>
+				<br> <input id="passwd2" name="passwd2" type="password"
+					placeholder="Confirmar contrasenya"> <br>
+				<%
+				if (errors != null && errors.get("Clave2") != null) {
+				%>
+				<%=errors.get("Clave2")%>
+				<%
+				}
+				%>
+				<%
+				if (errors != null && errors.get("Claves") != null) {
+				%>
+				<%=errors.get("Claves")%>
+				<%
+				}
+				%>
+				<br>
+				<button type="submit">Guardar cambios</button>
+				<br> <br>
+			</form>
+			<form method="post" action="/sisinf/deleteUser">
+				<input type="hidden" value="<%=user%>" name="login" required>
+				<button type="submit">Borrar cuenta</button>
+			</form>
+		</div>
+	</div>
 </main>
 
 <!-- JavaScript -->
@@ -143,30 +159,59 @@
 	display: block;
 }
 
-.menu button{
+.menu button {
 	display: flex; /* Usa flexbox para centrar el contenido */
-    align-items: center; /* Centra verticalmente */
-    justify-content: center; /* Opcional: centra horizontalmente */
-    height: 50px; /* Asegúrate de que el botón tenga suficiente altura */
-    padding: 10px; /* Opcional: ajusta el espacio interno */
-    font-size: 16px; 
+	align-items: center; /* Centra verticalmente */
+	justify-content: center; /* Opcional: centra horizontalmente */
+	height: 50px; /* Asegúrate de que el botón tenga suficiente altura */
+	padding: 10px; /* Opcional: ajusta el espacio interno */
+	font-size: 16px;
 }
+
 .menu {
-    display: flex; /* Organiza los hijos en un eje horizontal */
-    gap: 10px; /* Espaciado entre los botones */
-    justify-content: center; /* Opcional: centra los botones horizontalmente en el contenedor */
-    align-items: center; /* Alinea los botones verticalmente */
+	display: flex; /* Organiza los hijos en un eje horizontal */
+	gap: 10px; /* Espaciado entre los botones */
+	justify-content: center;
+	/* Opcional: centra los botones horizontalmente en el contenedor */
+	align-items: center; /* Alinea los botones verticalmente */
+}
+
+.topbar {
+	position: fixed; /* Keeps it fixed at the top */
+	top: 0;
+	left: 0;
+	width: 100%; /* Ensures it spans the full width */
+	background-color: #E0E0E0;
+	padding: 20px 20px; /* Adjust internal spacing as needed */
+	box-sizing: border-box;
+	z-index: 1000; /* Ensures it stays above other elements */
+}
+
+.topbar h1 {
+	margin: 0; /* Remove default margin */
 }
 
 html {
+	margin: 0;
 	display: flex;
 	text-align: center;
 	justify-content: center;
+	height: 100%;
+	width: 100%;
+	flex-direction: column;
 }
 
 main {
 	text-align: center;
 	justify-content: center;
+}
+
+#cartelera {
+	margin-top: 120px;
+}
+
+#editarDatos {
+	margin-top: 40px;
 }
 
 #tabs {

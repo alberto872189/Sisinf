@@ -34,12 +34,14 @@ if (user != null) {
 %>
 
 <!-- Index.jsp -->
-<h1>Desacine</h1>
+<div class="topbar">
+	<h1>Desacine</h1>
 	<!-- Menu -->
 	<div class="menu">
-	<button onclick="showTab('cartelera')">CARTELERA</button>
-	<button onclick="showTab('inicioSes')">INICIAR SESION</button>
-	<button onclick="showTab('registro')">REGISTRARSE</button>
+		<button onclick="showTab('cartelera')">CARTELERA</button>
+		<button onclick="showTab('inicioSes')">INICIAR SESION</button>
+		<button onclick="showTab('registro')">REGISTRARSE</button>
+	</div>
 </div>
 <!-- Secciones -->
 <main>
@@ -52,7 +54,7 @@ if (user != null) {
 			DAOPeliculaPostgres dao = new DAOPeliculaPostgres("usuario", "user");
 			List<Pelicula> peliculas = dao.obtenerPeliculas();
 			%>
-			<table id="cartelera">
+			<table id="table_cartelera">
 				<%
 				int ncolumnas = 2;
 				int i = 0;
@@ -64,8 +66,8 @@ if (user != null) {
 				<%
 				}
 				%>
-				<%="<td id=\"td-cartelera\"><a href=\"peliculas/pelicula.jsp?pelicula=" + pel.Titulo + "\"><img width=\"300\" height=\"300\" src=\"" + pel.Imagen
-		+ "\" /> <br>" + pel.Titulo + "</a></td>"%>
+				<%="<td id=\"td-cartelera\"><a href=\"peliculas/pelicula.jsp?pelicula=" + pel.Titulo
+		+ "\"><img width=\"300\" height=\"300\" src=\"" + pel.Imagen + "\" /> <br>" + pel.Titulo + "</a></td>"%>
 				<%
 				if (fintr == ncolumnas) {
 				%>
@@ -167,8 +169,8 @@ if (user != null) {
 
 <!-- CSS -->
 <style>
-<style>
-.tabs {
+<
+style>.tabs {
 	display: flex;
 	flex-wrap: wrap;
 }
@@ -181,30 +183,62 @@ if (user != null) {
 	display: block;
 }
 
-.menu button{
-	display: flex; /* Usa flexbox para centrar el contenido */
-    align-items: center; /* Centra verticalmente */
-    justify-content: center; /* Opcional: centra horizontalmente */
-    height: 50px; /* Asegúrate de que el botón tenga suficiente altura */
-    padding: 10px; /* Opcional: ajusta el espacio interno */
-    font-size: 16px; 
+.menu button {
+	display: flex; 
+	align-items: center; 
+	justify-content: center; 
+	height: 50px; 
+	padding: 10px; 
+	font-size: 16px;
 }
+
 .menu {
-    display: flex; /* Organiza los hijos en un eje horizontal */
-    gap: 10px; /* Espaciado entre los botones */
-    justify-content: center; /* Opcional: centra los botones horizontalmente en el contenedor */
-    align-items: center; /* Alinea los botones verticalmente */
+	display: flex; /* Organiza los hijos en un eje horizontal */
+	gap: 10px; /* Espaciado entre los botones */
+	justify-content: center;
+	align-items: center; /* Alinea los botones verticalmente */
+}
+
+.topbar {
+    position: fixed; /* Keeps it fixed at the top */
+    top: 0;
+    left: 0;
+    width: 100%; /* Ensures it spans the full width */
+    background-color: #E0E0E0;
+    padding: 20px 20px; /* Adjust internal spacing as needed */
+    box-sizing: border-box;
+    z-index: 1000; /* Ensures it stays above other elements */
+}
+
+.topbar h1 {
+    margin: 0; /* Remove default margin */
 }
 
 html {
+	margin: 0; 
 	display: flex;
 	text-align: center;
 	justify-content: center;
+	height: 100%; 
+	width: 100%; 
+	flex-direction: column;
 }
 
 main {
 	text-align: center;
 	justify-content: center;
+}
+
+#cartelera {
+	margin-top: 120px;
+}
+
+#inicioSes {
+	margin-top: 40px;
+}
+
+#registro {
+	margin-top: 60px;
 }
 
 #tabs {

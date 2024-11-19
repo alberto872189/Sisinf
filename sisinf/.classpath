@@ -8,7 +8,7 @@
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="C:/Users/alber/eclipse-workspace/sisinf/src/main/WebContent/WEB-INF/lib/postgresql.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alber/eclipse-workspace/sisinf/src/main/WebContent/WEB-INF/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="src/main/WebContent/WEB-INF/lib/postgresql.jar"/>
+	<classpathentry kind="lib" path="src/main/WebContent/WEB-INF/lib/servlet-api.jar"/>
 	<classpathentry kind="output" path="src/main/WebContent/classes"/>
 </classpath>

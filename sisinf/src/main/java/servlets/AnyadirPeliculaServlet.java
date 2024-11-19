@@ -60,6 +60,17 @@ private void subirImagen(Part filePart, String titulo, HttpServletRequest reques
 	String uploadPath = getServletContext().getRealPath("/peliculas/imagenes");
 	String fileName = titulo+".jpg";
 	String filePath = uploadPath + File.separator + fileName;
+	
+	File uploadDir = new File(uploadPath);
+    if (!uploadDir.exists()) {
+        if (uploadDir.mkdirs()) {
+            request.setAttribute("mensaje", "Directorio creado exitosamente.");
+        } else {
+            request.setAttribute("mensaje", "No se pudo crear el directorio.");
+            return; // Salir si no se pudo crear el directorio
+        }
+    }
+    
     try (InputStream fileContent = filePart.getInputStream()) {
         Files.copy(fileContent, new File(filePath).toPath(), StandardCopyOption.REPLACE_EXISTING);
     } catch (Exception e) {
