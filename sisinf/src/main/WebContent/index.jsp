@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html>
+<head>
+</head>
 <%@ page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -44,7 +46,7 @@ if (user != null) {
 	</div>
 </div>
 <!-- Secciones -->
-<main>
+<body>
 	<div id="tabs" class="tabs">
 		<div id="cartelera" class="tab-content">
 			<h2>CARTELERA</h2>
@@ -151,7 +153,7 @@ if (user != null) {
 		</div>
 	</div>
 
-</main>
+</body>
 
 <!-- JavaScript -->
 <script>
@@ -166,91 +168,157 @@ if (user != null) {
     }
   
 </script>
-
-<!-- CSS -->
 <style>
-<
-style>.tabs {
-	display: flex;
-	flex-wrap: wrap;
-}
-
-.tab-content {
-	display: none;
-}
-
-.tab-content.active {
-	display: block;
-}
-
-.menu button {
-	display: flex; 
-	align-items: center; 
-	justify-content: center; 
-	height: 50px; 
-	padding: 10px; 
-	font-size: 16px;
-}
-
-.menu {
-	display: flex; /* Organiza los hijos en un eje horizontal */
-	gap: 10px; /* Espaciado entre los botones */
-	justify-content: center;
-	align-items: center; /* Alinea los botones verticalmente */
-}
-
-.topbar {
-    position: fixed; /* Keeps it fixed at the top */
-    top: 0;
-    left: 0;
-    width: 100%; /* Ensures it spans the full width */
-    background-color: #E0E0E0;
-    padding: 20px 20px; /* Adjust internal spacing as needed */
+/* General Reset */
+body, h1, h2, p, a, table, tr, td, button, form, input {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
-    z-index: 1000; /* Ensures it stays above other elements */
+    font-family: Arial, sans-serif;
+}
+
+/* Body */
+body {
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+/* Topbar */
+.topbar {
+    background-color: #1f1f1f;
+    color: #fff;
+    padding: 1em 2em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .topbar h1 {
-    margin: 0; /* Remove default margin */
+    font-size: 2em;
+    margin: 0;
 }
 
-html {
-	margin: 0; 
-	display: flex;
-	text-align: center;
-	justify-content: center;
-	height: 100%; 
-	width: 100%; 
-	flex-direction: column;
+.menu {
+    display: flex;
+    gap: 1em;
 }
 
+.menu button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.menu button:hover {
+    background-color: #0056b3;
+}
+
+/* Tabs */
 main {
-	text-align: center;
-	justify-content: center;
+    padding: 2em;
 }
 
-#cartelera {
-	margin-top: 120px;
+.tabs {
+    max-width: 900px;
+    margin: 0 auto;
 }
 
-#inicioSes {
-	margin-top: 40px;
+.tab-content {
+    display: none;
+    background: white;
+    padding: 1.5em;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-#registro {
-	margin-top: 60px;
+.tab-content h2 {
+    margin-bottom: 1em;
+    color: #007bff;
 }
 
-#tabs {
-	display: flex;
-	text-align: center;
-	justify-content: center;
+.tab-content form {
+    margin-top: 1em;
 }
 
-#td-cartelera {
-	padding-bottom: 60px;
-	padding-right: 10px;
-	padding-left: 10px;
+.tab-content form input {
+    width: calc(100% - 20px);
+    padding: 0.5em;
+    margin-bottom: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.tab-content form button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.tab-content form button:hover {
+    background-color: #218838;
+}
+
+.tab-content a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.tab-content a:hover {
+    text-decoration: underline;
+}
+
+/* Cartelera Table */
+#table_cartelera {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1em;
+}
+
+#table_cartelera td {
+    padding: 10px;
+    text-align: center;
+}
+
+#table_cartelera img {
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    height: auto;
+}
+
+#table_cartelera a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+#table_cartelera a:hover {
+    color: #007bff;
+}
+
+/* Active Tab */
+.tab-content.active {
+    display: block;
+}
+
+/* Buttons Hover Effect */
+button {
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
 }
 </style>
 </html>

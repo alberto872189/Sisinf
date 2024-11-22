@@ -1,130 +1,276 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Reserva</title>
+<link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
-<%@ page import="dao.postgres.DAOSesionPostgres" %>
-<%@ page import="dao.postgres.DAOButacaPostgres" %>
-<%@ page import="vo.Pelicula" %>
-<%@ page import="vo.Sesion" %>
-<%@ page import="java.util.List" %>
-<%@ page import="vo.Butaca" %>
-<%@ page import="vo.Producto" %>
-<%@ page import="java.util.Map" %>
-
+<%@ page import="dao.postgres.DAOSesionPostgres"%>
+<%@ page import="dao.postgres.DAOButacaPostgres"%>
+<%@ page import="vo.Pelicula"%>
+<%@ page import="vo.Sesion"%>
+<%@ page import="java.util.List"%>
+<%@ page import="vo.Butaca"%>
+<%@ page import="vo.Producto"%>
+<%@ page import="java.util.Map"%>
+<div class="topbar">
+	<h1>Desacine</h1>
+	<!-- Menu -->
+	<div class="menu">
+		<button onclick="regreso()">CARTELERA</button>
+	</div>
+</div>
 <body>
-<% 
+
+	<%
 	String pel = request.getParameter("pelicula");
-	String nEntradas = request.getParameter("nEntradas"); 
+	String nEntradas = request.getParameter("nEntradas");
 	String user = null;
 	Cookie[] cookies = request.getCookies();
-	if(cookies != null){
-		for (Cookie cookie : cookies){
-			if(cookie.getName().equals("login"))
-				user = cookie.getValue();
+	if (cookies != null) {
+		for (Cookie cookie : cookies) {
+			if (cookie.getName().equals("login"))
+		user = cookie.getValue();
 		}
 	}
-%>
+	%>
 
-		<form name ="reserva" method="post" action="/sisinf/reservarEntrada" >
-	<!-- OBTENER BUTACAS -->
-	<%	
+	<form name="reserva" method="post" action="/sisinf/reservarEntrada">
+		<!-- OBTENER BUTACAS -->
+		<%
 		DAOButacaPostgres dao = new DAOButacaPostgres("usuario", "user");
 		String hora = String.valueOf(request.getParameter("Hora"));
 		int k = hora.indexOf(";");
-		Integer sala = Integer.valueOf(hora.substring(k+1, hora.length()));
-		List<Butaca> butacas = dao.obtenerSesion(sala, hora.substring(0,k));
-	%>
-	<h1><%=pel%>, SALA <%=sala%>, <%=hora.substring(0, k)%></h1>
-	<h2>Asientos</h2>
-	<br>
-	<table id="asientos" align="center">
-	<%
-		int ncolumnas = 10;
-		int i = 0;
-		int fintr = 1;
-		for (Butaca but : butacas) {
-			int idButaca = i+1;
-			if (i % ncolumnas == 0) {
-	%>
-			<%= "<tr>" %>
-	<%
+		Integer sala = Integer.valueOf(hora.substring(k + 1, hora.length()));
+		List<Butaca> butacas = dao.obtenerSesion(sala, hora.substring(0, k));
+		%>
+		<h1><%=pel%>, SALA
+			<%=sala%>,
+			<%=hora.substring(0, k)%></h1>
+		<h2>Asientos</h2>
+		<br>
+		<table id="asientos" align="center">
+			<%
+			int ncolumnas = 10;
+			int i = 0;
+			int fintr = 1;
+			for (Butaca but : butacas) {
+				int idButaca = i + 1;
+				if (i % ncolumnas == 0) {
+			%>
+			<%="<tr>"%>
+			<%
 			}
-			if(but.Ocupada) {
-	%>
-				<%="<td id=\"td-asientos\"><img src=\"/sisinf/img/redSquare.png\" width=\"12px\" heigth=\"12px\"></td>"%>
-	<%
-			}
-			else {
-	%>
-		<%= "<td id=\"td-asientos\"><input type=\"checkbox\" name=\"butaca\" value=\"" + idButaca + "\"></td>"%>
-	<%		
+			if (but.Ocupada) {
+			%>
+			<%="<td id=\"td-asientos\"><img src=\"/sisinf/img/redSquare.png\" width=\"12px\" heigth=\"12px\"></td>"%>
+			<%
+			} else {
+			%>
+			<%="<td id=\"td-asientos\"><input type=\"checkbox\" name=\"butaca\" value=\"" + idButaca + "\"></td>"%>
+			<%
 			}
 			if (fintr == ncolumnas) {
-	%>	
-			<%= "</tr>" %>
-	<%
-				fintr = 0;
+			%>
+			<%="</tr>"%>
+			<%
+			fintr = 0;
 			}
 			i++;
 			fintr++;
-		}
-		if(user == null) {
+			}
+			if (user == null) {
 			%>
 			<%="<input type=\"text\" placeholder=\"correo electronico\" name=\"usuario\" required>"%>
 			<%
-		}
-		else {
+			} else {
 			%>
 			<%="<input width=\"12px\" heigth=\"12px\" type=\"hidden\" value=\"" + user + "\" name=\"usuario\" required>"%>
-		<%
-		}
-	%>
+			<%
+			}
+			%>
 		</table>
-		<br>
-		<br><br>
-
-		<input type="hidden" value="<%=hora.substring(0, k)%>" name="hora" required>
-		<input type="hidden" value="<%=sala%>" name="sala" required>
-		<input type="hidden" value="<%=nEntradas%>" name="nEntradas" required>
-		<input type="hidden" value="<%=pel%>" name="pelicula" required>
-		<input type="submit" value="Seleccionar productos">	 
-		</form>
-		<%! Map<String,String> errors; %>
-		<% errors = (Map<String,String>)request.getAttribute("errors"); %>
-		<% if (errors != null && errors.get("Butacas") != null) { %>
-			<%= errors.get("Butacas") %>
-		<% } %> 
-		<br>
-		<a href="/sisinf/peliculas/reserva/indexReserva.jsp?pelicula=<%=pel%>">Volver</a>
+		<br> <br>
+		<br> <input type="hidden" value="<%=hora.substring(0, k)%>"
+			name="hora" required> <input type="hidden" value="<%=sala%>"
+			name="sala" required> <input type="hidden"
+			value="<%=nEntradas%>" name="nEntradas" required> <input
+			type="hidden" value="<%=pel%>" name="pelicula" required> <input
+			type="submit" value="Seleccionar productos">
+	</form>
+	<%!Map<String, String> errors;%>
+	<%
+	errors = (Map<String, String>) request.getAttribute("errors");
+	%>
+	<%
+	if (errors != null && errors.get("Butacas") != null) {
+	%>
+	<%=errors.get("Butacas")%>
+	<%
+	}
+	%>
+	<br>
+	<a href="/sisinf/peliculas/reserva/indexReserva.jsp?pelicula=<%=pel%>">Volver</a>
 </body>
-
-<!-- CSS -->
+<script>
+function regreso() {
+	window.location.href = "/sisinf/index.jsp";	
+}
+</script>
 <style>
-  
-  
-  ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: space-between;
-  }
+/* General Reset */
+body, h1, h2, p, a, table, tr, td, button, form, input {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
 
-  li {
-    margin-right: 20px;
-  }
-  
-  html{
-  	text-align: center; 
-	justify-content: center; 
-  }
-  
-  main{
-  	display: flex; 
-  	text-align: center; 
-	justify-content: center; 
-  }
+/* Body */
+body {
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+    font-size: 16px;
+    padding: 2em;
+}
+
+/* Topbar */
+.topbar {
+    background-color: #1f1f1f;
+    color: #fff;
+    padding: 1em 2em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5em;
+}
+
+.topbar h1 {
+    font-size: 2em;
+    margin: 0;
+}
+
+.menu {
+    display: flex;
+    gap: 1em;
+}
+
+.menu button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.menu button:hover {
+    background-color: #0056b3;
+}
+
+/* Main Content */
+h1, h2 {
+    margin-bottom: 1em;
+    color: #007bff;
+    text-align: left;
+}
+
+h1 {
+    font-size: 2.5em;
+}
+
+h2 {
+    font-size: 1.8em;
+}
+
+/* Asientos Table */
+#asientos {
+    border-collapse: collapse;
+    margin: 1em auto;
+    max-width: 600px;
+}
+
+#asientos td {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 5px;
+}
+
+#asientos img {
+    display: block;
+    margin: 0 auto;
+}
+
+/* Input Checkboxes */
+#asientos input[type="checkbox"] {
+    transform: scale(1.5);
+    margin: 0;
+    cursor: pointer;
+}
+
+/* Asientos Colors */
+#td-asientos {
+    padding: 0.5em;
+}
+
+#td-asientos img {
+    width: 12px;
+    height: 12px;
+}
+
+/* Formulario */
+form {
+    text-align: center;
+    margin-top: 2em;
+}
+
+form input[type="text"] {
+    width: 300px;
+    padding: 0.8em;
+    margin-bottom: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form input[type="hidden"] {
+    display: none;
+}
+
+form input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.8em 1.5em;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Error Messages */
+.errors {
+    color: red;
+    font-size: 1em;
+    margin-top: 1em;
+    text-align: center;
+}
+
+/* Link */
+a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 1em;
+    display: inline-block;
+    margin-top: 2em;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
 </style>
 </html>

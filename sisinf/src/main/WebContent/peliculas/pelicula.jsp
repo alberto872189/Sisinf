@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="css/styles.css">
 <meta charset="UTF-8">
 <title>Pelicula</title>
 </head>
@@ -12,7 +13,13 @@
 <%@ page import="vo.Sesion" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Date" %>
-
+<div class="topbar">
+	<h1>Desacine</h1>
+	<!-- Menu -->
+	<div class="menu">
+		<button onclick="regreso()">CARTELERA</button>
+	</div>
+</div>
 <body>
 <!-- OBTENER PELICULA DE request -->
 <% String pel = request.getParameter("pelicula");
@@ -114,38 +121,211 @@
 	</div>
 </body>
 <script>
+function regreso() {
+		window.location.href = "/sisinf/index.jsp";	
+}
 function reservarEntrada(pelicula){
 	window.location.href = "/sisinf/peliculas/reserva/indexReserva.jsp?pelicula="+pelicula;
 }
 </script>
-
 <style>
+/* General Reset */
+body, h1, h2, p, a, table, tr, td, button, form, input, textarea, iframe {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Body */
 body {
-  	text-align: center;  
-  	margin-left: 30px;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+    font-size: 16px;
+    padding: 2em;
 }
-  
+
+/* Topbar */
+.topbar {
+    background-color: #1f1f1f;
+    color: #fff;
+    padding: 1em 2em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5em;
+}
+
+.topbar h1 {
+    font-size: 2em;
+    margin: 0;
+}
+
+.menu {
+    display: flex;
+    gap: 1em;
+}
+
+.menu button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.menu button:hover {
+    background-color: #0056b3;
+}
+
+/* Main Content */
+h1 {
+    font-size: 2.5em;
+    color: #007bff;
+    margin-bottom: 1em;
+    text-align: left;
+}
+
+h2 {
+    font-size: 1.8em;
+    color: #333;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    text-align: left;
+}
+
+/* Information Table */
 #infoPeliculas {
-	width: 400px;
-	padding-right: 200px;
+    width: 100%;
+    max-width: 300px;
+    margin-right: 2em;
+    float: left;
 }
 
+#infoPeliculas td {
+    padding: 0.5em;
+    text-align: left;
+}
+
+#infoPeliculas img {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#infoPeliculas a {
+    color: #007bff;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#infoPeliculas a:hover {
+    text-decoration: underline;
+}
+
+/* Trailer */
+iframe {
+    border: none;
+    border-radius: 8px;
+    margin-top: 1em;
+}
+
+/* Horarios Table */
 #horarios {
-	border: 2px solid;
-	border-collapse: collapse;
-}
-	
-#td-horarios {
-	border: 1px solid;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5em;
+    float: left;
 }
 
-div{
-	padding: 10px; 
+#horarios tr:nth-child(1) {
+    background-color: #007bff;
+    color: white;
 }
 
-#reservaBoton{  
+#horarios td {
+    border: 1px solid #ddd;
+    padding: 0.8em;
+    text-align: center;
+    font-size: 1em;
+}
+
+#horarios td#td-horarios {
+    font-weight: bold;
+}
+
+#horarios tr:nth-child(even) {
+    background-color: #f4f4f9;
+}
+
+#horarios tr:hover {
+    background-color: #e9ecef;
+}
+
+/* Botón de Reservar */
+#reservaBoton {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 0.8em 1.5em;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    margin: 1.5em 0;
+}
+
+#reservaBoton:hover {
+    background-color: #218838;
+}
+
+/* Comentarios */
+textarea {
+    width: 100%;
+    max-width: 600px;
+    height: 100px;
+    padding: 0.8em;
+    margin-bottom: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+form input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.8em 1.5em;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Comentarios previos */
+.comment {
+    margin-top: 1em;
+    padding: 1em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.comment h3 {
+    font-size: 1em;
+    color: #333;
+    margin-bottom: 0.5em;
+}
+
+.comment p {
+    font-size: 1em;
+    color: #555;
 }
 
 </style>
-
 </html>
