@@ -7,7 +7,7 @@ public abstract class DAO<T,K>{
 	public DAO(String name_, String pwd_) {
 		name = name_;
 		pwd = pwd_;
-		url = "jdbc:postgresql://sisinf-database:5433/sisinf_grupo_c05";//"jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
+		url = "jdbc:postgresql://sisinf-database:5432/sisinf_grupo_c05";//"jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 	}
 	
 	public abstract int crear(T t);
