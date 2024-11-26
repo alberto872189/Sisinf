@@ -61,7 +61,7 @@
 			}
 			if (but.Ocupada) {
 			%>
-			<%="<td id=\"td-asientos\"><img src=\"/sisinf/img/redSquare.png\" width=\"12px\" heigth=\"12px\"></td>"%>
+			<%="<td id=\"td-asientos\"><img src=\"/sisinf/img/redSquare.png\"></td>"%>
 			<%
 			} else {
 			%>
@@ -83,7 +83,7 @@
 			<%
 			} else {
 			%>
-			<%="<input width=\"12px\" heigth=\"12px\" type=\"hidden\" value=\"" + user + "\" name=\"usuario\" required>"%>
+			<%="<input type=\"hidden\" value=\"" + user + "\" name=\"usuario\" required>"%>
 			<%
 			}
 			%>
@@ -215,8 +215,8 @@ h2 {
 }
 
 #td-asientos img {
-    width: 12px;
-    height: 12px;
+    width: 18px;
+    height: 18px;
 }
 
 /* Formulario */
