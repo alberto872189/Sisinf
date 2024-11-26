@@ -7,6 +7,63 @@ insert into sala(n_sala) values (2);
 insert into sala(n_sala) values (3);
 insert into sala(n_sala) values (4);
 
+insert into pelicula(Titulo, Resumen, Imagen, Link_IMDB, Trailer) values ('Cars',
+'El aspirante a campeón de carreras Rayo McQueen parece que está a punto de conseguir el éxito. Su actitud arrogante se desvanece cuando llega a una pequeña comunidad olvidada que le enseña las cosas importantes de la vida que había olvidado.', 
+'/peliculas/imagenes/Cars.png',
+'https://www.imdb.com/title/tt0317219/',
+'https://www.youtube.com/embed/W_H7_tDHFE8?si=a-Vq9kH5PLkAFwj4');
+
+insert into pelicula(Titulo, Resumen, Imagen, Link_IMDB, Trailer) values ('Vengadores',
+'Cuando un enemigo inesperado surge como una gran amenaza para la seguridad mundial, Nick Fury, director de la Agencia SHIELD, decide reclutar a un equipo para salvar al mundo de un desastre casi seguro. Adaptación del cómic de Marvel "Los Vengadores", el legendario grupo de superhéroes formado por Ironman, Hulk, Thor y el Capitán América entre otros.', 
+'/peliculas/imagenes/Vengadores.png',
+'https://www.imdb.com/title/tt4154796/',
+'https://www.youtube.com/embed/eOrNdBpGMv8?si=Yc9FiKUAsI6dgOZi');
+
+insert into pelicula(Titulo, Resumen, Imagen, Link_IMDB, Trailer) values ('Titanic',
+'Jack es un joven artista que gana un pasaje para viajar a América en el Titanic, el transatlántico más grande y seguro jamás construido. A bordo del buque conoce a Rose, una chica de clase alta que viaja con su madre y su prometido Cal, un millonario engreído a quien solo interesa el prestigio de la familia de su prometida. Jack y Rose se enamoran a pesar de las trabas que ponen la madre de ella y Cal en su relación. Mientras, el lujoso transatlántico se acerca a un inmenso iceberg.', 
+'/peliculas/imagenes/Titanic.png',
+'https://www.imdb.com/title/tt0120338/',
+'https://www.youtube.com/embed/wMZuro21wtE?si=NBGA-r5ASWDdZIRs');
+
+insert into pelicula(Titulo, Resumen, Imagen, Link_IMDB, Trailer) values ('Piraña 3D',
+'Un terremoto submarino libera a una especie prehistórica de pez carnívoro y un grupo de desconocidos une fuerzas para evitar convertirse en su comida.', 
+'/peliculas/imagenes/Piranya.png',
+'https://www.imdb.com/title/tt0464154/',
+'https://www.youtube.com/embed/3ksuNWRzc3s?si=R_EYdqaiiKwNpic7');
+
+insert into pelicula(Titulo, Resumen, Imagen, Link_IMDB, Trailer) values ('Otra peli',
+'Un terremoto submarino libera a una especie prehistórica de pez carnívoro y un grupo de desconocidos une fuerzas para evitar convertirse en su comida.', 
+'/peliculas/imagenes/Piranya.png',
+'https://www.imdb.com/title/tt0464154/',
+'https://www.youtube.com/embed/3ksuNWRzc3s?si=R_EYdqaiiKwNpic7');
+
+insert into pelicula(Titulo, Resumen, Imagen, Link_IMDB, Trailer) values ('Otra peli 2',
+'Un terremoto submarino libera a una especie prehistórica de pez carnívoro y un grupo de desconocidos une fuerzas para evitar convertirse en su comida.', 
+'/peliculas/imagenes/Piranya.png',
+'https://www.imdb.com/title/tt0464154/',
+'https://www.youtube.com/embed/3ksuNWRzc3s?si=R_EYdqaiiKwNpic7');
+
+insert into sesion(Sesion_Hora, Tit_Pel, N_Sala, Precio) values ('2025-10-10 11:30:00', 'Cars', 1, 5.5);
+insert into sesion(Sesion_Hora, Tit_Pel, N_Sala, Precio) values ('2025-10-10 13:30:00', 'Cars', 2, 6.5);
+
+insert into sesion(Sesion_Hora, Tit_Pel, N_Sala, Precio) values ('2025-10-10 11:30:00', 'Vengadores', 3, 5);
+insert into sesion(Sesion_Hora, Tit_Pel, N_Sala, Precio) values ('2025-10-10 13:30:00', 'Vengadores', 4, 5.5);
+
+insert into sesion(Sesion_Hora, Tit_Pel, N_Sala, Precio) values ('2025-10-10 16:30:00', 'Titanic', 1, 6.5);
+insert into sesion(Sesion_Hora, Tit_Pel, N_Sala, Precio) values ('2025-10-10 18:30:00', 'Titanic', 2, 6.5);
+
+insert into sesion(Sesion_Hora, Tit_Pel, N_Sala, Precio) values ('2025-10-10 16:30:00', 'Piraña 3D', 3, 5.5);
+insert into sesion(Sesion_Hora, Tit_Pel, N_Sala, Precio) values ('2025-10-10 18:30:00', 'Piraña 3D', 4, 5);
+
+insert into sesion(Sesion_Hora, Tit_Pel, N_Sala, Precio) values ('2025-10-11 11:30:00', 'Cars', 1, 5.5);
+insert into sesion(Sesion_Hora, Tit_Pel, N_Sala, Precio) values ('2025-10-11 13:30:00', 'Cars', 2, 5.5);
+
+insert into sesion(Sesion_Hora, Tit_Pel, N_Sala, Precio) values ('2025-10-11 16:30:00', 'Cars', 3, 5);
+insert into sesion(Sesion_Hora, Tit_Pel, N_Sala, Precio) values ('2025-10-11 18:30:00', 'Cars', 4, 5.5);
+
+insert into producto(Nombre, Precio, Disponible) values ('Palomitas', 3, True);
+insert into producto(Nombre, Precio, Disponible) values ('Refresco', 2.5, True);
+
 insert into butaca(n_butaca, sala_n) values (1, 1);
 insert into butaca(n_butaca, sala_n) values (2, 1);
 insert into butaca(n_butaca, sala_n) values (3, 1);

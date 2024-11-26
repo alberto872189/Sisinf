@@ -33,7 +33,7 @@
 	}
 	%>
 
-	<form name="reserva" method="post" action="/sisinf/reservarEntrada">
+	<form name="reserva" method="post" action="/reservarEntrada">
 		<!-- OBTENER BUTACAS -->
 		<%
 		DAOButacaPostgres dao = new DAOButacaPostgres("usuario", "user");
@@ -108,11 +108,11 @@
 	}
 	%>
 	<br>
-	<a href="/sisinf/peliculas/reserva/indexReserva.jsp?pelicula=<%=pel%>">Volver</a>
+	<a href="/peliculas/reserva/indexReserva.jsp?pelicula=<%=pel%>">Volver</a>
 </body>
 <script>
 function regreso() {
-	window.location.href = "/sisinf/index.jsp";	
+	window.location.href = "/index.jsp";	
 }
 </script>
 <style>

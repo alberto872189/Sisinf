@@ -60,7 +60,7 @@
 				<%= "<td><a href=\"" + pelicula.Link_IMDB + "\">Más información</a></td>"%>
 			</tr>
 			<tr>
-				<td><br><a href="/sisinf/index.jsp">VOLVER</a></td>
+				<td><br><a href="/index.jsp">VOLVER</a></td>
 			</tr>
 		</table>
 	</div>
@@ -94,7 +94,7 @@
 		<br>
 		<br>
 		<h2 style="text-align:left">Comentarios</h2>
-		<form method="post" action="/sisinf/publishComment">
+		<form method="post" action="/publishComment">
 			<textarea rows="10" cols="30" name="texto" placeholder="Escribe aquí tu comentario"></textarea>
 			<br>
 			<%="<input type=\"hidden\" name=\"pelicula\" value=\""+ pel + "\">" %>
@@ -122,10 +122,10 @@
 </body>
 <script>
 function regreso() {
-		window.location.href = "/sisinf/index.jsp";	
+		window.location.href = "/index.jsp";	
 }
 function reservarEntrada(pelicula){
-	window.location.href = "/sisinf/peliculas/reserva/indexReserva.jsp?pelicula="+pelicula;
+	window.location.href = "/peliculas/reserva/indexReserva.jsp?pelicula="+pelicula;
 }
 </script>
 <style>

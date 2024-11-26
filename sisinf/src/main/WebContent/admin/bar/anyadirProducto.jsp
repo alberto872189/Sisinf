@@ -10,7 +10,7 @@
 <body>
 <h2>AÑADIR PRODUCTO</h2>
 <div>
-	<form method="post" action="/sisinf/addProducto">
+	<form method="post" action="/addProducto">
 		<input type="text" name="producto" placeholder="Nombre del producto">
 		<br>
 		<br>
@@ -37,7 +37,7 @@
 	</ul>
 	<br>
 	<br>
-	<a href="/sisinf/admin/indexAdmin.jsp">VOLVER</a>
+	<a href="/admin/indexAdmin.jsp">VOLVER</a>
 </div>
 </body>
 

@@ -44,7 +44,7 @@ public class AnyadirPeliculaServlet extends HttpServlet {
 			else {
 				peli.Titulo = titulo;
 				peli.Resumen = resumen;
-				peli.Imagen = "/sisinf/peliculas/imagenes/"+titulo+".jpg";
+				peli.Imagen = "/peliculas/imagenes/"+titulo+".jpg";
 				peli.Link_IMDB = link;
 				peli.Trailer = trailer;
 				daoPeli.crear(peli);

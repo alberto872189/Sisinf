@@ -9,7 +9,7 @@
 </head>
 <body>
 <h2>Modificar productos</h2>
-<form method="post" action="/sisinf/editarProductos">
+<form method="post" action="/editarProductos">
 <ol>
   		<%
 		DAOProductoPostgres dao2 = new DAOProductoPostgres("usuario", "user");
@@ -27,7 +27,7 @@
 <input type="submit" value="Confirmar">
 </form>
 	<br>
-  	<a href="/sisinf/admin/indexAdmin.jsp">VOLVER</a>
+  	<a href="/admin/indexAdmin.jsp">VOLVER</a>
 </body>
 
 <style>

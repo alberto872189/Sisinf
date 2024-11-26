@@ -30,7 +30,7 @@ if (user != null) {
 		response.addCookie(cookie);
 		user = null;
 	} else {
-		response.sendRedirect("/sisinf/indexUser.jsp");
+		response.sendRedirect("/indexUser.jsp");
 	}
 }
 %>

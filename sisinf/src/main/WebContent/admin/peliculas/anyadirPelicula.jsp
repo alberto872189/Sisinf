@@ -25,7 +25,7 @@
 
     <div id="anyadirPel" class="tab-content">
         <h3>AÑADIR PELÍCULA</h3>
-        <form method="post" action="/sisinf/anyadirPelicula" enctype="multipart/form-data">
+        <form method="post" action="/anyadirPelicula" enctype="multipart/form-data">
             Nombre:
             <br>
             <input type="text" id="titulo" name="titulo" placeholder="Nombre de la película" required>
@@ -54,7 +54,7 @@
 
     <div id="anyadirSes" class="tab-content">
         <h3>CREAR SESIÓN</h3>
-        <form method="post" action="/sisinf/anyadirSesion">
+        <form method="post" action="/anyadirSesion">
             Película:
             <br>
             <select id="pelicula" name="pelicula" required>
@@ -96,7 +96,7 @@
     </div>
     <br>
 
-    <a href="/sisinf/admin/indexAdmin.jsp">VOLVER</a>
+    <a href="/admin/indexAdmin.jsp">VOLVER</a>
 </div>
 </body>
 

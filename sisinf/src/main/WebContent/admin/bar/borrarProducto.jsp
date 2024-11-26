@@ -8,7 +8,7 @@
 <%@ page import="java.util.List" %>
 </head>
 	<h2>Borrar productos</h2>
-	<form method="post" action="/sisinf/borrarProductos">
+	<form method="post" action="/borrarProductos">
 	<ol>
 	<%
 		DAOProductoPostgres dao2 = new DAOProductoPostgres("usuario", "user");
@@ -27,7 +27,7 @@
 	</form>
 	<br>
 	<br>
-	<a href="/sisinf/admin/indexAdmin.jsp">VOLVER</a>
+	<a href="/admin/indexAdmin.jsp">VOLVER</a>
 <script>
 	document.getElementById('delete-selected').addEventListener('click', function() {
   	const checkboxes = document.querySelectorAll('input[name="product[]"]:checked');

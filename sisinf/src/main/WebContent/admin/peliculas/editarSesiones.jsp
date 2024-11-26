@@ -16,7 +16,7 @@
 <body>
 			<h1>Editar sesion</h1>
 			 <h2>Sesion a cambiar</h2>
-			 <form method="post" action="/sisinf/editarSesion">
+			 <form method="post" action="/editarSesion">
 			 	<select id="sesionVieja" name="sesionVieja" required>
 			 	<%
                     DAOPeliculaPostgres dao = new DAOPeliculaPostgres("usuario", "user");
@@ -68,7 +68,7 @@
 		<br>
 		<p>${mensajeEditarSesion}</p>
 		<br>
-		<a href="/sisinf/admin/indexAdmin.jsp">Volver</a>
+		<a href="/admin/indexAdmin.jsp">Volver</a>
 </body>
 
 

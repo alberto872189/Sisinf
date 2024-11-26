@@ -30,7 +30,7 @@
 		}
 	}
 	if (user == null) {
-		response.sendRedirect("/sisinf/index.jsp");
+		response.sendRedirect("/index.jsp");
 	}
 	%>
 	<div id="tabs" class="tabs">
@@ -118,7 +118,7 @@
 				<button type="submit">Guardar cambios</button>
 				<br> <br>
 			</form>
-			<form method="post" action="/sisinf/deleteUser">
+			<form method="post" action="/deleteUser">
 				<input type="hidden" value="<%=user%>" name="login" required>
 				<button type="submit">Borrar cuenta</button>
 			</form>

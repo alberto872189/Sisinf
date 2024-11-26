@@ -27,7 +27,7 @@
 
 <script type="text/javascript">
 function regreso() {
-	window.location.href = "/sisinf/index.jsp";	
+	window.location.href = "/index.jsp";	
 }
 </script>
 <style>

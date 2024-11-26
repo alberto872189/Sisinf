@@ -33,7 +33,7 @@
 	}
 	%>
 
-	<form name="reserva" method="post" action="/sisinf/addProductoEntrada">
+	<form name="reserva" method="post" action="/addProductoEntrada">
 		<h1>Productos del bar</h1>
 		<br>
 		<%
@@ -67,7 +67,7 @@
 		<input type="submit" value="Confirmar y pagar">
 	</form>
 	<br>
-	<form method="post" action="/sisinf/borrarEntrada">
+	<form method="post" action="/borrarEntrada">
 		<%
 		for (String id : entradas) {
 		%>
@@ -89,7 +89,7 @@
 </body>
 <script >
 function regreso() {
-	window.location.href = "/sisinf/index.jsp";	
+	window.location.href = "/index.jsp";	
 }
 </script>
 <style>

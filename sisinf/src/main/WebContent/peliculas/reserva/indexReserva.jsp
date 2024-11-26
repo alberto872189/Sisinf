@@ -46,11 +46,11 @@
 			required> <input type="submit" value="Asientos">
 	</form>
 	<br>
-	<a href="/sisinf/peliculas/pelicula.jsp?pelicula=<%=pel%>">Volver</a>
+	<a href="/peliculas/pelicula.jsp?pelicula=<%=pel%>">Volver</a>
 </body>
 <script type="text/javascript">
 function regreso() {
-	window.location.href = "/sisinf/index.jsp";	
+	window.location.href = "/index.jsp";	
 }
 </script>
 <style>
