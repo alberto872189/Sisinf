@@ -18,14 +18,13 @@ public class DAOComentarioPostgres extends DAOComentario {
 	}
 	@Override
 	public int crear(Comentario t) {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
 		
 			Connection connection;
 		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+			connection = DriverManager.getConnection(url, name, pwd);
             String sql = "INSERT INTO Comentario(Texto, Pelicula, Usuario, Fecha) VALUES ('" + t.Texto + "','" + t.Pelicula + "','" + t.Usuario + "','" + t.Fecha + "')";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -41,14 +40,13 @@ public class DAOComentarioPostgres extends DAOComentario {
 
 	@Override
 	public void modificar(Comentario t) {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
 		
 			Connection connection;
 		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+			connection = DriverManager.getConnection(url, name, pwd);
             String sql = "UPDATE Comentario SET Texto = '" + t.Texto + "', Pelicula = '" + t.Pelicula + "', Usuario = '" + t.Usuario + "', Fecha = '" + t.Fecha + "' WHERE ID=" + t.ID;
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -65,14 +63,13 @@ public class DAOComentarioPostgres extends DAOComentario {
 
 	@Override
 	public void borrar(Integer k) {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
 		
 			Connection connection;
 		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+			connection = DriverManager.getConnection(url, name, pwd);
             String sql = "DELETE FROM Comentario WHERE ID=" + k;
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -91,7 +88,6 @@ public class DAOComentarioPostgres extends DAOComentario {
 
 	@Override
 	public Comentario obtener(Integer k) {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		Comentario res = new Comentario();
 		
 		try {
@@ -99,7 +95,7 @@ public class DAOComentarioPostgres extends DAOComentario {
 		
 			Connection connection;
 		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+			connection = DriverManager.getConnection(url, name, pwd);
 	
 			String sql = "select * from Comentario where ID=" + k;
 			
@@ -127,7 +123,6 @@ public class DAOComentarioPostgres extends DAOComentario {
 	}
 
 	public List<Comentario> obtenerPel(String k) {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		
 		List<Comentario> res = new ArrayList<Comentario>();
 		
@@ -136,7 +131,7 @@ public class DAOComentarioPostgres extends DAOComentario {
 		
 			Connection connection;
 		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+			connection = DriverManager.getConnection(url, name, pwd);
 	
 			String sql = "select * from Comentario where Pelicula='" + k + "'";
 			

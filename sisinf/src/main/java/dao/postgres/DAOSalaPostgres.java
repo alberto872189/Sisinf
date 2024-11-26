@@ -19,14 +19,13 @@ public class DAOSalaPostgres extends DAOSala {
 	
 	@Override
 	public int crear(Sala t) {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		
+	
 		try {
 			Class.forName("org.postgresql.Driver");
 		
 			Connection connection;
 		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+			connection = DriverManager.getConnection(url, name, pwd);
             String sql = "INSERT INTO Sala(N_Sala) VALUES (" + t.n + ")";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -73,7 +72,6 @@ public class DAOSalaPostgres extends DAOSala {
 
 	@Override
 	public Sala obtener(Integer k) {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		Sala res = new Sala();
 		
 		try {
@@ -81,7 +79,7 @@ public class DAOSalaPostgres extends DAOSala {
 		
 			Connection connection;
 		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+			connection = DriverManager.getConnection(url, name, pwd);
 	
 			String sql = "select * from Sala where N_Sala="+k;
 			
@@ -107,7 +105,6 @@ public class DAOSalaPostgres extends DAOSala {
 	}
 	
 	public List<Sala> obtenerSalas() {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		
 		List<Sala> res = new ArrayList<Sala>();
 		
@@ -116,7 +113,7 @@ public class DAOSalaPostgres extends DAOSala {
 		
 			Connection connection;
 		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+			connection = DriverManager.getConnection(url, name, pwd);
 	
 			String sql = "select * from Sala";
 			

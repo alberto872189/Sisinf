@@ -18,14 +18,13 @@ public class DAOProd_EntPostgres extends DAOProd_Ent {
 	
 	@Override
 	public int crear(Prod_Ent t) {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
 		
 			Connection connection;
 		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+			connection = DriverManager.getConnection(url, name, pwd);
             String sql = "INSERT INTO Prod_Ent(ID_Ent, Nombre_Prod) VALUES (" + t.ID_Ent + ",'" +  t.Nombre_Prod + "')";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -46,14 +45,13 @@ public class DAOProd_EntPostgres extends DAOProd_Ent {
 
 	@Override
 	public void borrar(Pair<Integer, String> k) {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
 		
 			Connection connection;
 		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+			connection = DriverManager.getConnection(url, name, pwd);
             String sql = "DELETE FROM Prod_Ent WHERE ID_Ent=" + k.x + " AND Nombre_Prod = '" + k.y + "'";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -70,7 +68,6 @@ public class DAOProd_EntPostgres extends DAOProd_Ent {
 
 	@Override
 	public Prod_Ent obtener(Pair<Integer, String> k) {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		Prod_Ent res = new Prod_Ent();
 		
 		try {
@@ -78,7 +75,7 @@ public class DAOProd_EntPostgres extends DAOProd_Ent {
 		
 			Connection connection;
 		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+			connection = DriverManager.getConnection(url, name, pwd);
 	
 			String sql = "select * from Prod_Ent where ID_Ent=" + k.x + " AND Nombre_Prod = '" + k.y + "'";
 			

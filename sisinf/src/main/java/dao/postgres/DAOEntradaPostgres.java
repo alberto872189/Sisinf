@@ -19,14 +19,13 @@ public class DAOEntradaPostgres extends DAOEntrada {
 	
 	@Override
 	public int crear(Entrada t) {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		int ret = -1;
 		try {
 			Class.forName("org.postgresql.Driver");
 		
 			Connection connection;
 		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+			connection = DriverManager.getConnection(url, name, pwd);
             String sql = "INSERT INTO Entrada(Correo, Sesion_Hora, N_Sala, N_But, Tit_Pel) VALUES ('" + t.Correo + "','" + t.Sesion_Hora + "'," +  t.N_Sala + "," + t.N_But + ",'" + t.Tit_Pel + "') RETURNING ID";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -46,14 +45,13 @@ public class DAOEntradaPostgres extends DAOEntrada {
 
 	@Override
 	public void modificar(Entrada t) {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
 		
 			Connection connection;
 		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+			connection = DriverManager.getConnection(url, name, pwd);
             String sql = "UPDATE Entrada SET Correo = '" + t.Correo + "', Sesion_Hora = '" + t.Sesion_Hora + "', N_Sala = " + t.N_Sala + ", N_But = " + t.N_But + ", Tit_Pel = '" + t.Tit_Pel  + "' WHERE ID=" + t.ID;
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -70,14 +68,13 @@ public class DAOEntradaPostgres extends DAOEntrada {
 
 	@Override
 	public void borrar(Integer k) {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
 		
 			Connection connection;
 		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+			connection = DriverManager.getConnection(url, name, pwd);
             String sql = "DELETE FROM Entrada WHERE ID=" + k;
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			
@@ -94,7 +91,6 @@ public class DAOEntradaPostgres extends DAOEntrada {
 
 	@Override
 	public Entrada obtener(Integer k) {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		Entrada res = new Entrada();
 		
 		try {
@@ -102,7 +98,7 @@ public class DAOEntradaPostgres extends DAOEntrada {
 		
 			Connection connection;
 		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+			connection = DriverManager.getConnection(url, name, pwd);
 	
 			String sql = "select * from Entrada where ID =" + k;
 			
@@ -132,7 +128,6 @@ public class DAOEntradaPostgres extends DAOEntrada {
 	}
 	
 	public List<Entrada> obtenerEntradas() {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		
 		List<Entrada> res = new ArrayList<Entrada>();
 		
@@ -141,7 +136,7 @@ public class DAOEntradaPostgres extends DAOEntrada {
 		
 			Connection connection;
 		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+			connection = DriverManager.getConnection(url, name, pwd);
 	
 			String sql = "select * from Entrada";
 			
@@ -172,7 +167,6 @@ public class DAOEntradaPostgres extends DAOEntrada {
 	}
 	
 	public List<Entrada> obtenerEntradasSesion(Integer sala, String hora) {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		
 		List<Entrada> res = new ArrayList<Entrada>();
 		
@@ -181,7 +175,7 @@ public class DAOEntradaPostgres extends DAOEntrada {
 		
 			Connection connection;
 		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+			connection = DriverManager.getConnection(url, name, pwd);
 	
 			String sql = "select * from Entrada WHERE N_Sala=" + sala + " AND Sesion_Hora ='" + hora + "'";
 			
@@ -212,14 +206,13 @@ public class DAOEntradaPostgres extends DAOEntrada {
 	}
 	
 	public int obtenerNumEntradasPelicula(String pelicula) {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		int res = 0;
 		try {
 			Class.forName("org.postgresql.Driver");
 		
 			Connection connection;
 		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+			connection = DriverManager.getConnection(url, name, pwd);
 	
 			String sql = "select count(*) AS nEntradas from Entrada WHERE Tit_Pel = '" + pelicula + "'";
 			

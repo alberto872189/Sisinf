@@ -21,14 +21,13 @@ public class DAOButacaPostgres extends DAOButaca {
 
 	@Override
 	public int crear(Butaca t) {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
 		
 			Connection connection;
 		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+			connection = DriverManager.getConnection(url, name, pwd);
             String sql = "INSERT INTO Butaca(N_Butaca, Sala_N) VALUES (" + t.N_Butaca + "," + t.Sala_N + ")";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -51,14 +50,13 @@ public class DAOButacaPostgres extends DAOButaca {
 
 	@Override
 	public void borrar(Pair<Integer, Integer> k) {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
 		
 			Connection connection;
 		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+			connection = DriverManager.getConnection(url, name, pwd);
             String sql = "DELETE FROM Butaca WHERE N_Butaca=" + k.x.toString() + " and Sala_N=" + k.y.toString();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -75,7 +73,6 @@ public class DAOButacaPostgres extends DAOButaca {
 
 	@Override
 	public Butaca obtener(Pair<Integer, Integer> k) {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		Butaca res = new Butaca();
 		
 		try {
@@ -83,7 +80,7 @@ public class DAOButacaPostgres extends DAOButaca {
 		
 			Connection connection;
 		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+			connection = DriverManager.getConnection(url, name, pwd);
 	
 			String sql = "select * from Butaca where N_Butaca=" + k.x.toString() + " and Sala_N=" + k.y.toString();
 			
@@ -107,7 +104,6 @@ public class DAOButacaPostgres extends DAOButaca {
 		return res;
 	}
 	public List<Butaca> obtenerSesion(Integer sala, String hora) {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		List<Butaca> res = new ArrayList<Butaca>();
 		
 		try {
@@ -115,7 +111,7 @@ public class DAOButacaPostgres extends DAOButaca {
 		
 			Connection connection;
 		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+			connection = DriverManager.getConnection(url, name, pwd);
 	
 			String sql = "select * from Butaca where Sala_N=" + sala;
 			

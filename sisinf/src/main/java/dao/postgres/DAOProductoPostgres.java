@@ -19,14 +19,13 @@ public class DAOProductoPostgres extends DAOProducto {
 	
 	@Override
 	public int crear(Producto t) {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
 		
 			Connection connection;
 		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+			connection = DriverManager.getConnection(url, name, pwd);
             String sql = "INSERT INTO Producto(Nombre, Precio, Disponible) VALUES ('" + t.Nombre + "'," + t.Precio + "," + t.Disponible + ")";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -42,14 +41,13 @@ public class DAOProductoPostgres extends DAOProducto {
 
 	@Override
 	public void modificar(Producto t) {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
 		
 			Connection connection;
 		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+			connection = DriverManager.getConnection(url, name, pwd);
             String sql = "UPDATE Producto SET Precio = " + t.Precio + ", Disponible = " + t.Disponible + " WHERE Nombre='" + t.Nombre + "'";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -66,14 +64,13 @@ public class DAOProductoPostgres extends DAOProducto {
 
 	@Override
 	public void borrar(String k) {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
 		
 			Connection connection;
 		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+			connection = DriverManager.getConnection(url, name, pwd);
             String sql = "DELETE FROM Producto WHERE Nombre='" + k + "'";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -90,7 +87,6 @@ public class DAOProductoPostgres extends DAOProducto {
 
 	@Override
 	public Producto obtener(String k) {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		Producto res = new Producto();
 		
 		try {
@@ -98,7 +94,7 @@ public class DAOProductoPostgres extends DAOProducto {
 		
 			Connection connection;
 		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+			connection = DriverManager.getConnection(url, name, pwd);
 	
 			String sql = "select * from Producto where Nombre='" + k + "'";
 			
@@ -125,7 +121,6 @@ public class DAOProductoPostgres extends DAOProducto {
 	}
 
 	public List<Producto> obtenerProductos() {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		
 		List<Producto> res = new ArrayList<Producto>();
 		
@@ -134,7 +129,7 @@ public class DAOProductoPostgres extends DAOProducto {
 		
 			Connection connection;
 		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+			connection = DriverManager.getConnection(url, name, pwd);
 	
 			String sql = "select * from Producto";
 			

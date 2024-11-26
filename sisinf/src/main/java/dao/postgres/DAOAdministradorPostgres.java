@@ -17,14 +17,13 @@ public class DAOAdministradorPostgres extends DAOAdministrador {
 	
 	@Override
 	public int crear(Administrador t) {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
 		
 			Connection connection;
 		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+			connection = DriverManager.getConnection(url, name, pwd);
             String sql = "INSERT INTO Administrador(Correo, Contrasenia, Nombre) VALUES ('" + t.Correo + "','" + t.Contrasenia + "','" + t.Nombre + "')";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -40,14 +39,13 @@ public class DAOAdministradorPostgres extends DAOAdministrador {
 
 	@Override
 	public void modificar(Administrador t) {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
 		
 			Connection connection;
 		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+			connection = DriverManager.getConnection(url, name, pwd);
             String sql = "UPDATE Administrador SET Contrasenia = '" + t.Contrasenia + "', Nombre = '" + t.Nombre + "' WHERE Correo='" + t.Correo + "'";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -64,14 +62,13 @@ public class DAOAdministradorPostgres extends DAOAdministrador {
 
 	@Override
 	public void borrar(String k) {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
 		
 			Connection connection;
 		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+			connection = DriverManager.getConnection(url, name, pwd);
             String sql = "DELETE FROM Administrador WHERE Correo='" + k + "'";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -88,7 +85,6 @@ public class DAOAdministradorPostgres extends DAOAdministrador {
 
 	@Override
 	public Administrador obtener(String k) {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		Administrador res = new Administrador();
 		
 		try {
@@ -96,7 +92,7 @@ public class DAOAdministradorPostgres extends DAOAdministrador {
 		
 			Connection connection;
 		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+			connection = DriverManager.getConnection(url, name, pwd);
 	
 			String sql = "select * from Administrador where Correo='" + k + "'";
 			

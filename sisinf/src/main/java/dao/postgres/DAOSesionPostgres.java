@@ -20,15 +20,13 @@ public class DAOSesionPostgres extends DAOSesion {
 	}
 	
 	@Override
-	public int crear(Sesion t) {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		
+	public int crear(Sesion t) {		
 		try {
 			Class.forName("org.postgresql.Driver");
 		
 			Connection connection;
 		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+			connection = DriverManager.getConnection(url, name, pwd);
             String sql = "INSERT INTO Sesion(Sesion_Hora, Tit_Pel, N_Sala, Precio) VALUES ('" + t.Sesion_Hora + "','" + t.Tit_Pel + "'," + t.N_Sala + "," + t.Precio + ")";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -71,15 +69,13 @@ public class DAOSesionPostgres extends DAOSesion {
 	}
 
 	@Override
-	public void borrar(Pair<Date, Integer> k) {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
-		
+	public void borrar(Pair<Date, Integer> k) {	
 		try {
 			Class.forName("org.postgresql.Driver");
 		
 			Connection connection;
 		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+			connection = DriverManager.getConnection(url, name, pwd);
             String sql = "DELETE FROM Sesion WHERE Sesion_Hora='" + k.x + "' and N_Sala=" + k.y;
             PreparedStatement preparedStatement = connection.prepareStatement(sql); 
 
@@ -96,7 +92,6 @@ public class DAOSesionPostgres extends DAOSesion {
 
 	@Override
 	public Sesion obtener(Pair<Date, Integer> k) {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		Sesion res = new Sesion();
 		
 		try {
@@ -104,7 +99,7 @@ public class DAOSesionPostgres extends DAOSesion {
 		
 			Connection connection;
 		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+			connection = DriverManager.getConnection(url, name, pwd);
 	
 			String sql = "select * from Sesion where Sesion_Hora='" + k.x + "' and N_Sala=" + k.y;
 			
@@ -132,7 +127,6 @@ public class DAOSesionPostgres extends DAOSesion {
 	}
 	
 	public List<Sesion> obtenerSesionesPel(String k) {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		
 		List<Sesion> res = new ArrayList<Sesion>();
 		
@@ -141,7 +135,7 @@ public class DAOSesionPostgres extends DAOSesion {
 		
 			Connection connection;
 		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+			connection = DriverManager.getConnection(url, name, pwd);
 	
 			String sql = "select * from Sesion where Tit_Pel='" + k + "'";
 			

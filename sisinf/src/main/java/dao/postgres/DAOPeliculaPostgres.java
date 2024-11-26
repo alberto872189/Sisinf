@@ -19,14 +19,13 @@ public class DAOPeliculaPostgres extends DAOPelicula {
 	
 	@Override
 	public int crear(Pelicula t) {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
 		
 			Connection connection;
 		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+			connection = DriverManager.getConnection(url, name, pwd);
             String sql = "INSERT INTO Pelicula(Titulo, Resumen, Imagen, Link_IMDB, Trailer) VALUES ('" + t.Titulo + "','" + t.Resumen + "','" + t.Imagen + "','" + t.Link_IMDB + "','" + t.Trailer + "')";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -42,14 +41,13 @@ public class DAOPeliculaPostgres extends DAOPelicula {
 
 	@Override
 	public void modificar(Pelicula t) {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
 		
 			Connection connection;
 		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+			connection = DriverManager.getConnection(url, name, pwd);
             String sql = "UPDATE Pelicula SET Resumen = '" + t.Resumen + "', Imagen = '" + t.Imagen + "', Link_IMDB='" + t.Link_IMDB + "', Trailer='" + t.Trailer + "' WHERE Titulo='" + t.Titulo + "'";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -66,14 +64,13 @@ public class DAOPeliculaPostgres extends DAOPelicula {
 
 	@Override
 	public void borrar(String k) {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		
 		try {
 			Class.forName("org.postgresql.Driver");
 		
 			Connection connection;
 		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+			connection = DriverManager.getConnection(url, name, pwd);
             String sql = "DELETE FROM Pelicula WHERE Titulo='" + k + "'";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -90,7 +87,6 @@ public class DAOPeliculaPostgres extends DAOPelicula {
 
 	@Override
 	public Pelicula obtener(String k) {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		Pelicula res = new Pelicula();
 		
 		try {
@@ -98,7 +94,7 @@ public class DAOPeliculaPostgres extends DAOPelicula {
 		
 			Connection connection;
 		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+			connection = DriverManager.getConnection(url, name, pwd);
 	
 			String sql = "select * from Pelicula where Titulo='" + k + "'";
 			
@@ -128,7 +124,6 @@ public class DAOPeliculaPostgres extends DAOPelicula {
 	}
 	
 	public List<Pelicula> obtenerPeliculas() {
-		String urlBaseDeDatos = "jdbc:postgresql://localhost:5432/sisinf_grupo_c05";
 		
 		List<Pelicula> res = new ArrayList<Pelicula>();
 		
@@ -137,7 +132,7 @@ public class DAOPeliculaPostgres extends DAOPelicula {
 		
 			Connection connection;
 		
-			connection = DriverManager.getConnection(urlBaseDeDatos, name, pwd);
+			connection = DriverManager.getConnection(url, name, pwd);
 	
 			String sql = "select * from Pelicula";
 			

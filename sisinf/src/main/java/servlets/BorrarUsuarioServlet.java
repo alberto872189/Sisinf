@@ -33,7 +33,14 @@ public class BorrarUsuarioServlet extends HttpServlet {
 		Cookie cookie = new Cookie ("login", "");
 		cookie.setMaxAge(0);
 		response.addCookie(cookie);
-		RequestDispatcher dispatcher=request.getRequestDispatcher("indexUser.jsp");
+		RequestDispatcher dispatcher;
+		if (errors.isEmpty()) {
+			dispatcher=request.getRequestDispatcher("index.jsp");
+		}
+		else {
+			dispatcher=request.getRequestDispatcher("indexUser.jsp");
+
+		}
 		request.setAttribute("errors", errors);
 		dispatcher.forward(request, response);
 	}
