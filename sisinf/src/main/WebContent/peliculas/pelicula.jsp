@@ -44,7 +44,7 @@
 		<table id="infoPeliculas">
 			<tr>
 				<!-- imagen de la pelÃ­cula-->
-				<%= "<td><img width=\"300\" height=\"300\" src=\"" + pelicula.Imagen + "\"/></td>"%>
+				<%= "<td><img  width=\"300\" height=\"300\" src=\"" + pelicula.Imagen + "\"/></td>"%>
 			</tr>
 			<tr>
 				<td>
@@ -95,7 +95,7 @@
 		<br>
 		<h2 style="text-align:left">Comentarios</h2>
 		<form method="post" action="/publishComment">
-			<textarea rows="10" cols="30" name="texto" placeholder="Escribe aquí tu comentario"></textarea>
+			<textarea rows="10" cols="30" name="texto" style="resize: none" placeholder="Escribe aquí tu comentario"></textarea>
 			<br>
 			<%="<input type=\"hidden\" name=\"pelicula\" value=\""+ pel + "\">" %>
 			<%="<input type=\"hidden\" name=\"usuario\" value=\""+ user + "\">" %>
@@ -108,13 +108,13 @@
 		DAOComentarioPostgres dao3 = new DAOComentarioPostgres("usuario", "user"); 
 		List<Comentario> comentarios = dao3.obtenerPel(pel); 
 		for (Comentario comentario : comentarios) {
+			String f = comentario.Fecha.toString();
+			int espacio = f.indexOf(" ");
+			f = f.substring(0, espacio);
 		%>
 		
-		<%= comentario.Fecha + " Usuario:" + comentario.Usuario%>
-		 <br>
-		 <%= comentario.Texto %>
-		 <br>
-		 <br>	
+		<%= "<fieldset max-width=\"200px\" id=\"comentario\"><legend>" + comentario.Usuario + "      " + f + "</legend><br>"%>
+		 <%= comentario.Texto + "</fieldset><br>"%>
 		<%
 		}
 		%>
@@ -182,6 +182,21 @@ body {
 }
 
 /* Main Content */
+#comentario {
+	border: 3px solid #ddd;
+	padding:10px;
+	border-radius:8px;
+	background-color: #f2f2f2;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	/*background-color:*/
+}
+img {
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    height: auto;
+}
+
 h1 {
     font-size: 2.5em;
     color: #007bff;
@@ -260,9 +275,6 @@ iframe {
     background-color: #f4f4f9;
 }
 
-#horarios tr:hover {
-    background-color: #e9ecef;
-}
 
 /* Botón de Reservar */
 #reservaBoton {
@@ -307,14 +319,6 @@ form input[type="submit"]:hover {
 }
 
 /* Comentarios previos */
-.comment {
-    margin-top: 1em;
-    padding: 1em;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
 
 .comment h3 {
     font-size: 1em;

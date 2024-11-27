@@ -59,6 +59,6 @@ public class PublicarComentarioServlet extends HttpServlet {
 		request.setAttribute("errors", errors);
 		dispatcher.forward(request, response);
 	
-	}
+		}
 	}
 }

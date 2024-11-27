@@ -27,7 +27,7 @@
 	<h1>Desacine</h1>
 	<!-- Menu -->
 	<div class="menu">
-		<form method="post" action="/borrarEntrada">
+		<form method="post" action="/borrarEntrada" id="botonCartelera">
 		<%
 		for (String id : entradas) {
 		%>
@@ -45,7 +45,7 @@
 		<input type="hidden" name="hora" value=<%=hora%> required>
 		<input type="hidden" name="sala" value=<%=sala%> required>
 		<input type="hidden" name="retorno" value="index.jsp" required>
-		<button type="submit">Cartelera</button>
+		<button type="submit">CARTELERA</button>
 	</form>
 	</div>
 </div>
@@ -53,7 +53,7 @@
 
 	
 
-	<form name="reserva" method="post" action="/addProductoEntrada">
+	<form name="reserva" method="post" action="/addProductoEntrada" id="botonReserva">
 		<h1>Productos del bar</h1>
 		<br>
 		<%
@@ -87,7 +87,7 @@
 		<input type="submit" value="Confirmar y pagar">
 	</form>
 	<br>
-	<form method="post" action="/borrarEntrada">
+	<form method="post" action="/borrarEntrada" id="botonVolver">
 		<%
 		for (String id : entradas) {
 		%>
@@ -169,7 +169,15 @@ h1 {
 }
 
 /* Formulario */
-form {
+#botonVolver {
+    background: white;
+    padding: 1.5em;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto 1.5em auto;
+}
+#botonReserva {
     background: white;
     padding: 1.5em;
     border-radius: 8px;
@@ -186,8 +194,7 @@ form label {
 }
 
 form input[type="number"],
-form select,
-form input[type="hidden"] {
+form select {
     width: calc(100% - 20px);
     padding: 0.5em;
     margin-bottom: 1em;
