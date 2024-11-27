@@ -9,15 +9,7 @@
 <%@ page import="vo.Butaca"%>
 <%@ page import="vo.Producto"%>
 <div class="topbar">
-	<h1>Desacine</h1>
-	<!-- Menu -->
-	<div class="menu">
-		<button onclick="regreso()">CARTELERA</button>
-	</div>
-</div>
-<body>
-
-	<%
+<%
 	String pel = request.getParameter("pelicula");
 	String entradas[] = (String[]) request.getAttribute("idEntradas");
 	Integer nEntradas = (Integer) request.getAttribute("nEntradas");
@@ -32,6 +24,34 @@
 		}
 	}
 	%>
+	<h1>Desacine</h1>
+	<!-- Menu -->
+	<div class="menu">
+		<form method="post" action="/borrarEntrada">
+		<%
+		for (String id : entradas) {
+		%>
+		<%="<input type=\"hidden\" name=\"idEntradas\" value=\"" + id + "\" required>"%>
+		<%
+		}
+		%>
+
+		<%
+		int k = hora.indexOf(" ");
+		hora = hora.substring(0, k) + "+" + hora.substring(k + 1);
+		%>
+		<input type="hidden" name="nButacas" value="<%=nEntradas%>" required>
+		<input type="hidden" name="pelicula" value="<%=pel%>" required>
+		<input type="hidden" name="hora" value=<%=hora%> required>
+		<input type="hidden" name="sala" value=<%=sala%> required>
+		<input type="hidden" name="retorno" value="index.jsp" required>
+		<button type="submit">Cartelera</button>
+	</form>
+	</div>
+</div>
+<body>
+
+	
 
 	<form name="reserva" method="post" action="/addProductoEntrada">
 		<h1>Productos del bar</h1>
@@ -75,16 +95,12 @@
 		<%
 		}
 		%>
-
-		<%
-		int k = hora.indexOf(" ");
-		hora = hora.substring(0, k) + "+" + hora.substring(k + 1);
-		%>
 		<input type="hidden" name="nButacas" value="<%=nEntradas%>" required>
 		<input type="hidden" name="pelicula" value="<%=pel%>" required>
-		<input type="hidden" name="hora" value=<%=hora%> required> <input
-			type="hidden" name="sala" value=<%=sala%> required> <input
-			type="submit" value="Volver">
+		<input type="hidden" name="hora" value=<%=hora%> required>
+		<input type="hidden" name="sala" value=<%=sala%> required>
+		<input type="hidden" name="retorno" value="indexReserva2.jsp" required>
+		<input type="submit" value="Volver">
 	</form>
 </body>
 <script >

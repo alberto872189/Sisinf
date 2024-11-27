@@ -23,14 +23,21 @@ public class BorrarEntradaServlet extends HttpServlet {
 		String hora = request.getParameter("hora");
 		String pelicula = request.getParameter("pelicula");
 		String sala = request.getParameter("sala");
+		String retorno = request.getParameter("retorno");
 			
 		DAOEntradaPostgres daoEntrada = new DAOEntradaPostgres("admin", "admin");
 		for (String id : idEntradas) {
 			daoEntrada.borrar(Integer.valueOf(id));
 		}
-		request.setAttribute("idEntradas", idEntradas);
-		RequestDispatcher dispatcher=request.getRequestDispatcher("peliculas/reserva/indexReserva2.jsp?nEntradas=" + nButacas
-				+ "&Hora=" + hora + ";" + sala + "&pelicula=" + pelicula);
+		RequestDispatcher dispatcher;
+		if (retorno.equals("indexReserva2.jsp")) {
+			request.setAttribute("idEntradas", idEntradas);
+			dispatcher = request.getRequestDispatcher("peliculas/reserva/indexReserva2.jsp?nEntradas=" + nButacas
+					+ "&Hora=" + hora + ";" + sala + "&pelicula=" + pelicula);
+		}
+		else {
+			dispatcher = request.getRequestDispatcher("index.jsp");
+		}
 		dispatcher.forward(request, response);
 	}
 }
