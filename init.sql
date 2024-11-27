@@ -31,17 +31,17 @@ insert into pelicula(Titulo, Resumen, Imagen, Link_IMDB, Trailer) values ('Pira�
 'https://www.imdb.com/title/tt0464154/',
 'https://www.youtube.com/embed/3ksuNWRzc3s?si=R_EYdqaiiKwNpic7');
 
-insert into pelicula(Titulo, Resumen, Imagen, Link_IMDB, Trailer) values ('Otra peli',
-'Un terremoto submarino libera a una especie prehistórica de pez carnívoro y un grupo de desconocidos une fuerzas para evitar convertirse en su comida.', 
-'/peliculas/imagenes/Piranya.png',
-'https://www.imdb.com/title/tt0464154/',
-'https://www.youtube.com/embed/3ksuNWRzc3s?si=R_EYdqaiiKwNpic7');
+insert into pelicula(Titulo, Resumen, Imagen, Link_IMDB, Trailer) values ('Joker',
+'En Gotham, Arthur Fleck, un comediante con problemas de salud mental, es marginado y maltratado por la sociedad. Se adentra en una espiral de crimen que resulta revolucionaria. Pronto conoce a su alter-ego, el Joker.', 
+'/peliculas/imagenes/Joker.png',
+'https://www.imdb.com/title/tt7286456/',
+'https://www.youtube.com/embed/ygUHhImN98w?si=SBlodj7ze_SvHVra');
 
-insert into pelicula(Titulo, Resumen, Imagen, Link_IMDB, Trailer) values ('Otra peli 2',
-'Un terremoto submarino libera a una especie prehistórica de pez carnívoro y un grupo de desconocidos une fuerzas para evitar convertirse en su comida.', 
-'/peliculas/imagenes/Piranya.png',
-'https://www.imdb.com/title/tt0464154/',
-'https://www.youtube.com/embed/3ksuNWRzc3s?si=R_EYdqaiiKwNpic7');
+insert into pelicula(Titulo, Resumen, Imagen, Link_IMDB, Trailer) values ('Drive',
+'Durante el día, Driver es conductor especialista de cine, pero de noche se convierte en chófer para delincuentes. El mundo de Driver cambia el día en que conoce a Irene, una vecina que tiene un hijo pequeño y a su marido en la cárcel.', 
+'/peliculas/imagenes/Drive.png',
+'https://www.imdb.com/title/tt0780504/',
+'https://www.youtube.com/embed/--XQKuqUrMo?si=0B5HsM_DhefbMl7A');
 
 insert into sesion(Sesion_Hora, Tit_Pel, N_Sala, Precio) values ('2025-10-10 11:30:00', 'Cars', 1, 5.5);
 insert into sesion(Sesion_Hora, Tit_Pel, N_Sala, Precio) values ('2025-10-10 13:30:00', 'Cars', 2, 6.5);
@@ -55,11 +55,11 @@ insert into sesion(Sesion_Hora, Tit_Pel, N_Sala, Precio) values ('2025-10-10 18:
 insert into sesion(Sesion_Hora, Tit_Pel, N_Sala, Precio) values ('2025-10-10 16:30:00', 'Piraña 3D', 3, 5.5);
 insert into sesion(Sesion_Hora, Tit_Pel, N_Sala, Precio) values ('2025-10-10 18:30:00', 'Piraña 3D', 4, 5);
 
-insert into sesion(Sesion_Hora, Tit_Pel, N_Sala, Precio) values ('2025-10-11 11:30:00', 'Cars', 1, 5.5);
-insert into sesion(Sesion_Hora, Tit_Pel, N_Sala, Precio) values ('2025-10-11 13:30:00', 'Cars', 2, 5.5);
+insert into sesion(Sesion_Hora, Tit_Pel, N_Sala, Precio) values ('2025-10-11 11:30:00', 'Joker', 1, 5.5);
+insert into sesion(Sesion_Hora, Tit_Pel, N_Sala, Precio) values ('2025-10-11 13:30:00', 'Joker', 2, 5.5);
 
-insert into sesion(Sesion_Hora, Tit_Pel, N_Sala, Precio) values ('2025-10-11 16:30:00', 'Cars', 3, 5);
-insert into sesion(Sesion_Hora, Tit_Pel, N_Sala, Precio) values ('2025-10-11 18:30:00', 'Cars', 4, 5.5);
+insert into sesion(Sesion_Hora, Tit_Pel, N_Sala, Precio) values ('2025-10-11 16:30:00', 'Drive', 3, 5);
+insert into sesion(Sesion_Hora, Tit_Pel, N_Sala, Precio) values ('2025-10-11 18:30:00', 'Drive', 4, 5.5);
 
 insert into producto(Nombre, Precio, Disponible) values ('Palomitas', 3, True);
 insert into producto(Nombre, Precio, Disponible) values ('Refresco', 2.5, True);
