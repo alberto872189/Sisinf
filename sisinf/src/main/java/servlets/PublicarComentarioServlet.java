@@ -53,12 +53,11 @@ public class PublicarComentarioServlet extends HttpServlet {
 					comment.Usuario = usuario;
 					comment.Fecha = new Date(Long.valueOf(fecha));
 					daoComment.crear(comment);
+				}
 			}
 		}
-		RequestDispatcher dispatcher=request.getRequestDispatcher("peliculas/pelicula.jsp");
 		request.setAttribute("errors", errors);
+		RequestDispatcher dispatcher=request.getRequestDispatcher("peliculas/pelicula.jsp?pelicula=" + pelicula);
 		dispatcher.forward(request, response);
-	
-		}
 	}
 }

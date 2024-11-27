@@ -3,7 +3,9 @@
 <head>
 </head>
 <%@ page import="dao.postgres.DAOProductoPostgres"%>
+<%@ page import="dao.postgres.DAOEntradaPostgres"%>
 <%@ page import="vo.Pelicula"%>
+<%@ page import="vo.Entrada"%>
 <%@ page import="vo.Sesion"%>
 <%@ page import="java.util.List"%>
 <%@ page import="vo.Butaca"%>
@@ -28,7 +30,7 @@
 	<!-- Menu -->
 	<div class="menu">
 		<form method="post" action="/borrarEntrada" id="botonCartelera">
-		<%
+		<%		
 		for (String id : entradas) {
 		%>
 		<%="<input type=\"hidden\" name=\"idEntradas\" value=\"" + id + "\" required>"%>
@@ -50,9 +52,7 @@
 	</div>
 </div>
 <body>
-
-	
-
+<div id="notTopbar">
 	<form name="reserva" method="post" action="/addProductoEntrada" id="botonReserva">
 		<h1>Productos del bar</h1>
 		<br>
@@ -60,21 +60,37 @@
 		DAOProductoPostgres dao2 = new DAOProductoPostgres("usuario", "user");
 		List<Producto> productos = dao2.obtenerProductos();
 		%>
-		<table>
+		<table style="aling-text:center">
 			<tr>
 				<%
 				int i = 1;
+				DAOEntradaPostgres daoEnt = new DAOEntradaPostgres("usuario", "user");
 				for (String id : entradas) {
+					Entrada ent = daoEnt.obtener(Integer.valueOf(id));
+					int but = ent.N_But;
+					String fila = Integer.toString((but-1)/10 + 1);
+					String columna;
+					if (but % 10 == 0) {
+						columna = "10";
+					}
+					else {
+						columna = Integer.toString(but % 10);
+					}
+					if ((i-1) % 5 == 0 && i != 1) {
+					%>
+					<%="</tr><tr>"%>
+					<%
+					}
 				%>
-				<%="<td> Entrada " + i + ": " + id + "<br>"%>
+				<%="<td> Entrada " + i + "<br>Fila " + fila + ", butaca " + columna + "<br>"%>
 				<%
 				for (Producto producto : productos) {
 					if (producto.Disponible) {
 				%>
-				<%="<input width=\"12px\" heigth=\"12px\" type=\"checkbox\" name=\"productos\" value=\"" + producto.Nombre + ";"
-		+ id + "\">" + producto.Nombre + "<br>"%>
+				<%="<label>" + producto.Nombre + " <input width=\"12px\" heigth=\"12px\" type=\"checkbox\" name=\"productos\" value=\"" + producto.Nombre + ";"
+				+ id + "\"></label>"%>
 				<%
-				}
+					}
 				}
 				%>
 				<%="</td>"%>
@@ -102,6 +118,7 @@
 		<input type="hidden" name="retorno" value="indexReserva2.jsp" required>
 		<input type="submit" value="Volver">
 	</form>
+</div>
 </body>
 <script >
 function regreso() {
@@ -123,7 +140,10 @@ body {
     color: #333;
     line-height: 1.6;
     font-size: 16px;
-    padding: 2em;
+}
+
+#notTopbar {
+	padding: 2em;
 }
 
 /* Topbar */
@@ -168,13 +188,18 @@ h1 {
     margin-bottom: 1em;
 }
 
+table {
+	text-align: center;
+	border-spacing: 20px;
+}
+
 /* Formulario */
 #botonVolver {
     background: white;
     padding: 1.5em;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
+    max-width: 200px;
     margin: 0 auto 1.5em auto;
 }
 #botonReserva {
@@ -182,14 +207,17 @@ h1 {
     padding: 1.5em;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
     margin: 0 auto 1.5em auto;
+   	max-width: 900px
+}
+
+form {
+	text-align: center;
 }
 
 form label {
     display: block;
-    font-weight: bold;
-    margin-bottom: 0.5em;
+    margin-bottom: 0.3em;
     color: #333;
 }
 

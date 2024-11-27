@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 <%@ page import="dao.postgres.DAOSesionPostgres"%>
 <%@ page import="dao.postgres.DAOButacaPostgres"%>
@@ -19,11 +18,11 @@
 	</div>
 </div>
 <body>
-
+<div id="notTopbar">
 	<%
 	String pel = request.getParameter("pelicula");
 	%>
-	<h1><%=pel%></h1>
+	<h1 style="align: center;"><%=pel%></h1>
 	<form name="reserva" action=indexReserva2.jsp>
 		<label for="nEntradas">Número de entradas:</label><br> <input
 			type="number" name="nEntradas" value="1"><br>
@@ -46,7 +45,10 @@
 			required> <input type="submit" value="Asientos">
 	</form>
 	<br>
+	<div style="text-align:center;">
 	<a href="/peliculas/pelicula.jsp?pelicula=<%=pel%>">Volver</a>
+	</div>
+	</div>
 </body>
 <script type="text/javascript">
 function regreso() {
@@ -68,9 +70,11 @@ body {
     color: #333;
     line-height: 1.6;
     font-size: 16px;
-    padding: 2em;
 }
 
+#notTopbar {
+	padding: 2em;
+}
 /* Topbar */
 .topbar {
     background-color: #1f1f1f;
@@ -108,7 +112,7 @@ body {
 
 /* Main Content */
 h1 {
-    font-size: 2em;
+    font-size: 2.5em;
     color: #007bff;
     margin-bottom: 1em;
 }

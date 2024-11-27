@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 <%@ page import="dao.postgres.DAOSesionPostgres"%>
 <%@ page import="dao.postgres.DAOButacaPostgres"%>
@@ -19,7 +18,7 @@
 	</div>
 </div>
 <body>
-
+<div id="notTopbar">
 	<%
 	String pel = request.getParameter("pelicula");
 	String nEntradas = request.getParameter("nEntradas");
@@ -42,11 +41,14 @@
 		Integer sala = Integer.valueOf(hora.substring(k + 1, hora.length()));
 		List<Butaca> butacas = dao.obtenerSesion(sala, hora.substring(0, k));
 		%>
-		<h1><%=pel%>, SALA
+		<h1 style="text-align:left;"><%=pel%>, SALA
 			<%=sala%>,
 			<%=hora.substring(0, k)%></h1>
-		<h2>Asientos</h2>
+		<h2 style="text-align:left;">Seleccione los asientos</h2>
 		<br>
+		<div style="align-items:center;">
+		<h1 >PANTALLA</h1>
+		</div>
 		<table id="asientos" align="center">
 			<%
 			int ncolumnas = 10;
@@ -61,7 +63,7 @@
 			}
 			if (but.Ocupada) {
 			%>
-			<%="<td id=\"td-asientos\"><img src=\"/sisinf/img/redSquare.png\"></td>"%>
+			<%="<td id=\"td-asientos\"><img src=\"/img/redSquare.png\"></td>"%>
 			<%
 			} else {
 			%>
@@ -88,7 +90,6 @@
 			}
 			%>
 		</table>
-		<br> <br>
 		<br> <input type="hidden" value="<%=hora.substring(0, k)%>"
 			name="hora" required> <input type="hidden" value="<%=sala%>"
 			name="sala" required> <input type="hidden"
@@ -103,12 +104,18 @@
 	<%
 	if (errors != null && errors.get("Butacas") != null) {
 	%>
+	<div style="text-align:center;">
 	<%=errors.get("Butacas")%>
+	</div>
 	<%
 	}
 	%>
 	<br>
-	<a href="/peliculas/reserva/indexReserva.jsp?pelicula=<%=pel%>">Volver</a>
+	<div style="text-align:center;">
+		<a href="/peliculas/reserva/indexReserva.jsp?pelicula=<%=pel%>">Volver</a>
+	</div>
+	
+</div>
 </body>
 <script>
 function regreso() {
@@ -130,7 +137,10 @@ body {
     color: #333;
     line-height: 1.6;
     font-size: 16px;
-    padding: 2em;
+}
+
+#notTopbar {
+	padding: 2em;
 }
 
 /* Topbar */
@@ -172,7 +182,6 @@ body {
 h1, h2 {
     margin-bottom: 1em;
     color: #007bff;
-    text-align: left;
 }
 
 h1 {
@@ -263,9 +272,7 @@ form input[type="submit"]:hover {
 a {
     color: #007bff;
     text-decoration: none;
-    font-size: 1em;
-    display: inline-block;
-    margin-top: 2em;
+    font-weight: bold;
 }
 
 a:hover {

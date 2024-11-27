@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="css/styles.css">
+<!-- <link rel="stylesheet" type="text/css" href="css/styles.css">  -->
 <meta charset="UTF-8">
 <title>Pelicula</title>
 </head>
@@ -13,6 +13,8 @@
 <%@ page import="vo.Sesion" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Date" %>
+<%@ page import="java.util.Map"%>
+
 <div class="topbar">
 	<h1>Desacine</h1>
 	<!-- Menu -->
@@ -37,7 +39,7 @@
 			}
 		}
 	%>
-
+<div id="notTopbar">
 <h1 style="text-align:left"><%=pelicula.Titulo %></h1>
 	<div style="float:left">
 	
@@ -65,9 +67,7 @@
 		</table>
 	</div>
 	<div style="float:left">
-		<%= "<td><button id=\"reservaBoton\" onClick=\"reservarEntrada('"+pel+"')\">Reservar entrada</button></td>" %>
-	</div>
-	<div style="float:left">
+	<%= "<button id=\"reservaBoton\" onClick=\"reservarEntrada('"+pel+"')\">Reservar entrada</button>" %>
 		<table id="horarios">
 			<tr>
 				<td id="td-horarios">HORA</td>
@@ -95,12 +95,22 @@
 		<br>
 		<h2 style="text-align:left">Comentarios</h2>
 		<form method="post" action="/publishComment">
-			<textarea rows="10" cols="30" name="texto" style="resize: none" placeholder="Escribe aquí tu comentario"></textarea>
+			<textarea rows="10" cols="30" name="texto" style="resize: none" placeholder="Escribe aquí tu comentario" required></textarea>
 			<br>
-			<%="<input type=\"hidden\" name=\"pelicula\" value=\""+ pel + "\">" %>
+			<%="<input type=\"hidden\" name=\"pelicula\" value=\""+ pel + "\" required>" %>
 			<%="<input type=\"hidden\" name=\"usuario\" value=\""+ user + "\">" %>
-			<%="<input type=\"hidden\" name=\"fecha\" value=\""+ new Date().getTime() + "\">" %>
+			<%="<input type=\"hidden\" name=\"fecha\" value=\""+ new Date().getTime() + "\" required>" %>
 			<input type="submit" value="Publicar">
+			<%!Map<String, String> errors;%>
+			<%
+			errors = (Map<String, String>) request.getAttribute("errors");
+			
+			if (errors != null && errors.get("Usuario") != null) {
+			%>
+			<%=errors.get("Usuario")%>	
+			<%
+			}
+			%>
 		</form>
 		<!-- OBTENER COMENTARIOS PREVIOS -->
 		<br>
@@ -118,6 +128,7 @@
 		<%
 		}
 		%>
+	</div>
 	</div>
 </body>
 <script>
@@ -143,9 +154,12 @@ body {
     color: #333;
     line-height: 1.6;
     font-size: 16px;
-    padding: 2em;
+    align-items:center;
 }
 
+#notTopbar {
+	padding:2em;
+}
 /* Topbar */
 .topbar {
     background-color: #1f1f1f;
@@ -154,7 +168,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.5em;
+    margin-bottom: 1.5em
 }
 
 .topbar h1 {
@@ -188,8 +202,8 @@ body {
 	border-radius:8px;
 	background-color: #f2f2f2;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-	/*background-color:*/
 }
+
 img {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
