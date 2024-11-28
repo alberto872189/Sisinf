@@ -36,8 +36,10 @@
             <br>
             Imagen:
             <br>
-            <input type="file" id="imagen" name="imagen" accept="image/*" required>
-            <br>
+            <div class="file-upload">
+    			<input type="file" id="imagen" class="file-label" name="imagen" accept="image/*" required>
+    			<label for="imagen" class="file-label">Seleccionar archivo</label>
+			</div>
             Trailer:
             <br>
             <input type="url" id="trailer" name="trailer" placeholder="Enlace al trailer" required>
@@ -115,7 +117,7 @@
 </script>
 
 <style>
-    form {
+    /*form {
         display: flex;
         flex-direction: column;
         width: 400px;
@@ -155,7 +157,175 @@
     	display: flex;
    	 	justify-content: center;
     	margin-bottom: 20px; /* Espaciado debajo del conjunto de botones */
-	}
+	}*/
+	
+	  /* General Reset */
+body, h1, h2, p, a, table, tr, td, button, form, input, textarea, iframe {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+    font-size: 16px;
+    padding:2em;
+    display: flex; 
+  	text-align: center; 
+	justify-content: center; 
+}
+
+button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+/* Formulario */
+form {
+    background: white;
+    padding: 1.5em;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto 1.5em auto;
+    display: flex;
+    flex-direction: column;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+form input[type="submit"] {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+input[type="submit"]:hover {
+    background-color: #218838;
+}
+
+input[type="text"] {
+    width: 300px;
+    padding: 0.8em;
+    margin-bottom: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="url"] {
+    width: 300px;
+    padding: 0.8em;
+    margin-bottom: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.file-upload {
+    position: relative;
+    display: inline-block;
+}
+
+/* Estilos del input de tipo file (oculto) */
+#imagen {
+    display: none;
+}
+
+/* Estilo para el label que actúa como el botón de carga */
+.file-label {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+    display: inline-block;
+}
+
+.file-label:hover {
+    background-color: #0056b3;
+}
+
+.file-label:active {
+    background-color: #003d82;
+}
+
+input[type="number"] {
+    width: 300px;
+    padding: 0.8em;
+    margin-bottom: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="date"] {
+    width: 300px;
+    padding: 0.8em;
+    margin-bottom: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="time"] {
+    width: 300px;
+    padding: 0.8em;
+    margin-bottom: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+select {
+    width: 300px;
+    padding: 0.8em;
+    margin-bottom: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="checkbox"] {
+    transform: scale(1.5);
+    margin: 0;
+    cursor: pointer;
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #007bff;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.8em;
+    color: #333;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    text-align: center;
+}
 
 </style>
 
