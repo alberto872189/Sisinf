@@ -92,7 +92,7 @@ if (user != null) {
 				<%
 				errors = (Map<String, String>) request.getAttribute("errors");
 				%>
-				<input id="login" name="login" type="text" placeholder="Correo"
+				<input id="login" name="login" type="email" placeholder="Correo"
 					required> <br>
 				<%
 				if (errors != null && errors.get("Login") != null) {
@@ -103,7 +103,7 @@ if (user != null) {
 				%>
 
 				<br> <input id="passwd" name="passwd" type="password"
-					placeholder="Contrasenya" required> <br>
+					placeholder="Contraseña" required> <br>
 				<%
 				if (errors != null && errors.get("Clave") != null) {
 				%>
@@ -125,19 +125,19 @@ if (user != null) {
 			<form method="post" action="registroUsuario">
 				<input id="nombre" name="nombre" type="text"
 					placeholder="Nombre de usuario" required> <br> <br>
-				<input id="email" name="login" type="text" placeholder="Email"
+				<input id="email" name="login" type="email" placeholder="Email"
 					required> <br>
 				<%
-				if (errors != null && errors.get("Login") != null) {
+				if (errors != null && errors.get("LoginExists") != null) {
 				%>
-				<%=errors.get("Login")%>
+				<%=errors.get("LoginExists")%>
 				<%
 				}
 				%>
 				<br> <input id="passwd-reg" name="passwd" type="password"
-					placeholder="Contrasenya" required> <br> <br> <input
+					placeholder="Contraseña" required> <br> <br> <input
 					id="passwd2-reg" name="passwd2" type="password"
-					placeholder="Confirmar contrasenya" required> <br>
+					placeholder="Confirmar Contraseña" required> <br>
 				<%
 				if (errors != null && errors.get("Claves") != null) {
 				%>
@@ -158,9 +158,16 @@ if (user != null) {
 <!-- JavaScript -->
 <script>
 	document.addEventListener("DOMContentLoaded", () => {
-		showTab('cartelera');
+		let activeTab = sessionStorage.getItem("activeTab")
+		if (activeTab) {
+			showTab(activeTab);
+		}
+		else {
+			showTab('cartelera');	
+		}
 	});
 	function showTab(tabId) {
+		sessionStorage.setItem("activeTab", tabId);
         const tabs = document.querySelectorAll('.tab-content');
         tabs.forEach(tab => tab.style.display = 'none');
 

@@ -98,7 +98,7 @@
 			<textarea rows="10" cols="30" name="texto" style="resize: none" placeholder="Escribe aquí tu comentario" required></textarea>
 			<br>
 			<%="<input type=\"hidden\" name=\"pelicula\" value=\""+ pel + "\" required>" %>
-			<%="<input type=\"hidden\" name=\"usuario\" value=\""+ user + "\">" %>
+			<input type="hidden" name="usuario" value=<%=user%>>
 			<%="<input type=\"hidden\" name=\"fecha\" value=\""+ new Date().getTime() + "\" required>" %>
 			<input type="submit" value="Publicar">
 			<%!Map<String, String> errors;%>
@@ -109,6 +109,11 @@
 			%>
 			<%=errors.get("Usuario")%>	
 			<%
+			}
+			if (errors != null && errors.get("Login") != null) {
+				%>
+				<%=errors.get("Login")%>	
+				<%
 			}
 			%>
 		</form>

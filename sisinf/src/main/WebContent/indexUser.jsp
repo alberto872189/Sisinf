@@ -89,7 +89,7 @@
 				}
 				%>
 				<br> <input id="email" type="hidden" name="login"> <input
-					id="passwd" name="passwd" type="password" placeholder="Contrasenya">
+					id="passwd" name="passwd" type="password" placeholder="Contraseña">
 				<br>
 				<%
 				if (errors != null && errors.get("Clave") != null) {
@@ -99,7 +99,7 @@
 				}
 				%>
 				<br> <input id="passwd2" name="passwd2" type="password"
-					placeholder="Confirmar contrasenya"> <br>
+					placeholder="Confirmar Contraseña"> <br>
 				<%
 				if (errors != null && errors.get("Clave2") != null) {
 				%>
@@ -129,9 +129,16 @@
 <!-- JavaScript -->
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-		showTab('cartelera');
+	  let activeTab = sessionStorage.getItem("activeTabUser")
+		if (activeTab) {
+			showTab(activeTab);
+		}
+		else {
+			showTab('cartelera');	
+		}
   });
   function showTab(tabId) {
+	  	sessionStorage.setItem("activeTabUser", tabId);
      	const tabs = document.querySelectorAll('.tab-content');
       	tabs.forEach(tab => tab.style.display = 'none');
 

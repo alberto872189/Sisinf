@@ -47,83 +47,101 @@
 		<input type="hidden" name="hora" value=<%=hora%> required>
 		<input type="hidden" name="sala" value=<%=sala%> required>
 		<input type="hidden" name="retorno" value="index.jsp" required>
-		<button type="submit">CARTELERA</button>
+		<button type="submit" onclick="noBorrar()">CARTELERA</button>
 	</form>
 	</div>
 </div>
 <body>
 <div id="notTopbar">
-	<form name="reserva" method="post" action="/addProductoEntrada" id="botonReserva">
-		<h1>Productos del bar</h1>
-		<br>
-		<%
-		DAOProductoPostgres dao2 = new DAOProductoPostgres("usuario", "user");
-		List<Producto> productos = dao2.obtenerProductos();
-		%>
-		<table style="aling-text:center">
-			<tr>
-				<%
-				int i = 1;
-				DAOEntradaPostgres daoEnt = new DAOEntradaPostgres("usuario", "user");
-				for (String id : entradas) {
-					Entrada ent = daoEnt.obtener(Integer.valueOf(id));
-					int but = ent.N_But;
-					String fila = Integer.toString((but-1)/10 + 1);
-					String columna;
-					if (but % 10 == 0) {
-						columna = "10";
-					}
-					else {
-						columna = Integer.toString(but % 10);
-					}
-					if ((i-1) % 5 == 0 && i != 1) {
-					%>
-					<%="</tr><tr>"%>
-					<%
-					}
-				%>
-				<%="<td> Entrada " + i + "<br>Fila " + fila + ", butaca " + columna + "<br>"%>
-				<%
-				for (Producto producto : productos) {
-					if (producto.Disponible) {
-				%>
-				<%="<label>" + producto.Nombre + " <input width=\"12px\" heigth=\"12px\" type=\"checkbox\" name=\"productos\" value=\"" + producto.Nombre + ";"
-				+ id + "\"></label>"%>
-				<%
-					}
-				}
-				%>
-				<%="</td>"%>
-				<%
-				i++;
-				}
-				%>
-			</tr>
-		</table>
-		<input type="submit" value="Confirmar y pagar">
-	</form>
-	<br>
-	<form method="post" action="/borrarEntrada" id="botonVolver">
-		<%
-		for (String id : entradas) {
-		%>
-		<%="<input type=\"hidden\" name=\"idEntradas\" value=\"" + id + "\" required>"%>
-		<%
-		}
-		%>
-		<input type="hidden" name="nButacas" value="<%=nEntradas%>" required>
-		<input type="hidden" name="pelicula" value="<%=pel%>" required>
-		<input type="hidden" name="hora" value=<%=hora%> required>
-		<input type="hidden" name="sala" value=<%=sala%> required>
-		<input type="hidden" name="retorno" value="indexReserva2.jsp" required>
-		<input type="submit" value="Volver">
-	</form>
+    <form name="reserva" method="post" action="/addProductoEntrada" id="botonReserva">
+        <h1>Productos del bar</h1>
+        <br>
+        <%
+        DAOProductoPostgres dao2 = new DAOProductoPostgres("usuario", "user");
+        List<Producto> productos = dao2.obtenerProductos();
+        %>
+
+        <!-- Contenedor centrado para la tabla -->
+        <div class="table-container">
+            <table style="text-align:center">
+                <tr>
+                    <%
+                    int i = 1;
+                    DAOEntradaPostgres daoEnt = new DAOEntradaPostgres("usuario", "user");
+                    for (String id : entradas) {
+                        Entrada ent = daoEnt.obtener(Integer.valueOf(id));
+                        int but = ent.N_But;
+                        String fila = Integer.toString((but-1)/10 + 1);
+                        String columna;
+                        if (but % 10 == 0) {
+                            columna = "10";
+                        } else {
+                            columna = Integer.toString(but % 10);
+                        }
+                        if ((i-1) % 5 == 0 && i != 1) {
+                    %>
+                    <%= "</tr><tr>" %>
+                    <%
+                    }
+                    %>
+                    <%= "<td> <div style=\"font-weight: bold;\">Entrada " + i + "</div>Fila " + fila + ", butaca " + columna + "<br>" %>
+                    <%
+                    for (Producto producto : productos) {
+                        if (producto.Disponible) {
+                    %>
+                    <%= "<label>" + producto.Nombre + " <input width=\"12px\" heigth=\"12px\" type=\"checkbox\" name=\"productos\" value=\"" + producto.Nombre + ";" + id + "\"></label>" %>
+                    <%
+                        }
+                    }
+                    %>
+                    <%= "</td>" %>
+                    <%
+                    i++;
+                    }
+                    %>
+                </tr>
+            </table>
+        </div>
+
+        <input type="submit" value="Confirmar y pagar">
+    </form>
+    <br>
+    <form method="post" action="/borrarEntrada" id="botonVolver">
+        <%
+        for (String id : entradas) {
+        %>
+        <%= "<input type=\"hidden\" name=\"idEntradas\" value=\"" + id + "\" required>" %>
+        <%
+        }
+        %>
+        <input type="hidden" name="nButacas" value="<%=nEntradas%>" required>
+        <input type="hidden" name="pelicula" value="<%=pel%>" required>
+        <input type="hidden" name="hora" value=<%=hora%> required>
+        <input type="hidden" name="sala" value=<%=sala%> required>
+        <input type="hidden" name="retorno" value="indexReserva2.jsp" required>
+        <input type="submit" value="Volver" onclick="noBorrar()">
+    </form>
 </div>
 </body>
 <script >
+var borrar = true;
 function regreso() {
 	window.location.href = "/index.jsp";	
 }
+
+function noBorrar() {
+	borrar = false;
+}
+
+window.onload = function() {
+	borrar = true;
+}
+window.onbeforeunload = function() {
+	if (borrar) {
+	    var form = document.getElementById('botonVolver');
+	    navigator.sendBeacon(form.action, new FormData(form));
+	}
+};
 </script>
 <style>
 	/* General Reset */
@@ -190,7 +208,13 @@ h1 {
 
 table {
 	text-align: center;
-	border-spacing: 20px;
+	border-spacing: 40px;
+	margin: 0 auto;
+}
+
+.table-container {
+    margin: 0 auto;
+    text-align: center;
 }
 
 /* Formulario */

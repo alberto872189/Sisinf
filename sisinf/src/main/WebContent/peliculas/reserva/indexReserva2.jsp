@@ -81,7 +81,7 @@
 			}
 			if (user == null) {
 			%>
-			<%="<input type=\"text\" placeholder=\"correo electronico\" name=\"usuario\" required>"%>
+			<%="<input type=\"email\" placeholder=\"correo electronico\" name=\"usuario\" required>"%>
 			<%
 			} else {
 			%>
@@ -235,6 +235,14 @@ form {
 }
 
 form input[type="text"] {
+    width: 300px;
+    padding: 0.8em;
+    margin-bottom: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form input[type="email"] {
     width: 300px;
     padding: 0.8em;
     margin-bottom: 1em;

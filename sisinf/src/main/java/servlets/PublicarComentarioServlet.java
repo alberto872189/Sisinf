@@ -29,7 +29,7 @@ public class PublicarComentarioServlet extends HttpServlet {
 		String usuario = request.getParameter("usuario");
 		String fecha = request.getParameter("fecha");
 		if ((texto == null) || (texto.trim().equals(""))) errors.put("Texto", "Campo obligatorio");
-		if ((usuario == null) || (usuario.trim().equals(""))) errors.put("Usuario", "Necesitas iniciar sesión para escribir un comentario");
+		if ((usuario == null) || (usuario.equals("null")) || (usuario.trim().equals(""))) errors.put("Usuario", "Necesitas iniciar sesión para escribir un comentario");
 		if ((pelicula == null) || (pelicula.trim().equals(""))) errors.put("Pelicula", "No válida");
 		if ((fecha == null) || (fecha.trim().equals(""))) errors.put("Fecha", "No válida");
 		

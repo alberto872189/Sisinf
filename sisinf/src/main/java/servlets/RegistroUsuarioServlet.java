@@ -33,13 +33,13 @@ public class RegistroUsuarioServlet extends HttpServlet {
 			DAOClientePostgres dao = new DAOClientePostgres("usuario", "user");
 			Cliente client = dao.obtener(login);
 			if (client.Correo != null) {
-				errors.put("Login", "El usuario ya existe");
+				errors.put("LoginExists", "El usuario ya existe");
 			}
 			else {
 				DAOAdministradorPostgres daoAdmin = new DAOAdministradorPostgres("usuario", "user");
 				Administrador admin = daoAdmin.obtener(login);
 				if (admin.Correo != null) {
-					errors.put("Login", "El usuario ya existe");
+					errors.put("LoginExists", "El usuario ya existe");
 				}
 				else {
 					dao = new DAOClientePostgres("usuario", "user");
