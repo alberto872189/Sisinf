@@ -37,7 +37,7 @@ if (user != null) {
 
 <!-- Index.jsp -->
 <div class="topbar">
-	<h1>Desacine</h1>
+	<img src="/img/logo.png" width="75px" height="75px">
 	<!-- Menu -->
 	<div class="menu">
 		<button onclick="showTab('cartelera')">CARTELERA</button>

@@ -11,7 +11,7 @@
 <%@ page import="vo.Butaca"%>
 <%@ page import="vo.Producto"%>
 <div class="topbar">
-	<h1>Desacine</h1>
+	<img src="/img/logo.png" width="75px" height="75px">
 	<!-- Menu -->
 	<div class="menu">
 		<button onclick="regreso()">CARTELERA</button>

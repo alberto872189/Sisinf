@@ -8,9 +8,9 @@
 <%@ page import="java.util.List" %>
 </head>
 <body>
-<h2>Modificar productos</h2>
+<h1>Modificar productos</h1>
 <form method="post" action="/editarProductos">
-<ol>
+<ul>
   		<%
 		DAOProductoPostgres dao2 = new DAOProductoPostgres("usuario", "user");
 		List<Producto> productos = dao2.obtenerProductos();
@@ -18,12 +18,12 @@
 			if(producto.Disponible) {
 				%>
 					<%="<input type=\"hidden\" name=\"productos\" value=\"" + producto.Nombre + "\" required>" %>
-					<%="<li><span>" + producto.Nombre + ": " + producto.Precio + "</span><input type=\"number\" step=\"0.01\" name=\"precios\" value=\"" + producto.Precio + "\" required></li><br>" %>
+					<%="<li>" + producto.Nombre + ": " + producto.Precio + "    <input type=\"number\" step=\"0.01\" name=\"precios\" value=\"" + producto.Precio + "\" required></li><br>" %>
 				<%
 			}
 		}
 	%>
-</ol>
+</ul>
 <input type="submit" value="Confirmar">
 </form>
 	<br>
@@ -44,11 +44,15 @@ body {
     color: #333;
     line-height: 1.6;
     font-size: 16px;
-    padding:2em;
-    display: flex; 
-  	text-align: center; 
-	justify-content: center; 
+    text-align: center;
+    padding: 2em;
+    display: flex; /* Hacemos que el body sea un contenedor flexible */
+    flex-direction: column; /* Alineamos los elementos de arriba a abajo */
+    align-items: center; /* Centramos los elementos horizontalmente */
+    justify-content: flex-start; /* Colocamos los elementos al principio de la página */
+    height: 100vh; /* Aseguramos que el body ocupe toda la altura de la ventana */
 }
+
 
 button {
     background-color: #28a745;

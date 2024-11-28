@@ -8,7 +8,7 @@
 <%@ page import="vo.Pelicula" %>
 <%@ page import="java.util.List" %>
 <body>
-	<h2>CARTELERA</h2>
+	<h1 id="tituloPagina">BORRAR PELICULAS</h1>
 	<%	
 		DAOPeliculaPostgres dao = new DAOPeliculaPostgres("usuario", "user"); 
 		List<Pelicula> peliculas = dao.obtenerPeliculas(); 
@@ -46,9 +46,6 @@
     <br>
     <button id="delete-selected" type="submit">Borrar seleccionados</button>
     </form>
-    <br>
-    <br>
-    <br>
     <a href="/admin/indexAdmin.jsp">VOLVER</a>
 </body>
 
@@ -79,10 +76,13 @@ body {
     color: #333;
     line-height: 1.6;
     font-size: 16px;
-    padding:2em;
-    display: flex; 
-  	text-align: center; 
-	justify-content: center; 
+    text-align: center;
+    padding: 2em;
+    display: flex; /* Hacemos que el body sea un contenedor flexible */
+    flex-direction: column; /* Alineamos los elementos de arriba a abajo */
+    align-items: center; /* Centramos los elementos horizontalmente */
+    justify-content: flex-start; /* Colocamos los elementos al principio de la página */
+    height: 100vh; /* Aseguramos que el body ocupe toda la altura de la ventana */
 }
 
 button {

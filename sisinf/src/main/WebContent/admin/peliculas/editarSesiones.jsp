@@ -14,9 +14,9 @@
 <title>editarSesiones</title>
 </head>
 <body>
-			<h1>Editar sesion</h1>
-			 <h2>Sesion a cambiar</h2>
+			<h1>EDITAR SESIONES</h1>
 			 <form method="post" action="/editarSesion">
+			 <h2>Sesion a cambiar</h2>
 			 	<select id="sesionVieja" name="sesionVieja" required>
 			 	<%
                     DAOPeliculaPostgres dao = new DAOPeliculaPostgres("usuario", "user");
@@ -82,17 +82,11 @@ function editarSesion() {
 <!-- CSS -->
 <style>
 
-	/*form {
-        display: flex;
-        flex-direction: column;
-        width: 450px;
-        margin: 0 auto;
-    }*/
-    
     .inline-group {
         display: flex;
         gap: 10px; /* Espaciado entre los campos */
         align-items: center;
+        text-align: center;
         justify-content: space-between;
     }
     
@@ -109,12 +103,14 @@ body {
     color: #333;
     line-height: 1.6;
     font-size: 16px;
-    padding:2em;
-    display: flex; 
-  	text-align: center; 
-	justify-content: center; 
+    text-align: center;
+    padding: 2em;
+    display: flex; /* Hacemos que el body sea un contenedor flexible */
+    flex-direction: column; /* Alineamos los elementos de arriba a abajo */
+    align-items: center; /* Centramos los elementos horizontalmente */
+    justify-content: flex-start; /* Colocamos los elementos al principio de la página */
+    height: 100vh; /* Aseguramos que el body ocupe toda la altura de la ventana */
 }
-
 button {
     background-color: #28a745;
     color: white;
@@ -134,6 +130,8 @@ form {
     max-width: 600px;
     margin: 0 auto 1.5em auto;
     display: flex;
+    text-align: center;
+    justify-content: center;
     flex-direction: column;
 }
 

@@ -16,13 +16,12 @@
 <title>Añadir Película y Sesión</title>
 </head>
 <body>
-<h2>GESTIÓN DE PELÍCULAS</h2>
+<h1 id="tituloPagina">GESTIÓN DE PELÍCULAS</h1>
 <div>
     <div class ="buttons">
         <button onclick="showTab('anyadirPel')">Añadir Película</button>
         <button onclick="showTab('anyadirSes')">Crear Sesión</button>
     </div>
-
     <div id="anyadirPel" class="tab-content">
         <h3>AÑADIR PELÍCULA</h3>
         <form method="post" action="/anyadirPelicula" enctype="multipart/form-data">
@@ -40,6 +39,7 @@
     			<input type="file" id="imagen" class="file-label" name="imagen" accept="image/*" required>
     			<label for="imagen" class="file-label">Seleccionar archivo</label>
 			</div>
+			<br>
             Trailer:
             <br>
             <input type="url" id="trailer" name="trailer" placeholder="Enlace al trailer" required>
@@ -96,8 +96,6 @@
             <button type="submit">Crear Sesión</button>
         </form>
     </div>
-    <br>
-
     <a href="/admin/indexAdmin.jsp">VOLVER</a>
 </div>
 </body>
@@ -117,47 +115,7 @@
 </script>
 
 <style>
-    /*form {
-        display: flex;
-        flex-direction: column;
-        width: 400px;
-        margin: 0 auto;
-    }
-
-    input, select {
-        width: 100%;
-        padding: 4px;
-        box-sizing: border-box;
-    }
-    
-    input[id="resumen"] {
-        width: 100%;
-        padding: 20px;
-        box-sizing: border-box;
-    }
-
-    h2, h3, a {
-        display: flex;
-        text-align: center;
-        justify-content: center;
-    }
-
-    #cartelera, #cartelera td{
-        margin: 0 auto;
-        text-align: center;
-        justify-content: center;
-    }
-
-
-    button {
-    	margin: 5px;
-	}
-
-	.buttons {
-    	display: flex;
-   	 	justify-content: center;
-    	margin-bottom: 20px; /* Espaciado debajo del conjunto de botones */
-	}*/
+   
 	
 	  /* General Reset */
 body, h1, h2, p, a, table, tr, td, button, form, input, textarea, iframe {
@@ -172,11 +130,15 @@ body {
     color: #333;
     line-height: 1.6;
     font-size: 16px;
-    padding:2em;
-    display: flex; 
-  	text-align: center; 
-	justify-content: center; 
+    text-align: center;
+    padding: 2em;
+    display: flex; /* Hacemos que el body sea un contenedor flexible */
+    flex-direction: column; /* Alineamos los elementos de arriba a abajo */
+    align-items: center; /* Centramos los elementos horizontalmente */
+    justify-content: flex-start; /* Colocamos los elementos al principio de la página */
+    height: 100vh; /* Aseguramos que el body ocupe toda la altura de la ventana */
 }
+
 
 button {
     background-color: #28a745;

@@ -26,7 +26,7 @@
 		}
 	}
 	%>
-	<h1>Desacine</h1>
+	<img src="/img/logo.png" width="75px" height="75px">
 	<!-- Menu -->
 	<div class="menu">
 		<form method="post" action="/borrarEntrada" id="botonCartelera">

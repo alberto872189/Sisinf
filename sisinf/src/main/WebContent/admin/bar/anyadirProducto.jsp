@@ -8,7 +8,7 @@
 <%@ page import="dao.postgres.DAOProductoPostgres" %>
 <%@ page import="java.util.List" %>
 <body>
-<h2>AÑADIR PRODUCTO</h2>
+<h1>AÑADIR PRODUCTO</h1>
 <div>
 	<form method="post" action="/addProducto">
 		<input type="text" name="producto" placeholder="Nombre del producto">
@@ -58,10 +58,13 @@ body {
     color: #333;
     line-height: 1.6;
     font-size: 16px;
-    padding:2em;
-    display: flex; 
-  	text-align: center; 
-	justify-content: center; 
+    text-align: center;
+    padding: 2em;
+    display: flex; /* Hacemos que el body sea un contenedor flexible */
+    flex-direction: column; /* Alineamos los elementos de arriba a abajo */
+    align-items: center; /* Centramos los elementos horizontalmente */
+    justify-content: flex-start; /* Colocamos los elementos al principio de la página */
+    height: 100vh; /* Aseguramos que el body ocupe toda la altura de la ventana */
 }
 
 button {

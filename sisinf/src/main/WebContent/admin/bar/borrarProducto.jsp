@@ -7,21 +7,21 @@
 <%@ page import="dao.postgres.DAOProductoPostgres" %>
 <%@ page import="java.util.List" %>
 </head>
-	<h2>Borrar productos</h2>
+	<h1>Borrar productos</h1>
 	<form method="post" action="/borrarProductos">
-	<ol>
+	<ul>
 	<%
 		DAOProductoPostgres dao2 = new DAOProductoPostgres("usuario", "user");
 		List<Producto> productos = dao2.obtenerProductos();
 		for (Producto producto : productos) {
 			if(producto.Disponible) {
 				%>
-					<%="<li><span>" + producto.Nombre + ": " + producto.Precio + "</span><input type=\"checkbox\" name=\"productos\" value=\"" + producto.Nombre + "\"></li><br>" %>
+					<%="<li><input type=\"checkbox\" name=\"productos\" value=\"" + producto.Nombre + "\">    " + producto.Nombre + ": " + producto.Precio + "</li><br>" %>
 				<%
 			}
 		}
 	%>
-	</ol>
+	</ul>
 
 	<button id="delete-selected" type="submit">Borrar seleccionados</button>
 	</form>
@@ -50,10 +50,13 @@ body {
     color: #333;
     line-height: 1.6;
     font-size: 16px;
-    padding:2em;
-    display: flex; 
-  	text-align: center; 
-	justify-content: center; 
+    text-align: center;
+    padding: 2em;
+    display: flex; /* Hacemos que el body sea un contenedor flexible */
+    flex-direction: column; /* Alineamos los elementos de arriba a abajo */
+    align-items: center; /* Centramos los elementos horizontalmente */
+    justify-content: flex-start; /* Colocamos los elementos al principio de la página */
+    height: 100vh; /* Aseguramos que el body ocupe toda la altura de la ventana */
 }
 
 button {

@@ -13,7 +13,7 @@
 <title>Consultar datos</title>
 </head>
 <main>
-	<h2>CARTELERA</h2>
+	<h1>CARTELERA</h1>
 	<br>
 	
 	<%	

@@ -11,7 +11,7 @@
 <%@ page import="vo.Producto"%>
 <%@ page import="java.util.Map"%>
 <div class="topbar">
-	<h1>Desacine</h1>
+	<img src="/img/logo.png" width="75px" height="75px">
 	<!-- Menu -->
 	<div class="menu">
 		<button onclick="regreso()">CARTELERA</button>
