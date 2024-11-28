@@ -13,7 +13,7 @@
 		DAOPeliculaPostgres dao = new DAOPeliculaPostgres("usuario", "user"); 
 		List<Pelicula> peliculas = dao.obtenerPeliculas(); 
 	%>
-	<form method="post" action="/sisinf/borrarPelicula">
+	<form method="post" action="/borrarPelicula">
 	<table id="cartelera">
 	
     <%
