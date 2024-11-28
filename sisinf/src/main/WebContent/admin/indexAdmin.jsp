@@ -16,7 +16,7 @@
     	<div id="seccion1" class="tab-content">
       		<h2>Peliculas</h2>
       		<ul>
-      			<li><a href="/admin/peliculas/anyadirPelicula.jsp">Añadir peliculas</a></li>
+      			<li><a href="/admin/peliculas/anyadirPelicula.jsp">Añadir peliculas/sesiones</a></li>
       			<li><a href="/admin/peliculas/borrarPelicula.jsp">Borrar peliculas</a></li>
       			<li><a href="/admin/peliculas/editarSesiones.jsp">Editar sesiones</a></li>
       			<li><a href="/admin/peliculas/consultarDatos.jsp">Consultar datos</a></li>
