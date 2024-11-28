@@ -53,23 +53,23 @@
 				List<Pelicula> peliculas = dao.obtenerPeliculas();
 				for (Pelicula pelicula : peliculas) {
 				%>
-					<%="<li><span>" + pelicula.Titulo + "</span><input type=\"checkbox\" name=\"peliculas\" value=\"" + pelicula.Titulo + "\"></li><br>" %>
+					<%="<li><input type=\"checkbox\" name=\"peliculas\" value=\"" + pelicula.Titulo + "\">    " + pelicula.Titulo + "</li><br>" %>
 				<%
 				}
 				%>
 				</ul>
-    					</td>
-    					</tr>
-    					<tr>
-    					<td>
-    					<ul>
-    					<%
+    			</td>
+    			</tr>
+    			<tr>
+    			<td>
+    			<ul>
+    			<%
 				DAOProductoPostgres dao2 = new DAOProductoPostgres("usuario", "user");
 				List<Producto> productos = dao2.obtenerProductos();
 				for (Producto producto : productos) {
 					if(producto.Disponible) {
 				%>
-					<%="<li><span>" + producto.Nombre + ": " + producto.Precio + "</span><input type=\"checkbox\" name=\"productos\" value=\"" + producto.Nombre + "\"></li><br>" %>
+					<%="<li> <input type=\"checkbox\" name=\"productos\" value=\"" + producto.Nombre + "\">    " + producto.Nombre + ": " + producto.Precio + "</li><br>" %>
 				<%
 					}
 				}
@@ -103,9 +103,88 @@ function cerrarSesion() {
 	
 <!-- CSS -->
 <style>
-  
-  
-  ul {
+
+/* General Reset */
+body, h1, h2, p, a, table, tr, td, button, form, input, textarea, iframe {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+    font-size: 16px;
+    padding:2em;
+    display: flex; 
+  	text-align: center; 
+	justify-content: center; 
+}
+
+button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+input[type="text"] {
+    width: 300px;
+    padding: 0.8em;
+    margin-bottom: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="email"] {
+    width: 300px;
+    padding: 0.8em;
+    margin-bottom: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+input[type="checkbox"] {
+    transform: scale(1.5);
+    margin: 0;
+    cursor: pointer;
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #007bff;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.8em;
+    color: #333;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    text-align: center;
+}
+
+ul {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -117,16 +196,5 @@ function cerrarSesion() {
     margin-right: 20px;
   }
   
-  html{
-  	display: flex; 
-  	text-align: center; 
-	justify-content: center; 
-  }
-  
-  main{
-  	display: flex; 
-  	text-align: center; 
-	justify-content: center; 
-  }
 </style>
 </html>
