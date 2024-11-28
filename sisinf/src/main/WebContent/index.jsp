@@ -117,7 +117,7 @@ if (user != null) {
 				<button type="submit">Iniciar Sesion</button>
 			</form>
 
-			<br> <a href="#" class="tab-link" data-tab="registro">Registrarse</a>
+			<br> <a href="#" onclick="showTab('registro')">Registrarse</a>
 		</div>
 
 		<div id="registro" class="tab-content">
